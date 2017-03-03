@@ -1,9 +1,9 @@
-package com.epam.wizzair.steps;
+package com.epam.wizzair.step;
 import org.openqa.selenium.WebDriver;
 
 import com.epam.wizzair.driver.DriverSingleton;
-import com.epam.wizzair.pages.MainPage;
-import com.epam.wizzair.pages.SearchResult;
+import com.epam.wizzair.page.MainPage;
+import com.epam.wizzair.page.SearchResult;
 
 
 

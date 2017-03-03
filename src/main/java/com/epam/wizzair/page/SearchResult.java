@@ -1,4 +1,4 @@
-package com.epam.wizzair.pages;
+package com.epam.wizzair.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
