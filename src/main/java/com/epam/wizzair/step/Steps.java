@@ -22,7 +22,7 @@ public class Steps {
     public void findFlight() {
         MainPage mainPage = new MainPage(driver);
         mainPage.openPage();
-        mainPage.createNewRoad("Riga", "Tel-Aviv", "13 Apr 2017", "13 Apr 2017");
+        mainPage.createNewRoute("Riga", "Tel-Aviv", "13 Apr 2017", "13 Apr 2017");
     }
     
     public String getFirstPrice() {

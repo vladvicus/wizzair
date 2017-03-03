@@ -45,7 +45,7 @@ public class MainPage extends AbstractPage{
         driver.navigate().to(BASE_URL);
     }
 
-    public void createNewRoad(String origin, String destination, String departureDate, String returnDate){
+    public void createNewRoute(String origin, String destination, String departureDate, String returnDate){
  
     	    	
         inputDestinationName.click();

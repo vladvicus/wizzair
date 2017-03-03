@@ -8,7 +8,7 @@ public class DriverSingleton {
 
     private static WebDriver driver;
     private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
-    private static final String WEBDRIVER_CHROME_DRIVER_EXE_PATH = "D:\\chromedriver.exe";
+    private static final String WEBDRIVER_CHROME_DRIVER_EXE_PATH = "chromedriver.exe";
 
     private DriverSingleton() {
     }
