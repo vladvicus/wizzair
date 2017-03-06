@@ -1,4 +1,4 @@
-package com.epam.wizzair.page;
+package com.epam.wizzair.page.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -57,6 +57,8 @@ public class MainPage extends AbstractPage{
         searchButton.click();
 
     }
+
+
 
     public void signIn(){
         loginButton.click();
