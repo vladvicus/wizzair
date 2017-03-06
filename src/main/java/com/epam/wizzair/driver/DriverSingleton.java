@@ -8,13 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverSingleton {
 
-    public enum Driver {
-        Firefox,
-        Chrome
 
-    }
 
-    private static Driver driverType;
+    private static String driverType = Config.browser();
 
     private static WebDriver driver = null;
 
@@ -22,23 +18,23 @@ public class DriverSingleton {
 
     }
 
-    public static void setDriver(Driver driverType) {
+    public static void setDriver(String driverType) {
 
         DriverSingleton.driverType = driverType;
     }
 
+
     public static WebDriver getDriver() {
         if (driver == null) {
-            switch (driverType) {
-                case Firefox:
+            switch (driverType.toUpperCase()) {
+                case "FIREFOX":
                     System.setProperty("webdriver.gecko.driver", Config.geckodriver());
                     driver = new FirefoxDriver();
                     break;
-                case Chrome:
+                case "CHROME":
                     System.setProperty("webdriver.chrome.driver", Config.chromedriver());
                     driver = new ChromeDriver();
                     break;
-
 
                 default:
                     driver = new FirefoxDriver();
