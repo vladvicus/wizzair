@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 
 
-public class WizzAirAutomationFramework {
+public class TestCases {
 
     private Steps steps;
 
