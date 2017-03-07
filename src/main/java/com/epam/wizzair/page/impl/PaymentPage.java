@@ -20,28 +20,28 @@ public class PaymentPage extends AbstractPage {
 
     }
 
-    @FindBy (css = "[class=\"input first valid dirty modified touched\"")
+    @FindBy (xpath = "//div[@class=\"name gutter-bottom\"]/input[@placeholder=\"First name\"]")
     private WebElement billingFirstName;
 
-    @FindBy(css = "[class=\"input last valid dirty modified touched\"")
+    @FindBy(xpath = "//div[@class=\"name gutter-bottom\"]/input[@placeholder=\"Last name\"]")
     private WebElement billingLastName;
 
-    @FindBy (css = "[class=\"input valid dirty modified touched\"")
+    @FindBy (xpath = "//div[@class=\"input input--with-icon\"]/input[@placeholder=\"E-mail\"]")
     private WebElement billingEmail;
 
-    @FindBy(css = "[data-test=\"booking-payment-billing-address\"")
+    @FindBy(css = "[placeholder=\"Street\"")
     private WebElement billingStreet;
 
-    @FindBy(css = "[data-test=\"booking-payment-billing-city\"")
+    @FindBy(css = "[placeholder=\"City\"")
     private WebElement billingCity;
 
-    @FindBy (css = "[data-test=\"booking-payment-billing-phone\"")
+    @FindBy (css = "[placeholder=\"Phone number\"")
     private WebElement billingPhone;
 
-    @FindBy (css = "[data-test=\"booking-payment-billing-zipcode\"")
+    @FindBy (css = "[placeholder=\"Postcode\"")
     private WebElement billingPostcode;
 
-    @FindBy (css = "[class=\"dropdown__select invalid pristine touched\"")
+    @FindBy (css = "[data-test=\"booking-payment-billing-country\"")
     private WebElement menuCountry;
 
     @FindBy (xpath="//option[contains(@value, 'BY') and text() = 'Belarus']")
@@ -67,98 +67,112 @@ public class PaymentPage extends AbstractPage {
 
 
 
-    public void setFirstName(String firstName) {
+    public PaymentPage setFirstName(String firstName) {
 
         billingFirstName.click();
         billingFirstName.sendKeys(firstName);
+        return this;
 
     }
 
-    public void setLastName(String lastName) {
+    public PaymentPage setLastName(String lastName) {
         billingLastName.click();
         billingLastName.sendKeys(lastName);
+        return this;
     }
 
-    public void setEmail(String mail) {
+    public PaymentPage setEmail(String mail) {
         billingEmail.click();
         billingEmail.sendKeys(mail);
+        return this;
     }
 
-    public void setStreet(String street) {
+    public PaymentPage setStreet(String street) {
         billingStreet.click();
         billingStreet.sendKeys(street);
+        return this;
     }
 
-    public void setCity(String city) {
+    public PaymentPage setCity(String city) {
 
         billingCity.click();
         billingCity.sendKeys(city);
+        return this;
 
     }
 
-    public void setPhone(String phone) {
+    public PaymentPage setPhone(String phone) {
 
         billingPhone.click();
         billingPhone.sendKeys(phone);
+        return this;
     }
 
-    public void setPostcode(String postcode) {
+    public PaymentPage setPostcode(String postcode) {
 
         billingPostcode.click();
         billingPostcode.sendKeys(postcode);
+        return this;
 
     }
 
 
 
-    public void setCardNumber(String number) {
+    public PaymentPage setCardNumber(String number) {
 
         cardNumber.click();
         cardNumber.sendKeys(number);
+        return this;
 
 
     }
 
-    public void setCardName(String name) {
+    public PaymentPage setCardName(String name) {
 
         cardName.click();
         cardName.sendKeys(name);
+        return this;
 
     }
 
-    public void setCardCvv(String cvv) {
+    public PaymentPage setCardCvv(String cvv) {
 
         cardCvv.click();
         cardCvv.sendKeys(cvv);
+        return this;
 
     }
 
-    public void acceptPolicy() {
+    public PaymentPage acceptPolicy() {
 
         conditionsCheckbox.click();
+        return this;
 
     }
 
 
-    public void chooseCountryFromMenu() {
+    public PaymentPage chooseCountryFromMenu() {
 
         Actions builder = new Actions(getDriver());
         builder.moveToElement(menuCountry);
         builder.click(menuCountry).perform();
         builder.moveToElement(country); //this may not work correctly; needs to be scrolled to the element
         builder.click(country).perform();
+        return this;
 
     }
 
-    public void chooseCurrency() {
+    public PaymentPage chooseCurrency() {
 
         currency.click();
+        return this;
 
     }
 
-    public void confirmPayment() {
+    public PaymentPage confirmPayment() {
 
         confirmPaymentButton.click();
+        return this;
 
     }
 
