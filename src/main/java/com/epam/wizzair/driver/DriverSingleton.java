@@ -1,45 +1,65 @@
 package com.epam.wizzair.driver;
+import com.epam.wizzair.helper.Config;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public class DriverSingleton {
 
-    private static WebDriver driver;
-    private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
-    private static final String WEBDRIVER_CHROME_DRIVER_EXE_PATH = "chromedriver.exe";
-    private static final String WEBDRIVER_FIREFOX_DRIVER_EXE_PATH = "geckodriver.exe";
+
+
+    private static String driverType = Config.browser();
+
+    private static WebDriver driver = null;
 
     private DriverSingleton() {
+
     }
 
-    public static WebDriver getDriver() {
-        if (null == driver) {
-//            ProfilesIni profile = new ProfilesIni();
-//            FirefoxProfile myprofile = profile.getProfile("WebDriver");
-//            System.setProperty("webdriver.firefox.profile", "WebDriver");
-//            driver = new FirefoxDriver(new FirefoxProfile(new File("C:\\Users\\Dzmitry_Sankouski\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\jhosve22.WebDriver")));
-//            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//            driver.manage().window().maximize();
+    public static void setDriver(String driverType) {
 
-//            System.setProperty(WEBDRIVER_CHROME_DRIVER, WEBDRIVER_CHROME_DRIVER_EXE_PATH);
-//            driver = new ChromeDriver();
-//            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-//            driver.manage().window().maximize();
+        DriverSingleton.driverType = driverType;
+    }
+
+
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            switch (driverType.toUpperCase()) {
+                case "FIREFOX":
+                    System.setProperty("webdriver.gecko.driver", Config.geckodriver());
+                    driver = new FirefoxDriver();
+                    break;
+                case "CHROME":
+                    System.setProperty("webdriver.chrome.driver", Config.chromedriver());
+                    driver = new ChromeDriver();
+                    break;
+
+                default:
+                    driver = new FirefoxDriver();
+                    break;
+
+            }
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         }
         return driver;
-    } //todo static factory to get driver of  selected type
+    }
 
 
 
-    public static void closeDriver() {
-        driver.quit();
-        driver = null;
+
+
+    public static void open(String url){
+        getDriver().get(url);
+    }
+
+    public static void quit(){
+        if(driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
     
