@@ -144,6 +144,7 @@ public class PaymentPage extends AbstractPage {
 
         Actions builder = new Actions(getDriver());
         builder.moveToElement(menuCountry);
+        builder.click(menuCountry).perform();
         builder.moveToElement(country);
         builder.click(country).perform();
 
