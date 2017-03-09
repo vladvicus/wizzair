@@ -42,7 +42,7 @@ public class DriverSingleton {
 
             }
             driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(Config.timeout(), TimeUnit.SECONDS);
         }
         return driver;
     }

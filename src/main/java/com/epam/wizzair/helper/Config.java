@@ -36,9 +36,19 @@ public class Config {
 
 
     public static String geckodriver() {return config.getProperty("geckodriver");}
+
     public static String chromedriver() {return config.getProperty("chromedriver");}
 
+    public static int timeout(){
+        int result = 15;
 
+        try {
+            result = Integer.parseInt(config.getProperty("timeOut"));
+        } catch (NumberFormatException e) {
+            //todo logging
+        }
+        return result;
+    }
 
 
 
