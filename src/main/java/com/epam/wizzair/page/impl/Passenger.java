@@ -6,13 +6,17 @@ import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import javax.naming.OperationNotSupportedException;
 
 /**
  * Created by Dzmitry_Sankouski on 06-Mar-17.
  */
-public class Passenger implements IPassenger {
+public class Passenger extends AbstractPage implements IPassenger {
 
     //locators
     @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]")
@@ -41,6 +45,11 @@ public class Passenger implements IPassenger {
     By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
     By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]");
     By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]");
+
+    public Passenger(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(this.driver, this);
+    }
 
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
         switch (depOption){
@@ -108,8 +117,9 @@ public class Passenger implements IPassenger {
 
     //Sport Equipment locators
     By sportEquipmentBtn = By.xpath("//div[@class=\"booking-flow__passengers__sports-equipment-switch__button\"]");//todo refactor locator
-    WebElement sportEquipmentDepBtn = depContainer.findElement(sportEquipmentBtn);
-    WebElement sportEquipmentRetBtn = retContainer.findElement(sportEquipmentBtn);
+    WebElement sportEquipmentDepBtn;
+    WebElement sportEquipmentRetBtn;
+
     //this locators home is sportEquipmentBtn
     By input = By.xpath("//input[1]");
     By labelEn = By.xpath("//label[1]/span[@class=\"button button--medium button--filled\"]");
@@ -118,12 +128,14 @@ public class Passenger implements IPassenger {
 
 
     public boolean isDepSportEquipmentEn() {
+        sportEquipmentDepBtn = depContainer.findElement(sportEquipmentBtn);
         boolean result;
         result = sportEquipmentDepBtn.findElement(labelEn).getAttribute("style").isEmpty();
         return result;
     }
 
     public boolean isRetSportEquipmentEn() {
+        sportEquipmentRetBtn = retContainer.findElement(sportEquipmentBtn);
         boolean result;
         result = sportEquipmentRetBtn.findElement(labelEn).getAttribute("style").isEmpty();
         return result;
@@ -190,6 +202,11 @@ public class Passenger implements IPassenger {
     }
 
     public void confirm() throws ElementNotActiveException{
+
+    }
+
+    @Override
+    public void openPage(){
 
     }
 }
