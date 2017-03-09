@@ -15,7 +15,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="WizzairTestFramework" target="1.5" />
+      <module name="WizzairTestFramework" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
