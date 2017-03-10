@@ -1,7 +1,7 @@
-package com.epam.steps;
+package com.epam.wizzair.step.impl;
 
-import com.epam.driver.DriverSingleton;
-import com.epam.pages.SelectSeatPage;
+import com.epam.wizzair.driver.DriverSingleton;
+import com.epam.wizzair.page.impl.SelectSeatPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
