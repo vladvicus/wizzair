@@ -1,4 +1,4 @@
-package com.epam.pages;
+package com.epam.wizzair.page.impl;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
