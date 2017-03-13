@@ -5,13 +5,10 @@ import com.epam.wizzair.page.exception.ElementNotActiveException;
 import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.naming.OperationNotSupportedException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by Dzmitry_Sankouski on 06-Mar-17.
@@ -32,6 +29,19 @@ public class Passenger extends AbstractPage implements IPassenger {
     WebElement passengerForm;
 
 
+    @FindBy(id = "passengers-continue-btn")
+    WebElement nextPage;
+
+
+
+//    @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]/div[2]/div[1]/div/div/div[1]")
+//    WebElement depBaggageCheckInContainer;
+
+
+
+
+
+
     //--------------------sport equipment buttons
     By SportEquipment = By.xpath("//div[3]/div[1]/div[1]/div/div/div[2]/label");
 
@@ -39,18 +49,16 @@ public class Passenger extends AbstractPage implements IPassenger {
     By seatSelection = By.xpath("//div[3]/div[2]/div/div/div/div/div/button");
 
 //-----------------------checkin baggage radio buttons
-    By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
+    //By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
+    By baggageNoneRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__price') and text() = 'None']");
     By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]");
     By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]");
 
-    Actions actions = new Actions(driver);
 
-    public Passenger(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
-        JavascriptExecutor jsx = (JavascriptExecutor)driver;
-        jsx.executeScript("window.scrollBy(0,450)", "");
-        wait = new WebDriverWait(this.driver, 5, 1000);
+    public Passenger() {
+        //super(driver);
+        //PageFactory.initElements(getDriver(), this);
+
     }
 
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
@@ -97,7 +105,8 @@ public class Passenger extends AbstractPage implements IPassenger {
     }
 
     //-----------------------cabin baggage radio buttons
-    By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]");
+    //By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]");
+    By baggageSmallRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__weight') and text() = 'Small']");
     By baggageLargeRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]");
 
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
@@ -215,21 +224,11 @@ public class Passenger extends AbstractPage implements IPassenger {
         retContainer.findElement(seatSelection).click();
     }
 
-    // confirm container locator is relative to passengers form
-    By confirmContainerLocator = By.xpath(".//*[@class=\"booking-flow__cta-container\"]");
-    By confirmBtnLocator = By.xpath(".//*[@id=\"passengers-continue-btn\"]");
-    By confirmLabelLocator = By.xpath(".//div[2]");
 
-    public void submit() throws ElementNotActiveException{
-        WebElement confirmContainer = passengerForm.findElement(confirmContainerLocator);
-        WebElement confirmBtn = confirmContainer.findElement(confirmBtnLocator);
+    public void submit() {nextPage.click();}
 
-        if (!confirmBtn.isEnabled()){
-            WebElement confirmLabel = confirmContainer.findElement(confirmLabelLocator);
-            throw new ElementNotActiveException(confirmLabel.getText());
-        }
-        //todo return next page
-        confirmBtn.click();
+
+    public void confirm() throws ElementNotActiveException{
 
     }
 

@@ -3,12 +3,9 @@ package com.epam.wizzair.page.impl;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-/**
- * Created by Aliaksandr_Krutsko on 3/7/2017.
- */
-public class ServicesPage extends AbstractPage {
 
-    public ServicesPage() {
+public class WizzDiscountPage extends AbstractPage {
+    public WizzDiscountPage() {
         //super(driver);
        // PageFactory.initElements(getDriver(), this);
     }
@@ -18,15 +15,14 @@ public class ServicesPage extends AbstractPage {
 
     }
 
-    @FindBy(id = "services-continue-btn")
-    private WebElement nextPage;
+    @FindBy(css = "[data-test=\"booking-wdc-submit\"")
+    private WebElement decline;
 
 
-    public ServicesPage continueToNextPage() {
-
-        nextPage.click();
+    public WizzDiscountPage declineOffer() {
+        decline.click();
         return this;
-
     }
+
 
 }

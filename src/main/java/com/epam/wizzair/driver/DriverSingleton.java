@@ -43,6 +43,8 @@ public class DriverSingleton {
             }
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Config.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
         }
         return driver;
     }
