@@ -21,6 +21,7 @@ public class TestCases{
     private String destination = "Tel-Aviv";
     private int departureDay = 22;
     private int returnDay = 28;
+    MainPageSteps mainPage = new MainPageSteps();
 
     @BeforeTest
     public void setup(){
@@ -35,9 +36,8 @@ public class TestCases{
 
     @Test
     public void flitsSum() throws InterruptedException {
-
-        MainPageSteps.findFlight(origin, destination, departureDay, returnDay);
-        Assert.assertEquals(MainPageSteps.getTwoFlightPrices(), MainPageSteps.getFlightSumFromLeftWindow());
+        mainPage.findFlight(origin, destination, departureDay, returnDay);
+        Assert.assertEquals(mainPage.getTwoFlightPrices(), mainPage.getFlightSumFromLeftWindow());
     }
 
     @Test
@@ -46,9 +46,8 @@ public class TestCases{
 
 
         MainPageSteps.getRidOfStickBar();
-        MainPageSteps.signIn();
-        MainPageSteps.login();
-        MainPageSteps.findFlight(origin, destination, departureDay, returnDay);
+        mainPage.signIn().loginWizzAir("tatester@12storage.com", "qwerty12345");
+        mainPage.findFlight(origin, destination, departureDay, returnDay);
         MainPageSteps.getFlights();
         MainPageSteps.choosePassengerEquipment();
         MainPageSteps.continueFromSeats();
