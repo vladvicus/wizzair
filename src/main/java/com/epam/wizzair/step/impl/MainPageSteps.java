@@ -7,20 +7,21 @@ import com.epam.wizzair.page.util.CheckInMethod;
 
 
 public class MainPageSteps {
+    MainPage mainPage = new MainPage();
 
 
-    public static void findFlight(String origin, String destination, int departureDay, int returnDay) throws InterruptedException {
-        MainPage mainPage = new MainPage();
+    public StepsForSearchResult findFlight(String origin, String destination, int departureDay, int returnDay) throws InterruptedException {
+
         mainPage.stickyBarClose();
-
         mainPage.fillOrigin(origin);
         mainPage.fillDestination(destination);
         mainPage.fillDepartureDate(departureDay);
         mainPage.fillReturnDate(returnDay);
         mainPage.search();
+        return new StepsForSearchResult();
     }
 
-    public static String getTwoFlightPrices() {
+    public String getTwoFlightPrices() {
         SearchResult searchResult = new SearchResult();
 
         String firstFlightPrice = searchResult.chooseFirstFlight().substring(2);
@@ -30,35 +31,27 @@ public class MainPageSteps {
         return (sum + "").substring(0,6);
     }
 
-    public static String getFlightSumFromLeftWindow() {
+    public String getFlightSumFromLeftWindow() {
         SearchResult searchResult = new SearchResult();
 
         String s = searchResult.getTotalPrice().substring(2);
         return s;
     }
 
-    public static void signIn() {
-        MainPage mainPage = new MainPage();
+    public StepsForLoginPage signIn() {
         mainPage.signIn();
-    }
-
-
-    public static void login() {
-
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("tatester@12storage.com", "qwerty12345");
-
+        return new StepsForLoginPage();
     }
 
 
 
 
+    //todo delete this testing stuff
 
     public static void continueFromServicesPage() {
         ServicesPage servicesPage = new ServicesPage();
         servicesPage.continueToNextPage();
     }
-
 
 
     public static void enterPayment() {
@@ -67,7 +60,7 @@ public class MainPageSteps {
         paymentPage.setStreet("AnyStreet");
         paymentPage.setCity("Minsk");
         paymentPage.setPostcode("111111");
-        paymentPage.chooseCountryFromMenu();
+//        paymentPage.chooseCountryFromMenu();
         paymentPage.setCardNumber("4954-5913-5717-8298");
         paymentPage.setCardName("Tester");
         paymentPage.setCardCvv("512");
