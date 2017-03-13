@@ -5,6 +5,7 @@ import com.epam.wizzair.page.exception.ElementNotActiveException;
 import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,9 @@ import org.openqa.selenium.support.FindBy;
  * Created by Dzmitry_Sankouski on 06-Mar-17.
  */
 public class Passenger extends AbstractPage implements IPassenger {
+
+    private WebDriverWait wait;
+
 
     //locators
     @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]")
@@ -24,6 +28,7 @@ public class Passenger extends AbstractPage implements IPassenger {
     @FindBy(xpath = "//*[@id=\"booking-flow-step-passengers\"]/div[1]/form")
     WebElement passengerForm;
 
+
     @FindBy(id = "passengers-continue-btn")
     WebElement nextPage;
 
@@ -31,6 +36,7 @@ public class Passenger extends AbstractPage implements IPassenger {
 
 //    @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]/div[2]/div[1]/div/div/div[1]")
 //    WebElement depBaggageCheckInContainer;
+
 
 
 
@@ -48,38 +54,52 @@ public class Passenger extends AbstractPage implements IPassenger {
     By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]");
     By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]");
 
+
     public Passenger() {
         //super(driver);
         //PageFactory.initElements(getDriver(), this);
+
     }
 
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
+        WebElement input;
+
         switch (depOption){
             case NONE:
-                depContainer.findElement(baggageNoneRB).click();
+                input = depContainer.findElement(baggageNoneRB);
+                actions.moveToElement(input).click();
                 break;
             case LIGHT:
-                depContainer.findElement(baggageLightRB).click();
+                input = depContainer.findElement(baggageLightRB);
+                actions.moveToElement(input).click();
                 break;
             case HEAVY:
-                depContainer.findElement(baggageHeavyRB).click();
+                input = depContainer.findElement(baggageHeavyRB);
+                actions.moveToElement(input).click();
+                break;
         }
+
 
         return this;
     }
 
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption, BaggageCheckedOptions retOption) {
+        WebElement input;
         setCheckedInBaggage(depOption); // setting departure options
 
         switch (depOption){
             case NONE:
-                retContainer.findElement(baggageNoneRB).click();
+                input = retContainer.findElement(baggageNoneRB);
+                actions.moveToElement(input).click();
                 break;
             case LIGHT:
-                retContainer.findElement(baggageLightRB).click();
+                input = retContainer.findElement(baggageLightRB);
+                actions.moveToElement(input).click();
                 break;
             case HEAVY:
-                retContainer.findElement(baggageHeavyRB).click();
+                input = retContainer.findElement(baggageHeavyRB);
+                actions.moveToElement(input).click();
+                break;
         }
         return this;
     }
@@ -166,8 +186,8 @@ public class Passenger extends AbstractPage implements IPassenger {
 
 
 
-    By online = By.xpath("//div[3]/div[1]/div[2]/div/div/div/label[1]");
-    By airport = By.xpath("//div[3]/div[1]/div[2]/div/div/div/label[2]");
+    By online = By.xpath(".//div[3]/div[1]/div[2]/div/div/div/label[1]");
+    By airport = By.xpath(".//div[3]/div[1]/div[2]/div/div/div/label[2]");
     public Passenger setCheckInMethod(CheckInMethod depMethod, CheckInMethod retMethod) {
 
         switch (retMethod){
@@ -203,6 +223,7 @@ public class Passenger extends AbstractPage implements IPassenger {
     public void gotoRetSeatSelection() {
         retContainer.findElement(seatSelection).click();
     }
+
 
     public void submit() {nextPage.click();}
 

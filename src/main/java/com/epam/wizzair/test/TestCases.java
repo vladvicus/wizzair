@@ -16,6 +16,7 @@ import static org.testng.Assert.assertEquals;
 public class TestCases{
 
 
+
     private String origin = "Vilnius";
     private String destination = "Tel-Aviv";
     private int departureDay = 22;
@@ -40,6 +41,7 @@ public class TestCases{
     }
 
     @Test
+
     public void pay() throws InterruptedException {
 
 
@@ -57,23 +59,7 @@ public class TestCases{
         String message = rejectPaymentPage.getRejectMessage();
         assertEquals(message, "It seems your bank rejected the payment.");
 
-
     }
-
-    @Test
-    public void signAndNoSign() throws InterruptedException {
-
-        MainPageSteps.getRidOfStickBar();
-        MainPageSteps.findFlight(origin, destination, departureDay, returnDay);
-        MainPageSteps.getFlights();
-        String sum = MainPageSteps.getFlightSumFromLeftWindow();
-        getDriver().switchTo().defaultContent();
-        MainPageSteps.login();
-        MainPageSteps.findFlight(origin, destination, departureDay, returnDay);
-        MainPageSteps.getFlights();
-
-    }
-
 
 
 

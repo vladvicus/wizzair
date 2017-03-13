@@ -10,6 +10,7 @@ public class MainPageSteps {
 
 
 
+
     public static void findFlight(String origin, String destination, int departureDay, int returnDay) throws InterruptedException {
         MainPage mainPage = new MainPage();
         mainPage.fillOrigin(origin);
