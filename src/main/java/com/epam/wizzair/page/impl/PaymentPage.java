@@ -1,10 +1,16 @@
 package com.epam.wizzair.page.impl;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.epam.wizzair.driver.DriverSingleton.getDriver;
+
 public class PaymentPage extends AbstractPage {
+
+    private String pathIndex = "//option[contains(@value, '";
+    private String pathCountry = "') and text() = '";
 
 
     public PaymentPage() {
@@ -40,8 +46,8 @@ public class PaymentPage extends AbstractPage {
     @FindBy (css = "[data-test=\"booking-payment-billing-country\"")
     private WebElement menuCountry;
 
-    @FindBy (xpath="//option[contains(@value, 'AF') and text() = 'Afghanistan']")
-    private WebElement country;
+//    @FindBy (xpath="//option[contains(@value, 'AF') and text() = 'Afghanistan']")
+//    private WebElement country;
 
     @FindBy (id = "booking-payment-cardnumber")
     private WebElement cardNumber;
@@ -147,20 +153,23 @@ public class PaymentPage extends AbstractPage {
     }
 
 
-    public PaymentPage chooseCountryFromMenu() {
-
-        menuCountry.click();
-        country.click();
-        menuCountry.click();
-        return this;
-
-    }
 
     public PaymentPage chooseCurrency() {
 
         currency.click();
         return this;
 
+    }
+
+    public PaymentPage chooseCountryFromMenu(String index, String country) {
+
+        menuCountry.click();
+        WebElement chooseCountry = getDriver().findElement(By.xpath(pathIndex + index + pathCountry + country + "']"));
+        chooseCountry.click();
+        menuCountry.click();
+
+
+        return this;
     }
 
     public PaymentPage confirmPayment() {
