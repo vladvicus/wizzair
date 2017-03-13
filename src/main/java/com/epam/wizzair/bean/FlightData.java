@@ -1,14 +1,45 @@
-package com.epam.wizzair.bean; /**
+package com.epam.wizzair.bean;
+
+import java.util.Date;
+
+/**
  * Created by Dzmitry_Sankouski on 03-Mar-17.
  */
 public class FlightData {
-    private Integer totalPrice;
+    String origin;
+    String destination;
+    Date depDate;
+    Date retDate;
 
-    public Integer getTotalPrice() {
-        return totalPrice;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setTotalPrice(Integer totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Date getDepDate() {
+        return depDate;
+    }
+
+    public void setDepDate(Date depDate) {
+        this.depDate = depDate;
+    }
+
+    public Date getRetDate() {
+        return retDate;
+    }
+
+    public void setRetDate(Date retDate) {
+        this.retDate = retDate;
     }
 }
