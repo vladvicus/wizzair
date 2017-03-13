@@ -44,6 +44,7 @@ public class TestCases{
 
 
         MainPageSteps.getRidOfStickBar();
+        MainPageSteps.signIn();
         MainPageSteps.login();
         MainPageSteps.findFlight(origin, destination, departureDay, returnDay);
         MainPageSteps.getFlights();

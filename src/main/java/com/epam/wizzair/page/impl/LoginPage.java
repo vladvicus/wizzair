@@ -34,7 +34,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String email, String password){
-        signInButton.click();
+
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         submitSingInButton.click();

@@ -33,6 +33,10 @@ public class MainPageSteps {
         return s;
     }
 
+    public static void signIn() {
+        MainPage mainPage = new MainPage();
+        mainPage.signIn();
+    }
 
 
     public static void login() {
