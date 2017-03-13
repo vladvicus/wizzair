@@ -6,7 +6,7 @@ import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
 
 
-public class MainPageSteps {
+public class MainPageStepsForPOTesting {
     MainPage mainPage = new MainPage();
 
 

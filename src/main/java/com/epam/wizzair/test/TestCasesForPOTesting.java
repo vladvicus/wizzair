@@ -2,18 +2,17 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.page.impl.RejectPaymentPage;
-import com.epam.wizzair.step.impl.MainPageSteps;
+import com.epam.wizzair.step.impl.MainPageStepsForPOTesting;
 import junit.framework.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 import static com.epam.wizzair.driver.DriverSingleton.quit;
 import static org.testng.Assert.assertEquals;
 
 
-public class TestCases{
+public class TestCasesForPOTesting {
 
 
 
@@ -21,7 +20,7 @@ public class TestCases{
     private String destination = "Tel-Aviv";
     private int departureDay = 22;
     private int returnDay = 28;
-    MainPageSteps mainPage = new MainPageSteps();
+    MainPageStepsForPOTesting mainPage = new MainPageStepsForPOTesting();
 
     @BeforeTest
     public void setup(){
@@ -45,15 +44,15 @@ public class TestCases{
     public void pay() throws InterruptedException {
 
 
-        MainPageSteps.getRidOfStickBar();
+        MainPageStepsForPOTesting.getRidOfStickBar();
         mainPage.signIn().loginWizzAir("tatester@12storage.com", "qwerty12345");
         mainPage.findFlight(origin, destination, departureDay, returnDay);
-        MainPageSteps.getFlights();
-        MainPageSteps.choosePassengerEquipment();
-        MainPageSteps.continueFromSeats();
-        MainPageSteps.continueFromServicesPage();
-        MainPageSteps.declineWiz();
-        MainPageSteps.enterPayment();
+        MainPageStepsForPOTesting.getFlights();
+        MainPageStepsForPOTesting.choosePassengerEquipment();
+        MainPageStepsForPOTesting.continueFromSeats();
+        MainPageStepsForPOTesting.continueFromServicesPage();
+        MainPageStepsForPOTesting.declineWiz();
+        MainPageStepsForPOTesting.enterPayment();
         RejectPaymentPage rejectPaymentPage = new RejectPaymentPage();
         String message = rejectPaymentPage.getRejectMessage();
         assertEquals(message, "It seems your bank rejected the payment.");
