@@ -9,10 +9,10 @@ import com.epam.wizzair.page.util.CheckInMethod;
 public class MainPageSteps {
 
 
-
-
     public static void findFlight(String origin, String destination, int departureDay, int returnDay) throws InterruptedException {
         MainPage mainPage = new MainPage();
+        mainPage.stickyBarClose();
+
         mainPage.fillOrigin(origin);
         mainPage.fillDestination(destination);
         mainPage.fillDepartureDate(departureDay);
@@ -22,15 +22,18 @@ public class MainPageSteps {
 
     public static String getTwoFlightPrices() {
         SearchResult searchResult = new SearchResult();
-        String firstFlightPrice = searchResult.chooseFirstFlight().substring(1);
-        String secondFlightPrice = searchResult.chooseSecondFlight().substring(1);
+
+        String firstFlightPrice = searchResult.chooseFirstFlight().substring(2);
+        String secondFlightPrice = searchResult.chooseSecondFlight().substring(2);
+
         double sum = Double.parseDouble(firstFlightPrice) + Double.parseDouble(secondFlightPrice);
         return (sum + "").substring(0,6);
     }
 
     public static String getFlightSumFromLeftWindow() {
         SearchResult searchResult = new SearchResult();
-        String s = searchResult.getTotalPrice().substring(1);
+
+        String s = searchResult.getTotalPrice().substring(2);
         return s;
     }
 
