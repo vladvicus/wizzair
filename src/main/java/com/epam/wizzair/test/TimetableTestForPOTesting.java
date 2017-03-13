@@ -11,7 +11,7 @@ import static com.epam.wizzair.driver.DriverSingleton.quit;
 /**
  * Created by Nadzeya_Parkhimovich on 13-Mar-17.
  */
-public class TimetableTest {
+public class TimetableTestForPOTesting {
 
     private TimeTableSteps steps;
     private String origin = "Vilnius";
