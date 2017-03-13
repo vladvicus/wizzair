@@ -18,7 +18,7 @@ public class TestCases {
 
     private MainPageSteps steps;
 
-    private String origin = "Vilus";
+    private String origin = "Vilnius";
     private String destination = "Tel-Aviv";
     private int departureDay = 22;
     private int returnDay = 28;
