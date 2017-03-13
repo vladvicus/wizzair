@@ -6,12 +6,8 @@ import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import javax.naming.OperationNotSupportedException;
 
 /**
  * Created by Dzmitry_Sankouski on 06-Mar-17.
@@ -28,6 +24,11 @@ public class Passenger extends AbstractPage implements IPassenger {
     @FindBy(xpath = "//*[@id=\"booking-flow-step-passengers\"]/div[1]/form")
     WebElement passengerForm;
 
+    @FindBy(id = "passengers-continue-btn")
+    WebElement nextPage;
+
+
+
 //    @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]/div[2]/div[1]/div/div/div[1]")
 //    WebElement depBaggageCheckInContainer;
 
@@ -42,13 +43,14 @@ public class Passenger extends AbstractPage implements IPassenger {
     By seatSelection = By.xpath("//div[3]/div[2]/div/div/div/div/div/button");
 
 //-----------------------checkin baggage radio buttons
-    By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
+    //By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
+    By baggageNoneRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__price') and text() = 'None']");
     By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]");
     By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]");
 
-    public Passenger(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+    public Passenger() {
+        //super(driver);
+        //PageFactory.initElements(getDriver(), this);
     }
 
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
@@ -83,7 +85,8 @@ public class Passenger extends AbstractPage implements IPassenger {
     }
 
     //-----------------------cabin baggage radio buttons
-    By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]");
+    //By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]");
+    By baggageSmallRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__weight') and text() = 'Small']");
     By baggageLargeRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]");
 
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
@@ -151,12 +154,12 @@ public class Passenger extends AbstractPage implements IPassenger {
         boolean actualDepState = isDepSportEquipmentEn();
 
         if (isDepEnabled^actualDepState){ // if actual XOR expected = true then click
-            sportEquipmentDepBtn.findElement(input).click();
+            sportEquipmentDepBtn.click();
         }
 
         boolean actualRetState = isRetSportEquipmentEn();
         if (isRetSportEquipmentEn()^actualRetState){ // if actual XOR expected = true then click
-            sportEquipmentRetBtn.findElement(input).click();
+            sportEquipmentRetBtn.click();
         }
         return this;
     }
@@ -200,6 +203,9 @@ public class Passenger extends AbstractPage implements IPassenger {
     public void gotoRetSeatSelection() {
         retContainer.findElement(seatSelection).click();
     }
+
+    public void submit() {nextPage.click();}
+
 
     public void confirm() throws ElementNotActiveException{
 

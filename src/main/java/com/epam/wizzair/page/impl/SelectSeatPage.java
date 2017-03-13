@@ -1,15 +1,28 @@
-package com.epam.pages;
+package com.epam.wizzair.page.impl;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-public class SelectSeatPage extends AbstractPage{
+import static com.epam.wizzair.driver.DriverSingleton.getDriver;
+
+public class SelectSeatPage extends AbstractPage {
+
+    public SelectSeatPage(){
+
+    }
+
+    @Override
+    public void openPage() {
+
+    }
+
+    private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
 
     //можно //a[text()='Continue']
     @FindBy(xpath = "//form[@name='seat-selection']//a[text()='Continue']")
@@ -31,16 +44,31 @@ public class SelectSeatPage extends AbstractPage{
             " booking-flow__seat-map__map--320 seat-map--320']//input[@disabled]")
     private WebElement[] unavailableSeats;
 
+    @FindBy(xpath = "//form[@name ='seat-selection']//button[@class = 'button button--medium button--filled' and text()='Continue' and @type = 'button']")
+    private WebElement seatOriginContinue;
 
-    public SelectSeatPage(WebDriver driver){
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+
+    @FindBy(xpath = "//form[@name ='seat-selection']//button[@class = 'button button--medium button--filled' and text()='Continue' and @type = 'submit']")
+    private WebElement seatReturnContinue;
+
+
+    public SelectSeatPage continueOrigin() {
+        seatOriginContinue.click();
+        return this;
     }
 
-    @Override
-    public void openPage() {
+
+    public SelectSeatPage continueReturn() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(seatReturnContinue));
+
+        seatReturnContinue.click();
+        return this;
 
     }
+
+
+
 
 
     public void selectRandomAvailableSeat(){
@@ -65,5 +93,9 @@ public class SelectSeatPage extends AbstractPage{
         Random rnd = new Random();
         return rnd.nextInt(numberOfSeats) + 1;
     }
+
+
+
+
 
 }
