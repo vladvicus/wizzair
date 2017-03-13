@@ -8,24 +8,17 @@ import org.openqa.selenium.WebDriver;
 
 public class StepsForSelectSeatPage {
 
-    private WebDriver driver;
-
+    SelectSeatPage selectSeatPage = new SelectSeatPage();
     private final Logger logger = LogManager.getRootLogger();
 
-
-    public void initBrowser()
+    public String selectSeatWizzAir()
     {
-        driver = DriverSingleton.getDriver();
-    }
-
-    public void closeDriver()
-    { driver.quit();
-    }
-
-    public void selectSeatWizzAir()
-    {
-        SelectSeatPage selectSeatPage = new SelectSeatPage(driver);
         selectSeatPage.selectRandomAvailableSeat();
+        return selectSeatPage.getSelectedSeatName();
+    }
+
+    public void selectSeatWizzAir(String seat){
+//        selectSeatPage.
     }
 
     /*public boolean isSelectedSeatEnable()
