@@ -8,9 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.epam.wizzair.driver.DriverSingleton.getDriver;
+
 public class MainPage extends AbstractPage{
 
-    private WebDriverWait wait = new WebDriverWait(driver, 5, 1000);
+    private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
+
     private final String BASE_URL = "https://wizzair.com/en-gb/main-page#/";
 
     private final String PATH_DATE = "//div[@class='calendar']//td[@data-day='";
@@ -40,14 +43,15 @@ public class MainPage extends AbstractPage{
     @FindBy(linkText = "Timetable")
     private WebElement timetableButton;
 
-    public MainPage(WebDriver driver){
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+    @FindBy(css = "[class=\"cookie-policy__button\"")
+    private WebElement stickyBar;
+
+    public MainPage(){
     }
 
     @Override
     public void openPage(){
-        driver.navigate().to(BASE_URL);
+        getDriver().navigate().to(BASE_URL);
     }
 
 
@@ -55,7 +59,7 @@ public class MainPage extends AbstractPage{
 
         inputOriginName.click();
         inputOriginName.sendKeys(origin);
-        WebElement originCity = driver.findElement(By.xpath(PATH_CITY + origin + "']"));
+        WebElement originCity = getDriver().findElement(By.xpath(PATH_CITY + origin + "']"));
         originCity.click();
         return this;
     }
@@ -65,34 +69,34 @@ public class MainPage extends AbstractPage{
         wait.until(ExpectedConditions.elementToBeClickable(inputDestinationName));
         inputDestinationName.click();
         inputDestinationName.sendKeys(destination);
-        WebElement destinationCity = driver.findElement(By.xpath(PATH_CITY + destination + "']"));
+        WebElement destinationCity = getDriver().findElement(By.xpath(PATH_CITY + destination + "']"));
         destinationCity.click();
         return this;
     }
 
     public MainPage fillDepartureDate(int day) {
         departureDateName.click();
-        WebElement calendarDepartureDate = driver.findElement(By.xpath(PATH_DATE + day + "']"));
+        WebElement calendarDepartureDate = getDriver().findElement(By.xpath(PATH_DATE + day + "']"));
         calendarDepartureDate.click();
         return this;
     }
 
     public MainPage fillReturnDate(int day) {
         returnDateName.click();
-        WebElement calendarReturnDate = driver.findElement(By.xpath(PATH_DATE + day + "']"));
+        WebElement calendarReturnDate = getDriver().findElement(By.xpath(PATH_DATE + day + "']"));
         calendarReturnDate.click();
         return this;
     }
 
     public SearchResult search() {
         searchButton.click();
-        return new SearchResult(driver);
+        return new SearchResult();
     }
 
     public LoginPage signIn(){
 
         loginButton.click();
-        return new LoginPage(driver);
+        return new LoginPage();
     }
 
     public void servicesClick() {
@@ -104,6 +108,13 @@ public class MainPage extends AbstractPage{
         timetableButton.click();
     }
 
+    public MainPage stickyBarClose() {
+
+        if(stickyBar.isDisplayed()){
+            stickyBar.click();
+        }
+        return this;
+    }
 
 
 

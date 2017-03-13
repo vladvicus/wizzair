@@ -1,9 +1,12 @@
 package com.epam.wizzair.test;
 
+import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.step.impl.TimeTableSteps;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static com.epam.wizzair.driver.DriverSingleton.quit;
 
 /**
  * Created by Nadzeya_Parkhimovich on 13-Mar-17.
@@ -16,8 +19,8 @@ public class TimetableTest {
 
     @BeforeMethod(description = "Init browser")
     public void setUp() {
-        steps = new TimeTableSteps();
-        steps.initBrowser();
+        MainPage mainPage = new MainPage();
+        mainPage.openPage();
     }
 
     @Test
@@ -30,6 +33,6 @@ public class TimetableTest {
 
     @AfterMethod
     public void close() {
-        steps.closeBrowser();
+        quit();
     }
 }
