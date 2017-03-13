@@ -1,12 +1,12 @@
 package com.epam.wizzair.page.impl;
 
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.epam.wizzair.page.impl.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 
 public class LoginPage extends AbstractPage {
@@ -30,9 +30,8 @@ public class LoginPage extends AbstractPage {
 
 
 
-    public LoginPage(WebDriver driver){
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+    public LoginPage(){
+
     }
 
     @Override
@@ -41,10 +40,12 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String email, String password){
+      
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         submitSingInButton.click();
         logger.info("Login performed");
+    
     }
 
     public void openSignInForm(){
