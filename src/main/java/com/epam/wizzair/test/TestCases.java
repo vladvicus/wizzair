@@ -25,6 +25,7 @@ public class TestCases{
     public void setup(){
         //open(Config.url());
         MainPage mainPage = new MainPage();
+        mainPage.openPage();
 
 
     }
