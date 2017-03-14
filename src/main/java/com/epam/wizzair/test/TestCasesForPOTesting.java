@@ -53,13 +53,12 @@ public class TestCasesForPOTesting {
         Creator.setPropertyFile(bean);
         MainPageStepsForPOTesting.getRidOfStickBar();
         stepsForMainPage.signIn().loginWizzAir(Creator.getLogin());
-        stepsForMainPage.findFlight(Creator.getFlightData()).getFlights().submit().fillBaggage(Creator.getBaggage()).submitAndGoToSeatSelection()
+        stepsForMainPage.findFlight(Creator.getFlightData()).pickExactFlights().submit().fillPassenger(Creator.getPassengerDate()).submitAndGoToSeatSelection()
                 .continueFromSeats().submit().submit().continueToNextPage().fillBillingDetails(Creator.getBillingDetailsPersonal())
                 .fillCreditCard(Creator.getCreditCardDate()).submit();
         RejectPaymentPage rejectPaymentPage = new RejectPaymentPage();
         String message = rejectPaymentPage.getRejectMessage();
         assertEquals(message, "It seems your bank rejected the payment.");
-
 
     }
 

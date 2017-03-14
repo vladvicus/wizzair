@@ -8,15 +8,26 @@ import com.epam.wizzair.page.impl.SearchResult;
  */
 public class StepsForSearchResult {
 
-    public StepsForSearchResult getFlights() {
+    SearchResult result = new SearchResult();
 
-        SearchResult searchResult = new SearchResult();
-
-      searchResult.chooseFirstFlight();
-      searchResult.chooseSecondFlight();
+    public StepsForSearchResult pickExactDepFlight(){
+        result.chooseFirstFlight();
 
         return this;
     }
+
+    public StepsForSearchResult pickExactRetFlight(){
+        result.chooseSecondFlight();
+
+        return this;
+    }
+
+    public StepsForSearchResult pickExactFlights(){
+        result.chooseFirstFlight();
+        result.chooseSecondFlight();
+        return this;
+    }
+
 
     public PassengerSteps submit() {
         SearchResult searchResult = new SearchResult();
