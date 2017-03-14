@@ -11,6 +11,7 @@ public class BillingDetailsPersonal {
     String city;
     String phone;
     String postIndex;
+    String countryIndex;
     String country;
 
     public String getFirstName() {
@@ -68,6 +69,10 @@ public class BillingDetailsPersonal {
     public void setPostIndex(String postIndex) {
         this.postIndex = postIndex;
     }
+
+    public String getCountryIndex() {return countryIndex;}
+
+    public void setCountryIndex(String countryIndex) {this.countryIndex = countryIndex;}
 
     public String getCountry() {
         return country;
