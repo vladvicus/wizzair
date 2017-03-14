@@ -29,15 +29,25 @@ public class StepsForSearchResult {
     }
 
 
-    public PassengerSteps submit() {
-        SearchResult searchResult = new SearchResult();
-        searchResult.continueToNextPage();
+    public PassengerSteps submit(){
+        result.continueToNextPage();
         return new PassengerSteps();
-
-
     }
 
+    //---------control methods
+    public String getTwoFlightPrices() {
 
+        String firstFlightPrice = result.chooseFirstFlight().substring(2);
+        String secondFlightPrice = result.chooseSecondFlight().substring(2);
 
+        double sum = Double.parseDouble(firstFlightPrice) + Double.parseDouble(secondFlightPrice);
+        return (sum + "").substring(0,6);
+    }
 
+    public String getFlightSumFromLeftWindow() {
+
+        String s = result.getTotalPrice().substring(2);
+        return s;
+    }
 }
+
