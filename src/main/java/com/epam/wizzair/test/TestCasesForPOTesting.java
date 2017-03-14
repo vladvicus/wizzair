@@ -1,6 +1,8 @@
 package com.epam.wizzair.test;
 
+
 import com.epam.wizzair.bean.FlightData;
+import com.epam.wizzair.bean.Login;
 import com.epam.wizzair.helper.Creator;
 import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.page.impl.RejectPaymentPage;
@@ -43,19 +45,18 @@ public class TestCasesForPOTesting {
         Assert.assertEquals(mainPageTest.getTwoFlightPrices(), mainPageTest.getFlightSumFromLeftWindow());
     }
 
-
-
-
     @Test
 
     public void payForBooking() {
         String bean = "bean";
         Creator.setPropertyFile(bean);
         MainPageStepsForPOTesting.getRidOfStickBar();
+
         stepsForMainPage.signIn().loginWizzAir(Creator.getLogin());
         stepsForMainPage.findFlight(Creator.getFlightData()).pickExactFlights().submit().fillPassenger(Creator.getPassengerDate()).submitAndGoToSeatSelection()
                 .continueFromSeats().submit().submit().continueToNextPage().fillBillingDetails(Creator.getBillingDetailsPersonal())
                 .fillCreditCard(Creator.getCreditCardDate()).submit();
+
         RejectPaymentPage rejectPaymentPage = new RejectPaymentPage();
         String message = rejectPaymentPage.getRejectMessage();
         assertEquals(message, "It seems your bank rejected the payment.");

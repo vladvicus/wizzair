@@ -1,6 +1,5 @@
 package com.epam.wizzair.step.impl;
 
-
 import com.epam.wizzair.page.impl.SearchResult;
 
 /**
@@ -27,7 +26,6 @@ public class StepsForSearchResult {
         result.chooseSecondFlight();
         return this;
     }
-
 
     public PassengerSteps submit(){
         result.continueToNextPage();

@@ -18,7 +18,7 @@ public class PassengerSteps {
         passengerPO.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
         passengerPO.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
         return  this;
-    }
+    } // todo how to know if return flight enabled?
 
     public PassengerSteps fillBaggage(Baggage baggage) {
 

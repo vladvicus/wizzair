@@ -16,6 +16,11 @@ public class StepsForMainPage {
         return this;
     }
 
+    public StepsForMainPage closePopUps(){
+        mainPage.stickyBarClose();
+        return this;
+    }
+
     public StepsForSearchResult findFlight(FlightData data){
 
         mainPage.stickyBarClose();

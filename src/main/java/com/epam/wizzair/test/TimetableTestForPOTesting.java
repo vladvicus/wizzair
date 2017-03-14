@@ -1,7 +1,10 @@
 package com.epam.wizzair.test;
 
 import com.epam.wizzair.page.impl.MainPage;
+import com.epam.wizzair.page.impl.SearchResult;
+import com.epam.wizzair.page.impl.TimetablePage;
 import com.epam.wizzair.step.impl.TimeTableSteps;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -27,8 +30,10 @@ public class TimetableTestForPOTesting {
     public void timetableTest() throws InterruptedException {
         steps.openTimetablePage();
         steps.findFlight(origin, destination);
-        Thread.sleep(3000);
-
+        Thread.sleep(5000);
+        steps.findFlightInSearchPage();
+        Assert.assertEquals(steps.getFirstFlightPriceInSearch(), steps.getFirstFlightPrice());
+        Assert.assertEquals(steps.getSummaryPriceInSearch(),steps.getSummaryPrice());
     }
 
     @AfterMethod
