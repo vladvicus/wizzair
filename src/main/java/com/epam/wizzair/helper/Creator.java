@@ -13,7 +13,16 @@ public class Creator {
 
 
     private static Properties bean = new Properties();
+    static {
+        InputStream is = Config.class.getResourceAsStream("/bean.properties");
+        try{
+            bean.load(is);
 
+        } catch (Exception e){
+            System.out.println("Error reading from property file");// todo logging
+
+        }
+    } // default init block
 
 
     public static void setPropertyFile(String fileName) {
@@ -26,7 +35,7 @@ public class Creator {
                 bean.load(is);
 
             } catch (Exception e){
-                System.out.println("Error reading from property file");
+                System.out.println("Error reading from property file");// todo logging
 
             }
         }
