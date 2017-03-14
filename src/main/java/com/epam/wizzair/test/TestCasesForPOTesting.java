@@ -1,5 +1,7 @@
 package com.epam.wizzair.test;
 
+import com.epam.wizzair.bean.Login;
+import com.epam.wizzair.helper.Creator;
 import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.page.impl.RejectPaymentPage;
 import com.epam.wizzair.step.impl.MainPageStepsForPOTesting;
@@ -42,10 +44,10 @@ public class TestCasesForPOTesting {
     @Test
 
     public void pay() throws InterruptedException {
-
+        Login login = Creator.getLogin();
 
         MainPageStepsForPOTesting.getRidOfStickBar();
-        mainPage.signIn().loginWizzAir("tatester@12storage.com", "qwerty12345");
+        mainPage.signIn().loginWizzAir(login);
         mainPage.findFlight(origin, destination, departureDay, returnDay);
         MainPageStepsForPOTesting.getFlights();
         MainPageStepsForPOTesting.choosePassengerEquipment();
