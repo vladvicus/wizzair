@@ -1,7 +1,5 @@
 package com.epam.wizzair.bean;
 
-import java.util.Date;
-
 /**
  * Created by Dzmitry_Sankouski on 03-Mar-17.
  */

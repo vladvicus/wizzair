@@ -18,7 +18,6 @@ public class StepsForMainPage {
 
     public StepsForSearchResult findFlight(FlightData data){
 
-
         mainPage.stickyBarClose();
         mainPage.fillOrigin(data.getOrigin());
         mainPage.fillDestination(data.getDestination());
@@ -26,6 +25,7 @@ public class StepsForMainPage {
         mainPage.fillReturnDate(data.getRetDate());
         mainPage.search();
         return new StepsForSearchResult();
+
     }
 
     public String getTwoFlightPrices() {

@@ -28,7 +28,8 @@ public class PaymentPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"name gutter-bottom\"]/input[@placeholder=\"Last name\"]")
     private WebElement billingLastName;
 
-    @FindBy (xpath = "//div[@class=\"input input--with-icon\"]/input[@placeholder=\"E-mail\"]")
+    //@FindBy (xpath = "//div[@class=\"input input--with-icon\"]/input[@placeholder=\"E-mail\"]")
+    @FindBy(xpath = "//div[@class=\"booking-flow__payment__section__content\"]//*[@placeholder=\"E-mail\" and @type=\"email\"]")
     private WebElement billingEmail;
 
     @FindBy(css = "[placeholder=\"Street\"")
@@ -45,9 +46,6 @@ public class PaymentPage extends AbstractPage {
 
     @FindBy (css = "[data-test=\"booking-payment-billing-country\"")
     private WebElement menuCountry;
-
-//    @FindBy (xpath="//option[contains(@value, 'AF') and text() = 'Afghanistan']")
-//    private WebElement country;
 
     @FindBy (id = "booking-payment-cardnumber")
     private WebElement cardNumber;
