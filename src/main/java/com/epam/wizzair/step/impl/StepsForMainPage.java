@@ -18,14 +18,14 @@ public class StepsForMainPage {
 
     public StepsForSearchResult findFlight(FlightData data){
 
-
         mainPage.stickyBarClose();
         mainPage.fillOrigin(data.getOrigin());
         mainPage.fillDestination(data.getDestination());
-        mainPage.fillDepartureDate(data.getDepDate().getDay());//todo refactor deprecated methods
-        mainPage.fillReturnDate(data.getRetDate().getDay());
+        mainPage.fillDepartureDate(data.getDepDate());//todo refactor deprecated methods
+        mainPage.fillReturnDate(data.getRetDate());
         mainPage.search();
         return new StepsForSearchResult();
+
     }
 
     public String getTwoFlightPrices() {
