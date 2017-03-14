@@ -2,7 +2,6 @@ package com.epam.wizzair.test;
 
 
 import com.epam.wizzair.bean.FlightData;
-import com.epam.wizzair.bean.Login;
 import com.epam.wizzair.helper.Creator;
 import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.page.impl.RejectPaymentPage;
@@ -53,7 +52,7 @@ public class TestCasesForPOTesting {
         MainPageStepsForPOTesting.getRidOfStickBar();
 
         stepsForMainPage.signIn().loginWizzAir(Creator.getLogin());
-        stepsForMainPage.findFlight(Creator.getFlightData()).pickExactFlights().submit().fillPassenger(Creator.getPassengerDate()).submitAndGoToSeatSelection()
+        stepsForMainPage.findFlight(Creator.getFlightData()).pickExactFlights().submit().fillPassenger(Creator.getPassengerData()).submitAndGoToSeatSelection()
                 .continueFromSeats().submit().submit().continueToNextPage().fillBillingDetails(Creator.getBillingDetailsPersonal())
                 .fillCreditCard(Creator.getCreditCardDate()).submit();
 
