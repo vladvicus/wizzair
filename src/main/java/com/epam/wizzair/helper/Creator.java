@@ -112,7 +112,7 @@ public class Creator {
 
     }
 
-    public static PassengerData getPassengerDate() {
+    public static PassengerData getPassengerData() {
 
         PassengerData passengerData = new PassengerData();
         passengerData.setName(bean.getProperty("name"));
