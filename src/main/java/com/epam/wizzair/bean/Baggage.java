@@ -6,7 +6,7 @@ import com.epam.wizzair.page.util.BaggageCheckedOptions;
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
  */
-class Baggage {
+public class Baggage {
     BaggageCabinOptions cabinBaggage;
     BaggageCheckedOptions checkedBaggage;
     boolean isSportEquipment;
