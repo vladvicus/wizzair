@@ -17,7 +17,7 @@ public class PassengerSteps {
         passengerPO.setCheckedInBaggage(data.getDepBaggage().getCheckedBaggage(), data.getRetBaggage().getCheckedBaggage());
         passengerPO.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
         passengerPO.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
-        return  new PassengerSteps();
+        return  this;
     }
 
     public PassengerSteps fillBaggage(Baggage baggage) {
