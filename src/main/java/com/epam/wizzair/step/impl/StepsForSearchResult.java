@@ -1,6 +1,5 @@
 package com.epam.wizzair.step.impl;
 
-import com.epam.wizzair.page.IPassenger;
 import com.epam.wizzair.page.impl.SearchResult;
 
 /**
@@ -49,3 +48,4 @@ public class StepsForSearchResult {
         return s;
     }
 }
+

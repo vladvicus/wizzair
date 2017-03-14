@@ -1,12 +1,10 @@
 package com.epam.wizzair.step.impl;
 
+import com.epam.wizzair.bean.Baggage;
 import com.epam.wizzair.bean.PassengerData;
-import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.page.IPassenger;
 import com.epam.wizzair.page.exception.ElementNotActiveException;
 import com.epam.wizzair.page.impl.Passenger;
-import com.epam.wizzair.page.impl.SelectSeatPage;
-import com.epam.wizzair.page.impl.ServicesPage;
 
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
@@ -22,6 +20,15 @@ public class PassengerSteps {
         return  this;
     } // todo how to know if return flight enabled?
 
+    public PassengerSteps fillBaggage(Baggage baggage) {
+
+        passengerPO.setCabinBaggage(baggage.getCabinBaggage());
+        passengerPO.setCheckedInBaggage(baggage.getCheckedBaggage());
+        passengerPO.setSportEquipment(baggage.isSportEquipment());
+        return new PassengerSteps();
+
+    }
+
     public StepsForSelectSeatPage gotoDepSeatSelection(){
         passengerPO.gotoDepSeatSelection();
         return new StepsForSelectSeatPage();
@@ -32,13 +39,24 @@ public class PassengerSteps {
         return new StepsForSelectSeatPage();
     }
 
-    public ServicesPage submit(){
+    public StepsForServicesPage submit(){
         try {
             passengerPO.submit();
         } catch (ElementNotActiveException e) {
             //todo throw steps layer exception
         }
-        return new ServicesPage();
+        return new StepsForServicesPage();
+    }
+
+
+    public StepsForSelectSeatPage submitAndGoToSeatSelection() {
+        try {
+            passengerPO.submit();
+        } catch (ElementNotActiveException e) {
+            //todo throw steps layer exception
+        }
+        return new StepsForSelectSeatPage();
+
     }
 
 

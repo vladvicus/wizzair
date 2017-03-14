@@ -1,10 +1,8 @@
 package com.epam.wizzair.step.impl;
 
-import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.page.impl.SelectSeatPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 
 public class StepsForSelectSeatPage {
 
@@ -26,5 +24,13 @@ public class StepsForSelectSeatPage {
         SelectSeatPage selectSeatPage = new SelectSeatPage(driver);
         return selectSeatPage.isSeatEnable()
     }*/
+
+    public static PassengerSteps continueFromSeats() {
+        SelectSeatPage seatPage = new SelectSeatPage();
+        seatPage.continueOrigin();
+        seatPage.continueReturn();
+        return new PassengerSteps();
+
+    }
 
 }

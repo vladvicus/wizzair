@@ -3,6 +3,7 @@ package com.epam.wizzair.helper;
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
+import com.epam.wizzair.page.util.CheckInMethod;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -99,6 +100,22 @@ public class Creator {
         baggage.setSportEquipment(Boolean.parseBoolean(bean.getProperty("isSportEquipment")));
 
         return baggage;
+
+    }
+
+    public static PassengerData getPassengerDate() {
+
+        PassengerData passengerData = new PassengerData();
+        passengerData.setName(bean.getProperty("name"));
+        passengerData.setSurName(bean.getProperty("surname"));
+        passengerData.setDepBaggage(getBaggage());
+        passengerData.setRetBaggage(getBaggage());
+        passengerData.setDepCheckinMethod(CheckInMethod.valueOf(bean.getProperty("retCheckinMethod")));
+        passengerData.setRetCheckinMethod(CheckInMethod.valueOf(bean.getProperty("depCheckinMethod")));
+
+        return passengerData;
+
+
 
     }
 
