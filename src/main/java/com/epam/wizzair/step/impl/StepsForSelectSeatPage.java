@@ -9,10 +9,11 @@ public class StepsForSelectSeatPage {
     SelectSeatPage selectSeatPage = new SelectSeatPage();
     private final Logger logger = LogManager.getRootLogger();
 
-    public String selectSeatWizzAir()
+    public StepsForSelectSeatPage selectSeatWizzAir()
     {
         selectSeatPage.selectRandomAvailableSeat();
-        return selectSeatPage.getSelectedSeatName();
+//        return selectSeatPage.getSelectedSeatName();
+        return this;
     }
 
     public void selectSeatWizzAir(String seat){
@@ -25,7 +26,7 @@ public class StepsForSelectSeatPage {
         return selectSeatPage.isSeatEnable()
     }*/
 
-    public static PassengerSteps continueFromSeats() {
+    public PassengerSteps continueFromSeats() {
         SelectSeatPage seatPage = new SelectSeatPage();
         seatPage.continueOrigin();
         seatPage.continueReturn();

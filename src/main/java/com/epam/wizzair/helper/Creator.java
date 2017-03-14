@@ -69,7 +69,7 @@ public class Creator {
 
     }
 
-    public static CreditCardData getCreditCardDate() {
+    public static CreditCardData getCreditCardData() {
         CreditCardData creditCardData = new CreditCardData();
 
         creditCardData.setCardNumber(bean.getProperty("cardNumber"));

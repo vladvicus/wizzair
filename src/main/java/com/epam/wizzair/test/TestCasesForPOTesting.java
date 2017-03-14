@@ -54,7 +54,7 @@ public class TestCasesForPOTesting {
         stepsForMainPage.signIn().loginWizzAir(Creator.getLogin());
         stepsForMainPage.findFlight(Creator.getFlightData()).pickExactFlights().submit().fillPassenger(Creator.getPassengerData()).submitAndGoToSeatSelection()
                 .continueFromSeats().submit().submit().continueToNextPage().fillBillingDetails(Creator.getBillingDetailsPersonal())
-                .fillCreditCard(Creator.getCreditCardDate()).submit();
+                .fillCreditCard(Creator.getCreditCardData()).submit();
 
         RejectPaymentPage rejectPaymentPage = new RejectPaymentPage();
         String message = rejectPaymentPage.getRejectMessage();

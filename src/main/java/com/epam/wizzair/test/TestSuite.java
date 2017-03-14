@@ -1,13 +1,8 @@
 package com.epam.wizzair.test;
 
-import com.epam.wizzair.bean.Baggage;
-import com.epam.wizzair.bean.FlightData;
-import com.epam.wizzair.bean.PassengerData;
+import com.epam.wizzair.bean.*;
 import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.Creator;
-import com.epam.wizzair.page.util.BaggageCabinOptions;
-import com.epam.wizzair.page.util.BaggageCheckedOptions;
-import com.epam.wizzair.page.util.CheckInMethod;
 import com.epam.wizzair.step.impl.StepsForMainPage;
 import com.epam.wizzair.step.impl.StepsForSearchResult;
 import org.testng.Assert;
@@ -76,7 +71,8 @@ public class TestSuite {
     public void bookingWrongCard(){
         FlightData flightData = Creator.getFlightData();
         PassengerData passengerData = Creator.getPassengerData();
-
+        BillingDetailsPersonal billingDetails = Creator.getBillingDetailsPersonal();
+        CreditCardData creditCard = Creator.getCreditCardData();
 //        Baggage depBaggage = new Baggage();
 //        depBaggage.setCabinBaggage(BaggageCabinOptions.LARGE);
 //        depBaggage.setCheckedBaggage(BaggageCheckedOptions.LIGHT);
@@ -103,6 +99,16 @@ public class TestSuite {
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
+                .fillBaggage(passengerData.getDepBaggage())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir().continueFromSeats()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir().continueFromSeats()
+                .submit()
+                .submit()
+                .continueToNextPage()
+                .fillBillingDetails(billingDetails)
+                .fillCreditCard(creditCard)
 
         ;
 //        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
