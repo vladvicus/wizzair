@@ -8,8 +8,8 @@ import java.util.Date;
 public class FlightData {
     String origin;
     String destination;
-    Date depDate;
-    Date retDate;
+    int depDate;
+    int retDate;
 
     public String getOrigin() {
         return origin;
@@ -27,19 +27,19 @@ public class FlightData {
         this.destination = destination;
     }
 
-    public Date getDepDate() {
+    public int getDepDate() {
         return depDate;
     }
 
-    public void setDepDate(Date depDate) {
+    public void setDepDate(int depDate) {
         this.depDate = depDate;
     }
 
-    public Date getRetDate() {
+    public int getRetDate() {
         return retDate;
     }
 
-    public void setRetDate(Date retDate) {
+    public void setRetDate(int retDate) {
         this.retDate = retDate;
     }
 }
