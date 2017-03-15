@@ -43,17 +43,15 @@ public class Passenger extends AbstractPage implements IPassenger {
     By seatSelection = By.xpath("//div[3]/div[2]/div/div/div/div/div/button");
 
     //-----------------------checkin baggage radio buttons
-    //By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]");
-    By baggageNoneRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__price') and text() = 'None']");
-//    @FindBy(xpath = "//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]")
-//            private WebElement baggageLightRB;
-    By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]");
-    By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]");
-//    @FindBy(xpath = "//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]")
-//            private WebElement baggageHeavyRB;
+
+    By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]/following-sibling::label");
+
+    By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]/following-sibling::label");
+    By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]/following-sibling::label");
 
 
-    //Actions actions = new Actions(getDriver());
+
+
 
 
     public Passenger() {
@@ -67,11 +65,11 @@ public class Passenger extends AbstractPage implements IPassenger {
                 break;
             case LIGHT:
                 depContainer.findElement(baggageLightRB).click();
-                //actions.moveToElement(baggageLightRB).click();
+
                 break;
             case HEAVY:
                 depContainer.findElement(baggageHeavyRB).click();
-                //actions.moveToElement(baggageHeavyRB).click();
+
         }
 
         return this;
@@ -86,21 +84,20 @@ public class Passenger extends AbstractPage implements IPassenger {
                 break;
             case LIGHT:
                 retContainer.findElement(baggageLightRB).click();
-                //actions.moveToElement(baggageLightRB).click();
+
                 break;
             case HEAVY:
                 retContainer.findElement(baggageHeavyRB).click();
-                //actions.moveToElement(baggageHeavyRB).click();
+
         }
         return this;
     }
 
     //-----------------------cabin baggage radio buttons
-    //By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]");
-    By baggageSmallRB = By.xpath("//p[contains(@class, 'baggage-switcher__switch__weight') and text() = 'Small']");
-    By baggageLargeRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]");
-//    @FindBy(xpath = "//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]")
-//    private WebElement baggageLargeRB;
+
+    By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]/following-sibling::label");
+    By baggageLargeRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]/following-sibling::label");
+
 
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
 
@@ -134,7 +131,7 @@ public class Passenger extends AbstractPage implements IPassenger {
     }
 
     //Sport Equipment locators
-    By sportEquipmentBtn = By.xpath("//div[@class=\"booking-flow__passengers__sports-equipment-switch__button\"]");//todo refactor locator
+    By sportEquipmentBtn = By.cssSelector("[class=\"nowrap\"");
     WebElement sportEquipmentDepBtn;
     WebElement sportEquipmentRetBtn;
 
@@ -181,8 +178,9 @@ public class Passenger extends AbstractPage implements IPassenger {
 
 
 
-    By online = By.xpath("//div[3]/div[1]/div[2]/div/div/div/label[1]");
-    By airport = By.xpath("//div[3]/div[1]/div[2]/div/div/div/label[2]");
+
+    By online = By.xpath("//p[@class=\"option\" and text()=\"Online\"]");
+    By airport = By.xpath("//p[@class=\"option\" and text()=\"Airport\"]");
     public Passenger setCheckInMethod(CheckInMethod depMethod, CheckInMethod retMethod) {
 
         switch (retMethod){
