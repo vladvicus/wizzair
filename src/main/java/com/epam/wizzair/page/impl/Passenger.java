@@ -107,7 +107,6 @@ public class Passenger extends AbstractPage implements IPassenger {
                 break;
             case LARGE:
                 depContainer.findElement(baggageLargeRB).click();
-                //actions.moveToElement(baggageLargeRB).click();
                 break;
         }
 
@@ -123,7 +122,7 @@ public class Passenger extends AbstractPage implements IPassenger {
                 break;
             case LARGE:
                 retContainer.findElement(baggageLargeRB).click();
-                //actions.moveToElement(baggageLargeRB).click();
+
                 break;
         }
 
