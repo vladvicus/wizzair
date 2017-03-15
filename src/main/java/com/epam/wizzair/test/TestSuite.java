@@ -5,6 +5,7 @@ import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.Creator;
 import com.epam.wizzair.step.impl.StepsForMainPage;
 import com.epam.wizzair.step.impl.StepsForSearchResult;
+import com.epam.wizzair.step.impl.TimeTableSteps;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -15,9 +16,25 @@ import org.testng.annotations.Test;
 public class TestSuite {
     StepsForMainPage mainSteps = new StepsForMainPage();
 
+    //----------TestCase id=1
+    @Test
+    public void searchViaTimetable(){
+        Creator.setPropertyFile("timetable");
+        FlightData flightData = Creator.getFlightData();
+        TimeTableSteps result;
+        result = mainSteps.init().closePopUps()
+                .openTimeTable()
+                .findFlight(flightData.getOrigin(), flightData.getDestination())
+                .findFlightInSearchPage()
+        ;
+        Assert.assertEquals(result.getFirstFlightPrice(), result.getFirstFlightPriceInSearch());
+
+    }
+
 //----------TestCase id=2
     @Test
     public void summingTwoFlights(){
+        Creator.setPropertyFile("bean");
         FlightData flightData = Creator.getFlightData();
 
         StepsForSearchResult result;
@@ -27,32 +44,14 @@ public class TestSuite {
         Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
     }
 
+    //----------TestCase id=3 map is not implemented
+
     //----------TestCase id=4
     @Test
     public void baggageCheck(){
         FlightData flightData = Creator.getFlightData();
 
         PassengerData passengerData = new PassengerData();
-
-//        Baggage depBaggage = new Baggage();
-//        depBaggage.setCabinBaggage(BaggageCabinOptions.LARGE);
-//        depBaggage.setCheckedBaggage(BaggageCheckedOptions.LIGHT);
-//        depBaggage.setSportEquipment(true);
-//
-//        Baggage retBaggage = new Baggage();
-//
-//        depBaggage.setCabinBaggage(BaggageCabinOptions.LARGE);
-//        depBaggage.setCheckedBaggage(BaggageCheckedOptions.LIGHT);
-//        depBaggage.setSportEquipment(true);
-//
-//        passengerData.setDepBaggage(depBaggage);
-//        passengerData.setRetBaggage(retBaggage);
-//        passengerData.setDepCheckinMethod(CheckInMethod.AIRPORT);
-//        passengerData.setRetCheckinMethod(CheckInMethod.AIRPORT);
-//        passengerData.setMaleGender(true);
-//        passengerData.setName("khsdfge");
-//        passengerData.setSurName("uiuijk");
-//        //todo retirieve this obj from somewhere twickable
 
         passengerData = Creator.getPassengerData();
 
@@ -73,26 +72,6 @@ public class TestSuite {
         PassengerData passengerData = Creator.getPassengerData();
         BillingDetailsPersonal billingDetails = Creator.getBillingDetailsPersonal();
         CreditCardData creditCard = Creator.getCreditCardData();
-//        Baggage depBaggage = new Baggage();
-//        depBaggage.setCabinBaggage(BaggageCabinOptions.LARGE);
-//        depBaggage.setCheckedBaggage(BaggageCheckedOptions.LIGHT);
-//        depBaggage.setSportEquipment(true);
-//
-//        Baggage retBaggage = new Baggage();
-//
-//        depBaggage.setCabinBaggage(BaggageCabinOptions.LARGE);
-//        depBaggage.setCheckedBaggage(BaggageCheckedOptions.LIGHT);
-//        depBaggage.setSportEquipment(true);
-//
-//        passengerData.setDepBaggage(depBaggage);
-//        passengerData.setRetBaggage(retBaggage);
-//        passengerData.setDepCheckinMethod(CheckInMethod.AIRPORT);
-//        passengerData.setRetCheckinMethod(CheckInMethod.AIRPORT);
-//        passengerData.setMaleGender(true);
-//        passengerData.setName("khsdfge");
-//        passengerData.setSurName("uiuijk");
-//        //todo retirieve this obj from somewhere twickable
-
 
         StepsForSearchResult result;
         mainSteps.init().closePopUps()
@@ -112,6 +91,21 @@ public class TestSuite {
 
         ;
 //        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
+    }
+
+    //----------TestCase id=6
+    @Test
+    public void seatReserving(){
+        FlightData flightData = Creator.getFlightData();
+        PassengerData passengerData = Creator.getPassengerData();
+
+        mainSteps.init().closePopUps()
+                .findFlight(flightData)
+                .pickExactFlights().submit()
+                .fillPassenger(passengerData)
+                .fillBaggage(passengerData.getDepBaggage())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir().continueFromSeats();
     }
 
     @AfterClass
