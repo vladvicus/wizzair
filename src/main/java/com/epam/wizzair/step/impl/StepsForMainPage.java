@@ -4,6 +4,8 @@ import com.epam.wizzair.bean.FlightData;
 import com.epam.wizzair.page.impl.MainPage;
 import com.epam.wizzair.page.impl.SearchResult;
 
+import java.sql.Time;
+
 /**
  * Created by Dzmitry_Sankouski on 13-Mar-17.
  */
@@ -21,12 +23,18 @@ public class StepsForMainPage {
         return this;
     }
 
+    public TimeTableSteps openTimeTable(){
+        mainPage.servicesClick();
+        mainPage.timetableClick();
+        return new TimeTableSteps();
+    }
+
     public StepsForSearchResult findFlight(FlightData data){
 
         mainPage.stickyBarClose();
         mainPage.fillOrigin(data.getOrigin());
         mainPage.fillDestination(data.getDestination());
-        mainPage.fillDepartureDate(data.getDepDate());//todo refactor deprecated methods
+        mainPage.fillDepartureDate(data.getDepDate());
         mainPage.fillReturnDate(data.getRetDate());
         mainPage.search();
         return new StepsForSearchResult();
