@@ -11,24 +11,25 @@ import org.openqa.selenium.WebDriver;
  */
 public class TimeTableSteps {
 
-    private static String firstFlightPrice;
-    private static String secondFlightPrice;
-    private static String summaryPrice;
+    private String firstFlightPrice;
+    private String secondFlightPrice;
+    private String summaryPrice;
 
-    private static String firstFlightPriceInSearch;
-    private static String secondFlightPriceInSearch;
-    private static String summaryPriceInSearch;
+    private String firstFlightPriceInSearch;
+    private String secondFlightPriceInSearch;
+    private String summaryPriceInSearch;
 
-    public static void openTimetablePage() {
+    public TimeTableSteps openTimetablePage() {
         MainPage mainPage = new MainPage();
         mainPage.openPage();
         mainPage.stickyBarClose();
         mainPage.servicesClick();
         mainPage.timetableClick();
 
+        return this;
     }
 
-    public static void findFlight(String origin, String destination) {
+    public TimeTableSteps findFlight(String origin, String destination) {
         TimetablePage timetablePage = new TimetablePage();
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
@@ -37,35 +38,37 @@ public class TimeTableSteps {
         firstFlightPrice = timetablePage.getFirstFlightPrice();
         summaryPrice = timetablePage.getSummaryPrice();
         timetablePage.startBooking();
+        return this;
     }
 
-    public static void findFlightInSearchPage() {
+    public TimeTableSteps findFlightInSearchPage() {
         SearchResult searchResult = new SearchResult();
         firstFlightPriceInSearch = searchResult.chooseFirstFlight();
         summaryPriceInSearch = searchResult.getTotalPrice();
+        return this;
     }
 
-    public static String getFirstFlightPrice() {
+    public String getFirstFlightPrice() {
         return firstFlightPrice;
     }
 
-    public static String getSummaryPrice() {
+    public String getSummaryPrice() {
         return summaryPrice;
     }
 
-    public static String getFirstFlightPriceInSearch() {
+    public String getFirstFlightPriceInSearch() {
         return firstFlightPriceInSearch;
     }
 
-    public static String getSummaryPriceInSearch() {
+    public String getSummaryPriceInSearch() {
         return summaryPriceInSearch;
     }
 
-    public static String getSecondFlightPrice() {
+    public String getSecondFlightPrice() {
         return secondFlightPrice;
     }
 
-    public static String getSecondFlightPriceInSearch() {
+    public String getSecondFlightPriceInSearch() {
         return secondFlightPriceInSearch;
     }
 }
