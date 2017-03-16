@@ -128,7 +128,6 @@ public class TestSuite {
 
         Creator.setPropertyFile("bean2");
         FlightData flightData = Creator.getFlightData();
-        Login login = Creator.getLogin();
         String flightWithoutInfant = mainSteps.init().closePopUps()
                 .findFlight(flightData).pickExactFlights()
                 .getFlightSumFromLeftWindow();
