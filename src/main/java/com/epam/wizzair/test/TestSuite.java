@@ -129,14 +129,16 @@ public class TestSuite {
         Creator.setPropertyFile("bean2");
         FlightData flightData = Creator.getFlightData();
         Login login = Creator.getLogin();
-        String flightWithoutInfant = mainSteps.init().closePopUps().signIn().loginWizzAir(login)
+        String flightWithoutInfant = mainSteps.init().closePopUps()
                 .findFlight(flightData).pickExactFlights()
                 .getFlightSumFromLeftWindow();
 
 
+
         DriverSingleton.openNewWindow();
+
         Creator.setPropertyFile("bean");
-        FlightData flightData1 = new FlightData();
+        FlightData flightData1 = Creator.getFlightData();
 
         String flightWithInfant = mainSteps.init()
                 .findFlight(flightData1)
