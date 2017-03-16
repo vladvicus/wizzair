@@ -1,10 +1,10 @@
 package com.epam.wizzair.page.impl;
 
+import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.page.util.PassengerSetting;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -46,18 +46,36 @@ public class MainPage extends AbstractPage{
     @FindBy(css = "[class=\"cookie-policy__button\"")
     private WebElement stickyBar;
 
+    @FindBy(id = "search-passenger")
+    private WebElement passengerField;
+
+    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
+            "/div[3]/button[@class=\"stepper__button stepper__button--add\"]")
+    private WebElement addAdult;
+
+    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
+            "/div[4]/button[@class=\"stepper__button stepper__button--add\"]")
+    private WebElement addChild;
+
+    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
+            "/div[5]/button[@class=\"stepper__button stepper__button--add\"]") //TODO: refactor locators
+    private WebElement addInfant;
+
     public MainPage(){
     }
 
     @Override
     public void openPage(){
-        getDriver().navigate().to(BASE_URL);
+
+            getDriver().navigate().to(Config.url());
+
     }
 
 
     public MainPage fillOrigin(String origin){
 
         inputOriginName.click();
+        inputOriginName.clear();
         inputOriginName.sendKeys(origin);
         WebElement originCity = getDriver().findElement(By.xpath(PATH_CITY + origin + "']"));
         originCity.click();
@@ -68,6 +86,7 @@ public class MainPage extends AbstractPage{
 
         wait.until(ExpectedConditions.elementToBeClickable(inputDestinationName));
         inputDestinationName.click();
+        inputDestinationName.clear();
         inputDestinationName.sendKeys(destination);
         WebElement destinationCity = getDriver().findElement(By.xpath(PATH_CITY + destination + "']"));
         destinationCity.click();
@@ -86,6 +105,61 @@ public class MainPage extends AbstractPage{
         WebElement calendarReturnDate = getDriver().findElement(By.xpath(PATH_DATE + day + "']"));
         calendarReturnDate.click();
         return this;
+    }
+
+//    public MainPage addAdult() {
+//        passengerField.click();
+//        addAdult.click();
+//        return this;
+//    }
+//
+//    public MainPage addChild() {
+//        passengerField.click();
+//        addChild.click();
+//        return this;
+//    }
+//
+//    public MainPage addInfant() {
+//        passengerField.click();
+//        addInfant.click();
+//        return this;
+//    }
+
+
+    public MainPage setPassenger(PassengerSetting passengerSetting, int numberOfPassengers) {
+
+
+
+
+        int i = 0;
+        do
+        {
+
+            switch (passengerSetting) {
+
+                case ADULT:
+                    numberOfPassengers=numberOfPassengers-1;
+                    passengerField.click();
+                    addAdult.click();
+                    break;
+                case CHILD:
+                    passengerField.click();
+                    addChild.click();
+                    break;
+                case INFANT:
+                    passengerField.click();
+                    addInfant.click();
+                    break;
+                case NO:
+                    break;
+
+            }
+            i++;
+        }
+        while (i<=numberOfPassengers-1);
+
+        return this;
+
     }
 
     public SearchResult search() {

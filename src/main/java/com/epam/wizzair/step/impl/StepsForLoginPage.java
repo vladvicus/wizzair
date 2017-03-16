@@ -10,12 +10,13 @@ public class StepsForLoginPage {
 
     private final Logger logger = LogManager.getRootLogger();
 
-    public void loginWizzAir(Login login)
+    public StepsForMainPage loginWizzAir(Login login)
     {
         LoginPage loginPage = new LoginPage();
 //        loginPage.openPage();
 //        loginPage.openSignInForm();
         loginPage.login(login.getLogin(), login.getPassword());
+        return new StepsForMainPage();
     }
 
 }

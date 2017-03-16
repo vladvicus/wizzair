@@ -74,5 +74,7 @@ public class PassengerData {
         this.retBaggage = retBaggage;
     }
 
+
+
     //todo equals&hashcode&toString
 }

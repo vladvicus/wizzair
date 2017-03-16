@@ -56,8 +56,8 @@ public class DriverSingleton {
             driver.manage().window().maximize();
             windowStack.push(driver.getWindowHandle());
             driver.manage().timeouts().implicitlyWait(Config.timeout(), TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
-            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
+//            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
+//            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
         }
         return driver;
     }
@@ -75,7 +75,7 @@ public class DriverSingleton {
         windowStack.push(driver.getWindowHandle());
     }
 
-    public static void closeWidow(){
+    public static void closeWindow(){
         WebElement body = driver.findElement(By.tagName("body"));
         body.sendKeys(Keys.ALT, Keys.F4);
         windowStack.poll();
