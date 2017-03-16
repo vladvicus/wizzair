@@ -126,7 +126,7 @@ public class TestSuite {
     @Test
     public void bookWithInfant() {
 
-        Creator.setPropertyFile("bean");
+        Creator.setPropertyFile("bean2");
         FlightData flightData = Creator.getFlightData();
         Login login = Creator.getLogin();
         String flightWithoutInfant = mainSteps.init().closePopUps().signIn().loginWizzAir(login)
@@ -135,10 +135,11 @@ public class TestSuite {
 
 
         DriverSingleton.openNewWindow();
-        Creator.setPropertyFile("bean2");
+        Creator.setPropertyFile("bean");
+        FlightData flightData1 = new FlightData();
 
         String flightWithInfant = mainSteps.init()
-                .findFlight(flightData)
+                .findFlight(flightData1)
                 .pickExactFlights().getFlightSumFromLeftWindow();
 
         assertEquals(flightWithoutInfant, flightWithInfant);
