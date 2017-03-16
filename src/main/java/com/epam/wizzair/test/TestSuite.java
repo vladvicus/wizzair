@@ -37,8 +37,9 @@ public class TestSuite {
         Creator.setPropertyFile("bean");
         FlightData flightData = Creator.getFlightData();
 
+        mainSteps.init().signIn().loginWizzAir(Creator.getLogin());
         StepsForSearchResult result;
-        result = mainSteps.init()
+        result = mainSteps
                 .findFlight(flightData)
                 .pickExactFlights();
         Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
@@ -99,13 +100,24 @@ public class TestSuite {
         FlightData flightData = Creator.getFlightData();
         PassengerData passengerData = Creator.getPassengerData();
 
-        mainSteps.init().closePopUps()
+        mainSteps.init()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
-                .gotoDepSeatSelection()
-                .selectSeatWizzAir().continueFromSeats();
+                .gotoDepSeatSelection();
+
+        DriverSingleton.openNewWindow(); //todo smthn with this dirty throw-layer hack
+
+        StepsForMainPage mainPage1 = new StepsForMainPage();
+        mainPage1.init().closePopUps()
+                .findFlight(flightData)
+                .pickExactFlights().submit()
+                .fillPassenger(passengerData)
+                .fillBaggage(passengerData.getDepBaggage())
+                .gotoDepSeatSelection();
+        DriverSingleton.closeWidow();
+
     }
 
     @AfterClass
