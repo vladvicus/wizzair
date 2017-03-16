@@ -39,6 +39,10 @@ public class Config {
 
     public static String chromedriver() {return config.getProperty("chromedriver");}
 
+    public static String profile(){
+        return config.getProperty("profile");
+    }
+
     public static int timeout(){
         int result = 15;
 

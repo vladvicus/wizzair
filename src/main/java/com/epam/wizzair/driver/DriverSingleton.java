@@ -6,11 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
+//import com.epam.wizzair.helper.ProfilesIni;
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 
 public class DriverSingleton {
@@ -38,8 +38,10 @@ public class DriverSingleton {
         if (driver == null) {
             switch (driverType.toUpperCase()) {
                 case "FIREFOX":
+                    ProfilesIni profile = new ProfilesIni();
+                    FirefoxProfile myprofile = profile.getProfile(Config.profile());
                     System.setProperty("webdriver.gecko.driver", Config.geckodriver());
-                    driver = new FirefoxDriver();
+                    driver = new FirefoxDriver(myprofile);
                     break;
                 case "CHROME":
                     System.setProperty("webdriver.chrome.driver", Config.chromedriver());
