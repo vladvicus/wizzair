@@ -87,6 +87,12 @@ public class DriverSingleton {
     }
 
     public static void quit(){
+        for (String handle :
+                driver.getWindowHandles()) {
+            driver.switchTo().window(handle);
+            driver.close();
+        }
+
         if(driver != null) {
             driver.quit();
             driver = null;
