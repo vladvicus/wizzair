@@ -148,6 +148,30 @@ public class TestSuite {
 
     }
 
+    //----------TestCase id=10
+
+    @Test
+    public void testWithAndWithoutLogin() {
+
+        Creator.setPropertyFile("bean");
+        FlightData flightData = Creator.getFlightData();
+        Login login = Creator.getLogin();
+        String bookWithoutLogin = mainSteps.init().closePopUps()
+                .findFlight(flightData).pickExactFlights()
+                .getFlightSumFromLeftWindow();
+
+        DriverSingleton.openNewWindow();
+
+        String bookWithLogin = mainSteps.init().closePopUps().signIn()
+                .loginWizzAir(login).findFlight(flightData)
+                .pickExactFlights().getFlightSumFromLeftWindow();
+
+        assertEquals(bookWithoutLogin, bookWithLogin);
+
+
+
+    }
+
 
     @AfterClass
     public void closeResources(){
