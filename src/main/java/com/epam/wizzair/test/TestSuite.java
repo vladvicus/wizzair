@@ -6,9 +6,10 @@ import com.epam.wizzair.helper.Creator;
 import com.epam.wizzair.step.impl.StepsForMainPage;
 import com.epam.wizzair.step.impl.StepsForSearchResult;
 import com.epam.wizzair.step.impl.TimeTableSteps;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by Dzmitry_Sankouski on 13-Mar-17.
@@ -27,7 +28,7 @@ public class TestSuite {
                 .findFlight(flightData.getOrigin(), flightData.getDestination())
                 .findFlightInSearchPage()
         ;
-        Assert.assertEquals(result.getFirstFlightPrice(), result.getFirstFlightPriceInSearch());
+        assertEquals(result.getFirstFlightPrice(), result.getFirstFlightPriceInSearch());
 
     }
 
@@ -42,7 +43,7 @@ public class TestSuite {
         result = mainSteps
                 .findFlight(flightData)
                 .pickExactFlights();
-        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
+        assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
     }
 
     //----------TestCase id=3 map is not implemented
@@ -116,9 +117,35 @@ public class TestSuite {
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
-        DriverSingleton.closeWidow();
+        DriverSingleton.closeWindow();
 
     }
+
+    //----------TestCase id=8
+
+    @Test
+    public void bookWithInfant() {
+
+        Creator.setPropertyFile("bean");
+        FlightData flightData = Creator.getFlightData();
+        Login login = Creator.getLogin();
+        String flightWithoutInfant = mainSteps.init().closePopUps().signIn().loginWizzAir(login)
+                .findFlight(flightData).pickExactFlights()
+                .getFlightSumFromLeftWindow();
+
+
+        DriverSingleton.openNewWindow();
+        Creator.setPropertyFile("bean2");
+
+        String flightWithInfant = mainSteps.init()
+                .findFlight(flightData)
+                .pickExactFlights().getFlightSumFromLeftWindow();
+
+        assertEquals(flightWithoutInfant, flightWithInfant);
+
+
+    }
+
 
     @AfterClass
     public void closeResources(){

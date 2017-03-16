@@ -4,6 +4,7 @@ import com.epam.wizzair.bean.*;
 import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
 import com.epam.wizzair.page.util.CheckInMethod;
+import com.epam.wizzair.page.util.PassengerSetting;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -64,7 +65,8 @@ public class Creator {
         flightData.setDestination(bean.getProperty("destination"));
         flightData.setDepDate(Integer.parseInt(bean.getProperty("depDate")));
         flightData.setRetDate(Integer.parseInt(bean.getProperty("retDate")));
-
+        flightData.setPassenger(PassengerSetting.valueOf(bean.getProperty("passenger")));
+        flightData.setNumberOfPassengers(Integer.parseInt(bean.getProperty("numberOfPassengers")));
         return flightData;
 
     }
@@ -123,7 +125,6 @@ public class Creator {
         passengerData.setRetCheckinMethod(CheckInMethod.valueOf(bean.getProperty("depCheckinMethod")));
 
         return passengerData;
-
 
 
     }

@@ -1,5 +1,7 @@
 package com.epam.wizzair.bean;
 
+import com.epam.wizzair.page.util.PassengerSetting;
+
 /**
  * Created by Dzmitry_Sankouski on 03-Mar-17.
  */
@@ -8,6 +10,8 @@ public class FlightData {
     String destination;
     int depDate;
     int retDate;
+    PassengerSetting passenger;
+    int numberOfPassengers;
 
     public String getOrigin() {
         return origin;
@@ -40,4 +44,12 @@ public class FlightData {
     public void setRetDate(int retDate) {
         this.retDate = retDate;
     }
+
+    public PassengerSetting getPassenger() {return passenger;}
+
+    public void setPassenger(PassengerSetting passenger) {this.passenger=passenger;}
+
+    public int getNumberOfPassengers() {return numberOfPassengers;}
+
+    public void setNumberOfPassengers(int numberOfPassengers) {this.numberOfPassengers=numberOfPassengers;}
 }
