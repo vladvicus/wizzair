@@ -1,9 +1,6 @@
 package com.epam.wizzair.driver;
 import com.epam.wizzair.helper.Config;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -17,6 +14,7 @@ public class DriverSingleton {
 
 
 
+    private static JavascriptExecutor js;
 
     private static String driverType = Config.browser();
 
@@ -53,18 +51,46 @@ public class DriverSingleton {
                     break;
 
             }
+
+            if (driver instanceof JavascriptExecutor) {
+                js = (JavascriptExecutor)driver;
+            } else {
+                throw new IllegalStateException("This driver does not support JavaScript!");
+            }
+
             driver.manage().window().maximize();
-            windowStack.push(driver.getWindowHandle());
+//            windowStack.push(driver.getWindowHandle());
             driver.manage().timeouts().implicitlyWait(Config.timeout(), TimeUnit.SECONDS);
-//            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
-//            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
         }
         return driver;
     }
 
+    public static void openNewWindowJS(){
 
+        if (windowStack.isEmpty()){
+            windowStack.push(driver.getWindowHandle());
+            return;
+        } //if no windows was opened before, leave default window
 
+        js.executeScript("window.open();");
+
+        for(String winHandle : driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+        }
+
+        windowStack.push(driver.getWindowHandle());
+    }
+
+    @Deprecated
     public static void openNewWindow(){
+
+        if (windowStack.isEmpty()){
+            windowStack.push(driver.getWindowHandle());
+            return;
+        } //if no windows was opened before, leave default window
+
         WebElement body = driver.findElement(By.tagName("body"));
         body.sendKeys(Keys.CONTROL + "n");
 
@@ -75,23 +101,25 @@ public class DriverSingleton {
         windowStack.push(driver.getWindowHandle());
     }
 
+
     public static void closeWindow(){
-        WebElement body = driver.findElement(By.tagName("body"));
-        body.sendKeys(Keys.ALT, Keys.F4);
+
+        if (windowStack.size() == 1){
+            quit();
+            return;
+        } //if only base widow left, close all resources
+
+        driver.close();
         windowStack.poll();
         driver.switchTo().window(windowStack.peek());
     }
+
 
     public static void open(String url){
         getDriver().get(url);
     }
 
     public static void quit(){
-        for (String handle :
-                driver.getWindowHandles()) {
-            driver.switchTo().window(handle);
-            driver.close();
-        }
 
         if(driver != null) {
             driver.quit();

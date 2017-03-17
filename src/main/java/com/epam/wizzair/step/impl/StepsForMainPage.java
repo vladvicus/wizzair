@@ -16,6 +16,10 @@ public class StepsForMainPage {
         return this;
     }
 
+    public void destroy(){
+        mainPage.destroy();
+    }
+
     public StepsForMainPage closePopUps(){
         mainPage.stickyBarClose();
         return this;

@@ -109,8 +109,6 @@ public class TestSuite {
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
 
-        DriverSingleton.openNewWindow(); //todo smthn with this dirty throw-layer hack
-
         StepsForMainPage mainPage1 = new StepsForMainPage();
         mainPage1.init().closePopUps()
                 .findFlight(flightData)
@@ -118,7 +116,8 @@ public class TestSuite {
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
-        DriverSingleton.closeWindow();
+
+        mainPage1.destroy();
 
     }
 
@@ -135,14 +134,17 @@ public class TestSuite {
 
 
 
-        DriverSingleton.openNewWindow();
+//        DriverSingleton.openNewWindowJS();
 
         Creator.setPropertyFile("bean");
         FlightData flightData1 = Creator.getFlightData();
 
-        String flightWithInfant = mainSteps.init()
+        StepsForMainPage mainSteps1 = new StepsForMainPage();
+        String flightWithInfant = mainSteps1.init()
                 .findFlight(flightData1)
                 .pickExactFlights().getFlightSumFromLeftWindow();
+
+        mainSteps1.destroy();
 
         assertEquals(flightWithoutInfant, flightWithInfant);
 
@@ -161,7 +163,8 @@ public class TestSuite {
                 .findFlight(flightData).pickExactFlights()
                 .getFlightSumFromLeftWindow();
 
-        DriverSingleton.openNewWindow();
+
+        StepsForMainPage mainSteps1 = new StepsForMainPage();
 
         String bookWithLogin = mainSteps.init().closePopUps().signIn()
                 .loginWizzAir(login).findFlight(flightData)
