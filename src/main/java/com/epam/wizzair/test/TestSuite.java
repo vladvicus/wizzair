@@ -29,8 +29,7 @@ public class TestSuite {
                 .findFlightInSearchPage()
         ;
         assertEquals(result.getFirstFlightPrice(), result.getFirstFlightPriceInSearch());
-
-    }
+    } //test is ready
 
 //----------TestCase id=2
     @Test
@@ -44,7 +43,7 @@ public class TestSuite {
                 .findFlight(flightData)
                 .pickExactFlights();
         assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
-    }
+    } //test is ready
 
     //----------TestCase id=3 map is not implemented
 
@@ -53,19 +52,21 @@ public class TestSuite {
     public void baggageCheck(){
         FlightData flightData = Creator.getFlightData();
 
-        PassengerData passengerData = new PassengerData();
+        PassengerData expectedPassengerData;
+        expectedPassengerData = Creator.getPassengerData();
 
-        passengerData = Creator.getPassengerData();
+        PassengerData actualPassengerData;
 
-        StepsForSearchResult result;
         mainSteps.init().closePopUps()
-                .findFlight(flightData)
-                .pickExactFlights().submit()
-                .fillPassenger(passengerData)
+                .signIn().loginWizzAir(Creator.getLogin());
 
-        ;
-//        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
-    }//todo complete Info column Page, & finish asserts
+        actualPassengerData = mainSteps.findFlight(flightData)
+                .pickExactFlights().submit()
+                .fillPassenger(expectedPassengerData)
+                .getInfoColumnData();
+
+        assertEquals(actualPassengerData, expectedPassengerData);
+    }// test is ready
 
     //----------TestCase id=5
     @Test
