@@ -73,7 +73,8 @@ public class MainPage extends AbstractPage{
     }
 
     public void destroy() {
-        DriverSingleton.quit();
+//        DriverSingleton.quit();
+        DriverSingleton.closeWindow();
     }
 
     public MainPage fillOrigin(String origin){

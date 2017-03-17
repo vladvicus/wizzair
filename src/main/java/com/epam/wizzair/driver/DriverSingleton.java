@@ -105,8 +105,9 @@ public class DriverSingleton {
     public static void closeWindow(){
 
         if (windowStack.size() == 1){
-            windowStack.poll();
-            driver.get("about:blank");
+//            windowStack.poll();
+//            driver.get("about:blank");//this code open blank page when trying to close last window
+            quit();
             return;
         } //if only base window left, just opening blank
 
