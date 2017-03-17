@@ -1,6 +1,7 @@
 package com.epam.wizzair.page.impl;
 
 import com.epam.wizzair.bean.PassengerData;
+import com.epam.wizzair.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -87,15 +88,37 @@ public class InfoColumnPage {
     @FindBy(xpath = "//div[contains(@class,'passenger-names__content')]")
     private WebElement[] allPassengers;
 
-    @FindBy(xpath = "//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li")
-    private WebElement[] depPassengerRawData;
+//    @FindBy(xpath = "//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li")
+    By passengerName = By.xpath("//div[@class=\"booking-flow__itinerary__passenger-names__content\"]");
+    public String getPassengerFullName(){
+        return DriverSingleton.getDriver().findElement(passengerName).getText();
+    }
 
     public String[][] getDepPassengerRawData(){
-        String[][] result = new String[2][depPassengerRawData.length];
+        List<WebElement> depPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li"));
+        if (depPassengerRawData == null){
+            //todo throw exception
+        }
+        String[][] result = new String[2][depPassengerRawData.size()];
 
-        for (int i = 0; i < depPassengerRawData.length; i++) {
-            result[0][i] = depPassengerRawData[i].findElement(By.xpath("/span[1]")).getText();
-            result[1][i] = depPassengerRawData[i].findElement(By.xpath("/span[2]")).getText();
+        for (int i = 0; i < depPassengerRawData.size(); i++) {
+            result[0][i] = depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText();
+            result[1][i] = depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
+        }
+
+        return result;
+    }
+
+    public String[][] getRetPassengerRawData(){
+        List<WebElement> retPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul/li"));
+        if (retPassengerRawData == null){
+            //todo throw exception
+        }
+        String[][] result = new String[2][retPassengerRawData.size()];
+
+        for (int i = 0; i < retPassengerRawData.size(); i++) {
+            result[0][i] = retPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText();
+            result[1][i] = retPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
         }
 
         return result;
