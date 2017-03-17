@@ -80,6 +80,35 @@ public class PassengerData {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PassengerData that = (PassengerData) o;
+
+        if (isMaleGender != that.isMaleGender) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (surName != null ? !surName.equals(that.surName) : that.surName != null) return false;
+        if (depCheckinMethod != that.depCheckinMethod) return false;
+        if (retCheckinMethod != that.retCheckinMethod) return false;
+        if (depBaggage != null ? !depBaggage.equals(that.depBaggage) : that.depBaggage != null) return false;
+        return retBaggage != null ? retBaggage.equals(that.retBaggage) : that.retBaggage == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (surName != null ? surName.hashCode() : 0);
+        result = 31 * result + (isMaleGender ? 1 : 0);
+        result = 31 * result + (depCheckinMethod != null ? depCheckinMethod.hashCode() : 0);
+        result = 31 * result + (retCheckinMethod != null ? retCheckinMethod.hashCode() : 0);
+        result = 31 * result + (depBaggage != null ? depBaggage.hashCode() : 0);
+        result = 31 * result + (retBaggage != null ? retBaggage.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "PassengerData{" +
                 "name='" + name + '\'' +

@@ -41,6 +41,28 @@ public class Baggage {
 
     //todo equals&hashcode&toString
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Baggage baggage = (Baggage) o;
+
+        if (isSportEquipment != baggage.isSportEquipment) return false;
+        if (cabinBaggage != baggage.cabinBaggage) return false;
+        return checkedBaggage == baggage.checkedBaggage;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cabinBaggage != null ? cabinBaggage.hashCode() : 0;
+        result = 31 * result + (checkedBaggage != null ? checkedBaggage.hashCode() : 0);
+        result = 31 * result + (isSportEquipment ? 1 : 0);
+        return result;
+    }
+
     @Override
     public String toString() {
         return "Baggage{" +
