@@ -81,4 +81,19 @@ public class BillingDetailsPersonal {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        return "BillingDetailsPersonal{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", phone='" + phone + '\'' +
+                ", postIndex='" + postIndex + '\'' +
+                ", countryIndex='" + countryIndex + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

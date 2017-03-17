@@ -22,4 +22,12 @@ public class BillingDetailsCompany extends BillingDetailsPersonal {
     public void setCompanyTaxNumber(String companyTaxNumber) {
         this.companyTaxNumber = companyTaxNumber;
     }
+
+    @Override
+    public String toString() {
+        return "BillingDetailsCompany{" +
+                "companyName='" + companyName + '\'' +
+                ", companyTaxNumber='" + companyTaxNumber + '\'' +
+                '}';
+    }
 }

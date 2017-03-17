@@ -40,4 +40,13 @@ public class Baggage {
     }
 
     //todo equals&hashcode&toString
+
+    @Override
+    public String toString() {
+        return "Baggage{" +
+                "cabinBaggage=" + cabinBaggage +
+                ", checkedBaggage=" + checkedBaggage +
+                ", isSportEquipment=" + isSportEquipment +
+                '}';
+    }
 }

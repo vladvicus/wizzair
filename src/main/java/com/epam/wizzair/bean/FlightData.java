@@ -52,4 +52,16 @@ public class FlightData {
     public int getNumberOfPassengers() {return numberOfPassengers;}
 
     public void setNumberOfPassengers(int numberOfPassengers) {this.numberOfPassengers=numberOfPassengers;}
+
+    @Override
+    public String toString() {
+        return "FlightData{" +
+                "origin='" + origin + '\'' +
+                ", destination='" + destination + '\'' +
+                ", depDate=" + depDate +
+                ", retDate=" + retDate +
+                ", passenger=" + passenger +
+                ", numberOfPassengers=" + numberOfPassengers +
+                '}';
+    }
 }

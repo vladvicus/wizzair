@@ -77,4 +77,18 @@ public class PassengerData {
 
 
     //todo equals&hashcode&toString
+
+
+    @Override
+    public String toString() {
+        return "PassengerData{" +
+                "name='" + name + '\'' +
+                ", surName='" + surName + '\'' +
+                ", isMaleGender=" + isMaleGender +
+                ", depCheckinMethod=" + depCheckinMethod +
+                ", retCheckinMethod=" + retCheckinMethod +
+                ", depBaggage=" + depBaggage +
+                ", retBaggage=" + retBaggage +
+                '}';
+    }
 }

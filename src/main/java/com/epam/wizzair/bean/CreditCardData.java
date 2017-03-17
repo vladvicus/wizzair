@@ -57,4 +57,15 @@ public class CreditCardData {
     public void setCurrency(Currency currency) {
         this.currency = currency;
     }
+
+    @Override
+    public String toString() {
+        return "CreditCardData{" +
+                "cardNumber='" + cardNumber + '\'' +
+                ", cardHolder='" + cardHolder + '\'' +
+                ", secCode=" + secCode +
+                ", expireDate=" + expireDate +
+                ", currency=" + currency +
+                '}';
+    }
 }
