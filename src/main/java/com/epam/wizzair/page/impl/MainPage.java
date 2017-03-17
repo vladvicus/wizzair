@@ -63,17 +63,17 @@ public class MainPage extends AbstractPage{
     private WebElement addInfant;
 
     public MainPage(){
-        DriverSingleton.openNewWindowJS();
     }
 
     @Override
     public void openPage(){
+        DriverSingleton.openNewWindowJS();
         getDriver().navigate().to(Config.url());
 
     }
 
     public void destroy() {
-        DriverSingleton.closeWindow();
+        DriverSingleton.quit();
     }
 
     public MainPage fillOrigin(String origin){

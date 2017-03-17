@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite1" verbose="1" >
+    <test name="ReadyTests" >
+        <classes>
+            <class name="com.epam.wizzair.test.TestSuite">
+                <methods>
+                    <include name="searchViaTimetable" />
+                    <include name="summingTwoFlights" />
+                    <include name="baggageCheck" />
+                    <include name="bookWithInfant" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+
+</suite>

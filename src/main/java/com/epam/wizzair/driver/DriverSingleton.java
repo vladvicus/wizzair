@@ -105,9 +105,10 @@ public class DriverSingleton {
     public static void closeWindow(){
 
         if (windowStack.size() == 1){
-            quit();
+            windowStack.poll();
+            driver.get("about:blank");
             return;
-        } //if only base widow left, close all resources
+        } //if only base window left, just opening blank
 
         driver.close();
         windowStack.poll();
@@ -121,6 +122,7 @@ public class DriverSingleton {
 
     public static void quit(){
 
+        windowStack.removeAll(windowStack);
         if(driver != null) {
             driver.quit();
             driver = null;
