@@ -70,7 +70,6 @@ public class SelectSeatPage extends AbstractPage {
     }
   
     //может убрать этот метод из AbstractPage???
-    @Override
     public void openPage() {
 
 

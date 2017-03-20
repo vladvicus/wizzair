@@ -49,7 +49,6 @@ public class SearchResult extends AbstractPage {
         return totalPrice.getText();
     }
 
-    @Override
     public void openPage() {
 
     }
