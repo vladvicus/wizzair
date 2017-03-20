@@ -15,43 +15,40 @@ import static com.epam.wizzair.step.util.Util.parseAndFill;
  * Created by Dzmitry_Sankouski on 10-Mar-17.
  */
 public class PassengerSteps {
-    Passenger passengerPO = new Passenger();
+    private Passenger passenger = new Passenger();
 
     public PassengerSteps fillPassenger(PassengerData data) {
-        passengerPO.setCabinBaggage(data.getDepBaggage().getCabinBaggage(), data.getRetBaggage().getCabinBaggage());
-        passengerPO.setCheckedInBaggage(data.getDepBaggage().getCheckedBaggage(), data.getRetBaggage().getCheckedBaggage());
-        passengerPO.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
-        passengerPO.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
+        passenger.setCabinBaggage(data.getDepBaggage().getCabinBaggage(), data.getRetBaggage().getCabinBaggage());
+        passenger.setCheckedInBaggage(data.getDepBaggage().getCheckedBaggage(), data.getRetBaggage().getCheckedBaggage());
+        passenger.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
+        passenger.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
         return this;
     } // todo how to know if return flight enabled?
 
     public PassengerSteps fillBaggage(Baggage baggage) {
-
-        passengerPO.setCabinBaggage(baggage.getCabinBaggage());
-        passengerPO.setCheckedInBaggage(baggage.getCheckedBaggage());
-        passengerPO.setSportEquipment(baggage.isSportEquipment());
+        passenger.setCabinBaggage(baggage.getCabinBaggage());
+        passenger.setCheckedInBaggage(baggage.getCheckedBaggage());
+        passenger.setSportEquipment(baggage.isSportEquipment());
         return new PassengerSteps();
-
     }
 
     public StepsForSelectSeatPage gotoDepSeatSelection() {
-        passengerPO.gotoDepSeatSelection();
+        passenger.gotoDepSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
     public StepsForSelectSeatPage gotoRetSeatSelection() {
-        passengerPO.gotoRetSeatSelection();
+        passenger.gotoRetSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
     public StepsForServicesPage submit() {
-        passengerPO.submit();
+        passenger.submit();
         return new StepsForServicesPage();
     }
 
-
     public StepsForSelectSeatPage submitAndGoToSeatSelection() {
-        passengerPO.submit();
+        passenger.submit();
         return new StepsForSelectSeatPage();
 
     }

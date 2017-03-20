@@ -6,9 +6,9 @@ import com.epam.wizzair.page.ServicesPage;
  * Created by Dzmitry_Sankouski on 13-Mar-17.
  */
 public class StepsForServicesPage {
-    ServicesPage servicesPage = new ServicesPage();
+    private ServicesPage servicesPage = new ServicesPage();
 
-    public StepsForWizzairDiscount submit(){
+    public StepsForWizzairDiscount submitServices(){
         servicesPage.continueToNextPage();
         return new StepsForWizzairDiscount();
     }

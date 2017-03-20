@@ -22,14 +22,14 @@ public class TestSuite {
 
     @AfterMethod
     public void closeWindow() {
-        mainSteps.destroy();
+        mainSteps.closeWindow();
     }
 
     @Test(description = "id=1")
     public void timetableFlightPriceEqualsFlightPriceInSearch() {
         TestData.setPropertyFile(timetable);
         FlightData flightData = TestData.getFlightData();
-        TimeTableSteps flight = mainSteps.init().closePopUps()
+        TimeTableSteps flight = mainSteps.openPage().closePopUps()
                 .openTimeTable()
                 .findFlight(flightData.getOrigin(), flightData.getDestination())
                 .findFlightInSearchPage();
@@ -39,7 +39,7 @@ public class TestSuite {
     @Test(description = "id=2")
     public void checkSumDirectAndReturnFlightPrices() {
         FlightData flightData = TestData.getFlightData();
-        mainSteps.init().signIn().loginWizzAir(TestData.getLogin());
+        mainSteps.openPage().signIn().loginWizzAir(TestData.getLogin());
         StepsForSearchResult flight = mainSteps
                 .findFlight(flightData)
                 .pickExactFlights();
@@ -51,7 +51,7 @@ public class TestSuite {
         FlightData flightData = TestData.getFlightData();
         PassengerData expectedPassengerData;
         expectedPassengerData = TestData.getPassengerData();
-        mainSteps.init().closePopUps()
+        mainSteps.openPage().closePopUps()
                 .signIn().loginWizzAir(TestData.getLogin());
         PassengerData actualPassengerData = mainSteps.findFlight(flightData)
                 .pickExactFlights().submit()
@@ -67,7 +67,7 @@ public class TestSuite {
         BillingDetailsPersonal billingDetails = TestData.getBillingDetailsPersonal();
         CreditCardData creditCard = TestData.getCreditCardData();
         StepsForSearchResult result;
-        mainSteps.init().closePopUps()
+        mainSteps.openPage().closePopUps()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
@@ -77,7 +77,7 @@ public class TestSuite {
                 .gotoRetSeatSelection()
                 .selectSeatWizzAir().continueFromSeats()
                 .submit()
-                .submit()
+                .submitServices()
                 .continueToNextPage()
                 .fillBillingDetails(billingDetails)
                 .fillCreditCard(creditCard);
@@ -88,48 +88,48 @@ public class TestSuite {
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
-        mainSteps.init()
+        mainSteps.openPage()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
         StepsForMainPage mainPageSteps = new StepsForMainPage();
-        mainPageSteps.init().closePopUps()
+        mainPageSteps.openPage().closePopUps()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
-        mainPageSteps.destroy();
+        mainPageSteps.closeWindow();
     }
 
     @Test(description = "id=8")
     public void flightPriceWithInfantEqualsPriceWithoutInfant() {
         FlightData flightDataWithoutInfant = TestData.getFlightData();
-        String flightWithoutInfant = mainSteps.init().closePopUps()
+        String flightWithoutInfant = mainSteps.openPage().closePopUps()
                 .findFlight(flightDataWithoutInfant).pickExactFlights()
                 .getFlightSumFromLeftWindow();
         TestData.setPropertyFile(testDataWithInfant);
         FlightData flightDataWithInfant = TestData.getFlightData();
         StepsForMainPage newMainSteps = new StepsForMainPage();
-        String flightWithInfant = newMainSteps.init()
+        String flightWithInfant = newMainSteps.openPage()
                 .findFlight(flightDataWithInfant)
                 .pickExactFlights().getFlightSumFromLeftWindow();
-        newMainSteps.destroy();
+        newMainSteps.closeWindow();
         assertEquals(flightWithoutInfant, flightWithInfant);
     }
 
     @Test(description = "id=10")
     public void checkFlightSumWithAndWithoutLogin() {
         FlightData flightData = TestData.getFlightData();
-        Login login = TestData.getLogin();
-        String sumWithoutLogin = mainSteps.init().closePopUps()
+        LoginData loginData = TestData.getLogin();
+        String sumWithoutLogin = mainSteps.openPage().closePopUps()
                 .findFlight(flightData).pickExactFlights()
                 .getFlightSumFromLeftWindow();
         StepsForMainPage newMainSteps = new StepsForMainPage();
-        String sumWithLogin = newMainSteps.init().closePopUps().signIn()
-                .loginWizzAir(login).findFlight(flightData)
+        String sumWithLogin = newMainSteps.openPage().closePopUps().signIn()
+                .loginWizzAir(loginData).findFlight(flightData)
                 .pickExactFlights().getFlightSumFromLeftWindow();
         assertEquals(sumWithoutLogin, sumWithLogin);
     }

@@ -10,22 +10,10 @@ import com.epam.wizzair.page.TimetablePage;
 public class TimeTableSteps {
 
     private String firstFlightPrice;
-    private String secondFlightPrice;
     private String summaryPrice;
 
     private String firstFlightPriceInSearch;
-    private String secondFlightPriceInSearch;
     private String summaryPriceInSearch;
-
-    public TimeTableSteps openTimetablePage() {
-        MainPage mainPage = new MainPage();
-        mainPage.openPage();
-        mainPage.stickyBarClose();
-        mainPage.servicesClick();
-        mainPage.timetableClick();
-
-        return this;
-    }
 
     public TimeTableSteps findFlight(String origin, String destination) {
         TimetablePage timetablePage = new TimetablePage();
@@ -50,16 +38,17 @@ public class TimeTableSteps {
         return firstFlightPrice;
     }
 
-    public String getSummaryPrice() {
-        return summaryPrice;
-    }
-
     public String getFirstFlightPriceInSearch() {
         return firstFlightPriceInSearch;
     }
 
+    /* This methods will be used soon :)
     public String getSummaryPriceInSearch() {
         return summaryPriceInSearch;
+    }
+
+    public String getSummaryPrice() {
+        return summaryPrice;
     }
 
     public String getSecondFlightPrice() {
@@ -68,5 +57,5 @@ public class TimeTableSteps {
 
     public String getSecondFlightPriceInSearch() {
         return secondFlightPriceInSearch;
-    }
+    }*/
 }
