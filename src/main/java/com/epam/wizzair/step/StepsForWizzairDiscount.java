@@ -1,6 +1,6 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
-import com.epam.wizzair.page.impl.WizzDiscountPage;
+import com.epam.wizzair.page.WizzDiscountPage;
 
 /**
  * Created by Dzmitry_Sankouski on 13-Mar-17.

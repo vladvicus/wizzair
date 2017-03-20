@@ -1,4 +1,4 @@
-package com.epam.wizzair.page.impl;
+package com.epam.wizzair.page;
 
 import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.Config;

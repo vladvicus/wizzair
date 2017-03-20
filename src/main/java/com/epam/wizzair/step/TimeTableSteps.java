@@ -1,10 +1,8 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
-import com.epam.wizzair.driver.DriverSingleton;
-import com.epam.wizzair.page.impl.MainPage;
-import com.epam.wizzair.page.impl.SearchResult;
-import com.epam.wizzair.page.impl.TimetablePage;
-import org.openqa.selenium.WebDriver;
+import com.epam.wizzair.page.MainPage;
+import com.epam.wizzair.page.SearchResult;
+import com.epam.wizzair.page.TimetablePage;
 
 /**
  * Created by Nadzeya_Parkhimovich on 13-Mar-17.

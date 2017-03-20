@@ -1,6 +1,6 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
-import com.epam.wizzair.page.impl.SelectSeatPage;
+import com.epam.wizzair.page.SelectSeatPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

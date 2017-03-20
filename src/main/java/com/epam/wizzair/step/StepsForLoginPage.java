@@ -1,8 +1,8 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
 
 import com.epam.wizzair.bean.Login;
-import com.epam.wizzair.page.impl.LoginPage;
+import com.epam.wizzair.page.LoginPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

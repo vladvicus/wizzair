@@ -1,4 +1,4 @@
-package com.epam.wizzair.page.impl;
+package com.epam.wizzair.page;
 
 
 import org.openqa.selenium.By;

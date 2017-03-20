@@ -1,8 +1,8 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
 import com.epam.wizzair.bean.BillingDetailsPersonal;
 import com.epam.wizzair.bean.CreditCardData;
-import com.epam.wizzair.page.impl.PaymentPage;
+import com.epam.wizzair.page.PaymentPage;
 
 /**
  * Created by Dzmitry_Sankouski on 13-Mar-17.

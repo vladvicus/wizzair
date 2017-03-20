@@ -1,6 +1,5 @@
-package com.epam.wizzair.page.impl;
+package com.epam.wizzair.page;
 
-import com.epam.wizzair.page.IPassenger;
 import com.epam.wizzair.page.exception.ElementNotActiveException;
 import com.epam.wizzair.page.util.BaggageCabinOptions;
 import com.epam.wizzair.page.util.BaggageCheckedOptions;
@@ -12,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Created by Dzmitry_Sankouski on 06-Mar-17.
  */
-public class Passenger extends AbstractPage implements IPassenger {
+public class Passenger extends AbstractPage {
 
     //locators
     @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]")

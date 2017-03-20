@@ -1,11 +1,9 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
 import com.epam.wizzair.bean.Baggage;
 import com.epam.wizzair.bean.PassengerData;
-import com.epam.wizzair.page.IPassenger;
-import com.epam.wizzair.page.exception.ElementNotActiveException;
-import com.epam.wizzair.page.impl.InfoColumnPage;
-import com.epam.wizzair.page.impl.Passenger;
+import com.epam.wizzair.page.InfoColumnPage;
+import com.epam.wizzair.page.Passenger;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +15,7 @@ import static com.epam.wizzair.step.util.Util.parseAndFill;
  * Created by Dzmitry_Sankouski on 10-Mar-17.
  */
 public class PassengerSteps {
-    IPassenger passengerPO = new Passenger();
+    Passenger passengerPO = new Passenger();
 
     public PassengerSteps fillPassenger(PassengerData data) {
         passengerPO.setCabinBaggage(data.getDepBaggage().getCabinBaggage(), data.getRetBaggage().getCabinBaggage());
@@ -47,28 +45,22 @@ public class PassengerSteps {
     }
 
     public StepsForServicesPage submit() {
-        try {
-            passengerPO.submit();
-        } catch (ElementNotActiveException e) {
-            //todo throw steps layer exception
-        }
+        passengerPO.submit();
         return new StepsForServicesPage();
     }
 
 
     public StepsForSelectSeatPage submitAndGoToSeatSelection() {
-        try {
-            passengerPO.submit();
-        } catch (ElementNotActiveException e) {
-            //todo throw steps layer exception
-        }
+        passengerPO.submit();
         return new StepsForSelectSeatPage();
 
     }
 
-    /**The goal of this method is to read raw flight data from web page and restore assosiated bean,
+    /**
+     * The goal of this method is to read raw flight data from web page and restore assosiated bean,
      * which was used to fill Passengers page, so it is possible to
-     * compare actual and expected data*/
+     * compare actual and expected data
+     */
     public PassengerData getInfoColumnData() {
         PassengerData result = new PassengerData();
         result.setDepBaggage(new Baggage());

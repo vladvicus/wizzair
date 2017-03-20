@@ -1,15 +1,13 @@
-package com.epam.wizzair.page.impl;
+package com.epam.wizzair.page;
 
 
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.wizzair.page.impl.AbstractPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;

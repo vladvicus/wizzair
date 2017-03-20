@@ -1,7 +1,6 @@
-package com.epam.wizzair.step.impl;
+package com.epam.wizzair.step;
 
-import com.epam.wizzair.driver.DriverSingleton;
-import com.epam.wizzair.page.impl.ServicesPage;
+import com.epam.wizzair.page.ServicesPage;
 
 /**
  * Created by Dzmitry_Sankouski on 13-Mar-17.

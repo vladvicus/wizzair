@@ -1,10 +1,8 @@
-package com.epam.wizzair.page.impl;
+package com.epam.wizzair.page;
 
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.wizzair.page.impl.AbstractPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
