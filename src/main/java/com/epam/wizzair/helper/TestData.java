@@ -10,12 +10,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 
-public class Creator {
+public class TestData {
 
 
     private static Properties bean = new Properties();
     static {
-        InputStream is = Config.class.getResourceAsStream("/bean.properties");
+        InputStream is = Config.class.getResourceAsStream("/testDataWithoutInfant.properties");
         try{
             bean.load(is);
 
