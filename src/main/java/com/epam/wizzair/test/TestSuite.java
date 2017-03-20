@@ -2,9 +2,9 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
-import com.epam.wizzair.step.impl.StepsForMainPage;
-import com.epam.wizzair.step.impl.StepsForSearchResult;
-import com.epam.wizzair.step.impl.TimeTableSteps;
+import com.epam.wizzair.step.StepsForMainPage;
+import com.epam.wizzair.step.StepsForSearchResult;
+import com.epam.wizzair.step.TimeTableSteps;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
