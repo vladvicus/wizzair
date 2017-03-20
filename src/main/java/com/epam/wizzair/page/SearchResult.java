@@ -14,8 +14,6 @@ public class SearchResult extends AbstractPage {
 
     private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 5000);
 
-
-
     @FindBy(xpath = "//*[@id='fare-selector-outbound']//div[@class = 'fare__price']")
     private WebElement firstFlight;
 

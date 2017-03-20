@@ -26,17 +26,9 @@ public class SelectSeatPage extends AbstractPage {
     @FindBy(xpath = "//form[@name='seat-selection']//a[text()='Continue']")
     private WebElement continueButton;
 
-    /*//all seats in the plane (180 elements)
-    @FindBy(xpath = "//div[@id='booking-flow-step-seat-selection']//input")
-    private WebElement[] allSeats;*/
-
     //all available seats in the plane
     @FindBy(xpath = "//div[@id='booking-flow-step-seat-selection']//input[not(@disabled)]")
     private WebElement[] availableSeats;
-
-    /*//all unavailable seats in the plane
-    @FindBy(xpath = "//div[@id='booking-flow-step-seat-selection']//input[@disabled]")
-    private WebElement[] unavailableSeats;*/
 
     //selected seat name
     @FindBy(className = "booking-flow__seat-selection-flight__passenger__seat-designator")
