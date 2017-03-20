@@ -16,17 +16,17 @@ public class TestSuite {
     private static String timetable = "testDataForTimetable";
 
     @BeforeMethod
-    public void createSteps(){
+    public void createSteps() {
         mainSteps = new StepsForMainPage();
     }
 
     @AfterMethod
-    public void closeWindow(){
+    public void closeWindow() {
         mainSteps.destroy();
     }
 
     @Test(description = "id=1")
-    public void timetableFlightPriceEqualsFlightPriceInSearch(){
+    public void timetableFlightPriceEqualsFlightPriceInSearch() {
         TestData.setPropertyFile(timetable);
         FlightData flightData = TestData.getFlightData();
         TimeTableSteps flight = mainSteps.init().closePopUps()
@@ -37,7 +37,7 @@ public class TestSuite {
     }
 
     @Test(description = "id=2")
-    public void checkSumDirectAndReturnFlightPrices(){
+    public void checkSumDirectAndReturnFlightPrices() {
         FlightData flightData = TestData.getFlightData();
         mainSteps.init().signIn().loginWizzAir(TestData.getLogin());
         StepsForSearchResult flight = mainSteps
@@ -47,7 +47,7 @@ public class TestSuite {
     }
 
     @Test(description = "id=4")
-    public void selectedBaggageEqualsExpectedBaggage(){
+    public void selectedBaggageEqualsExpectedBaggage() {
         FlightData flightData = TestData.getFlightData();
         PassengerData expectedPassengerData;
         expectedPassengerData = TestData.getPassengerData();
@@ -61,7 +61,7 @@ public class TestSuite {
     }
 
     @Test(enabled = false, description = "id=5")
-    public void bookingWithWrongCard(){
+    public void bookingWithWrongCard() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
         BillingDetailsPersonal billingDetails = TestData.getBillingDetailsPersonal();
@@ -85,7 +85,7 @@ public class TestSuite {
     }
 
     @Test(enabled = false, description = "id=6")
-    public void selectedSeatIsNotMoreAvailable(){
+    public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
         mainSteps.init()
