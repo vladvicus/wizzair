@@ -46,12 +46,16 @@ public class TimetablePage extends AbstractPage {
     @FindBy(xpath = "//div[@class='sidebar fare-finder__sidebar']/button")
     private WebElement bookingButton;
 
+    @FindBy (css = "[class=\"sticky-newsletter-bar__close\"")
+    private WebElement newsletterBar;
+
+
+
 
     public TimetablePage(){
 
     }
 
-    @Override
     public void openPage() {
         getDriver().navigate().to(URL);
     }
@@ -100,6 +104,27 @@ public class TimetablePage extends AbstractPage {
         List<WebElement> secondFlight = flights.findElements(By.xpath(FLIGHT_PATH));
         WebElement el = secondFlight.get(secondFlight.size()-1);
         el.click();
+        return this;
+    }
+
+
+    public TimetablePage chooseSecondFlight1() {
+        ((JavascriptExecutor)getDriver()).executeScript("window.scrollBy(0,7000);");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        WebElement flights = divFlights.get(1);
+        List<WebElement> secondFlight = flights.findElements(By.xpath(FLIGHT_PATH));
+        WebElement el = secondFlight.get(1);
+        el.click();
+        return this;
+    }
+
+    public TimetablePage getRidOfNewsletterBar() {
+
+        newsletterBar.click();
         return this;
     }
 

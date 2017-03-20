@@ -5,19 +5,13 @@ import org.openqa.selenium.support.FindBy;
 
 
 public class WizzDiscountPage extends AbstractPage {
-    public WizzDiscountPage() {
-        //super(driver);
-       // PageFactory.initElements(getDriver(), this);
-    }
 
-    @Override
-    public void openPage() {
+    public WizzDiscountPage() {
 
     }
 
     @FindBy(css = "[data-test=\"booking-wdc-submit\"")
     private WebElement decline;
-
 
     public WizzDiscountPage declineOffer() {
         decline.click();
