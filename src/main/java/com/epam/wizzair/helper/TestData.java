@@ -1,10 +1,10 @@
 package com.epam.wizzair.helper;
 
 import com.epam.wizzair.bean.*;
-import com.epam.wizzair.page.util.BaggageCabinOptions;
-import com.epam.wizzair.page.util.BaggageCheckedOptions;
-import com.epam.wizzair.page.util.CheckInMethod;
-import com.epam.wizzair.page.util.PassengerSetting;
+import com.epam.wizzair.bean.enumeration.BaggageCabinOptions;
+import com.epam.wizzair.bean.enumeration.BaggageCheckedOptions;
+import com.epam.wizzair.bean.enumeration.CheckInMethod;
+import com.epam.wizzair.bean.enumeration.PassengerSetting;
 
 import java.io.InputStream;
 import java.util.Properties;

@@ -14,10 +14,11 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//form[@name='login-form']//button[@type='submit']")
     private WebElement submitSingInButton;
 
-    public void login(String email, String password){
+    public MainPage login(String email, String password){
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         submitSingInButton.click();
+        return new MainPage();
     }
 
 }
