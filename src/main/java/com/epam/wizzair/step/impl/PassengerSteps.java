@@ -19,12 +19,12 @@ import static com.epam.wizzair.step.util.Util.parseAndFill;
 public class PassengerSteps {
     IPassenger passengerPO = new Passenger();
 
-    public PassengerSteps fillPassenger(PassengerData data){
+    public PassengerSteps fillPassenger(PassengerData data) {
         passengerPO.setCabinBaggage(data.getDepBaggage().getCabinBaggage(), data.getRetBaggage().getCabinBaggage());
         passengerPO.setCheckedInBaggage(data.getDepBaggage().getCheckedBaggage(), data.getRetBaggage().getCheckedBaggage());
         passengerPO.setSportEquipment(data.getDepBaggage().isSportEquipment(), data.getRetBaggage().isSportEquipment());
         passengerPO.setCheckInMethod(data.getDepCheckinMethod(), data.getRetCheckinMethod());
-        return  this;
+        return this;
     } // todo how to know if return flight enabled?
 
     public PassengerSteps fillBaggage(Baggage baggage) {
@@ -36,17 +36,17 @@ public class PassengerSteps {
 
     }
 
-    public StepsForSelectSeatPage gotoDepSeatSelection(){
+    public StepsForSelectSeatPage gotoDepSeatSelection() {
         passengerPO.gotoDepSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
-    public StepsForSelectSeatPage gotoRetSeatSelection(){
+    public StepsForSelectSeatPage gotoRetSeatSelection() {
         passengerPO.gotoRetSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
-    public StepsForServicesPage submit(){
+    public StepsForServicesPage submit() {
         try {
             passengerPO.submit();
         } catch (ElementNotActiveException e) {
@@ -66,37 +66,32 @@ public class PassengerSteps {
 
     }
 
-    public PassengerData getInfoColumnData(){
+    /**The goal of this method is to read raw flight data from web page and restore assosiated bean,
+     * which was used to fill Passengers page, so it is possible to
+     * compare actual and expected data*/
+    public PassengerData getInfoColumnData() {
         PassengerData result = new PassengerData();
         result.setDepBaggage(new Baggage());
-        result.setRetBaggage(new Baggage());
-
+        result.setRetBaggage(new Baggage());//creating bean for filling data in
         String fullName = InfoColumnPage.getInstance().getPassengerFullName();
-        Pattern pattern = Pattern.compile("(\\S+)\\s+(\\S+)"); //validity pattern
+        Pattern pattern = Pattern.compile("(\\S+)\\s+(\\S+)"); //name validity pattern
         Matcher matcher = pattern.matcher(fullName);
         if (matcher.matches()) {
             result.setName(matcher.group(2));
             result.setSurName(matcher.group(1));
         }
-
-        String[][] rawData = InfoColumnPage.getInstance().getDepPassengerRawData();
-
-            for (int j = 0; j < rawData[0].length; j++) {
-                parseAndFill(rawData[0][j], result, true); //true stands for departure
-            } //rawData[0] - this is booked item and rawData[1] - this is prices
-
-        rawData = InfoColumnPage.getInstance().getDepPassengerRawData();
-
-        for (int i = 0; i < rawData[0].length; i++) {
-            parseAndFill(rawData[0][i], result, false); //true stands for return
+        String[] rawBookingData = InfoColumnPage.getInstance().getDepPassengerRawData();//getting raw data from page
+        for (int i = 0; i < rawBookingData.length; i++) {
+            parseAndFill(rawBookingData[i], result, true); //true stands for departure
+        }//parsing raw data and filling bean for departure
+        rawBookingData = InfoColumnPage.getInstance().getDepPassengerRawData();
+        for (int i = 0; i < rawBookingData.length; i++) {
+            parseAndFill(rawBookingData[i], result, false); //false stands for return
         }
-
-        fillNonMentionedWithDefaults(result);
+        fillNonMentionedWithDefaults(result);//filling non mentioned values in page with its default values
 
         return result;
     }
-
-
 
 
 }

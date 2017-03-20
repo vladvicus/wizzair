@@ -27,45 +27,62 @@ public class Util {
 
     public static void parseAndFill(String s, PassengerData result, boolean isDepSection){
         if(s.contains("checked-in bag")){
-            Pattern pattern = Pattern.compile("[lightheavynoneLHN]{4,5}");
-            Matcher matcher = pattern.matcher(s);
-            matcher.find();
-
-            if (isDepSection){
-                result.getDepBaggage().setCheckedBaggage(BaggageCheckedOptions.valueOf(matcher.group(0).toUpperCase()));
-            } else {
-                result.getRetBaggage().setCheckedBaggage(BaggageCheckedOptions.valueOf(matcher.group(0).toUpperCase()));
-            }
+            fillCheckedBaggage(s, result, isDepSection);
             return;
         } if (s.contains("cabin bag")){
-            Pattern pattern = Pattern.compile("[smalllargeSL]{5}");
-            Matcher matcher = pattern.matcher(s);
-            matcher.find();
-
-            if (isDepSection){
-                result.getDepBaggage().setCabinBaggage(BaggageCabinOptions.valueOf(matcher.group(0).toUpperCase()));
-            } else {
-                result.getRetBaggage().setCabinBaggage(BaggageCabinOptions.valueOf(matcher.group(0).toUpperCase()));
-            }
+            fillCabinBaggage(s, result, isDepSection);
             return;
         } if (s.contains("Sports equipment")){
-            if(isDepSection){
-                result.getDepBaggage().setSportEquipment(true);
-            }else {
-                result.getRetBaggage().setSportEquipment(true);
-            }
+            fillSportEquipment(result, isDepSection);
             return;
         } if (s.contains("check-in")){
-            Pattern pattern = Pattern.compile("[onlineairportOA]{6,7}");
-            Matcher matcher = pattern.matcher(s);
-            matcher.find();
-            if (isDepSection){
-                result.setDepCheckinMethod(CheckInMethod.valueOf(matcher.group(0).toUpperCase()));
-            } else {
-                result.setRetCheckinMethod(CheckInMethod.valueOf(matcher.group(0).toUpperCase()));
-            }
+            fillCheckInMethod(s, result, isDepSection);
             return;
         }
     }
+
+    private static void fillCheckInMethod(String s, PassengerData result, boolean isDepSection) {
+        Pattern pattern = Pattern.compile("[onlineairportOA]{6,7}");//pattern for searching checkIn method
+        Matcher matcher = pattern.matcher(s);
+        matcher.find();
+        if (isDepSection){
+            result.setDepCheckinMethod(CheckInMethod.valueOf(matcher.group(0).toUpperCase()));
+        } else {
+            result.setRetCheckinMethod(CheckInMethod.valueOf(matcher.group(0).toUpperCase()));
+        }
+    }
+
+    private static void fillSportEquipment(PassengerData result, boolean isDepSection) {
+        if(isDepSection){
+            result.getDepBaggage().setSportEquipment(true);
+        }else {
+            result.getRetBaggage().setSportEquipment(true);
+        }
+    }
+
+    private static void fillCabinBaggage(String s, PassengerData result, boolean isDepSection) {
+        Pattern pattern = Pattern.compile("[smalllargeSL]{5}");//pattern for searching baggage type
+        Matcher matcher = pattern.matcher(s);
+        matcher.find();
+
+        if (isDepSection){
+            result.getDepBaggage().setCabinBaggage(BaggageCabinOptions.valueOf(matcher.group(0).toUpperCase()));
+        } else {
+            result.getRetBaggage().setCabinBaggage(BaggageCabinOptions.valueOf(matcher.group(0).toUpperCase()));
+        }
+    }
+
+    private static void fillCheckedBaggage(String s, PassengerData result, boolean isDepSection) {
+        Pattern pattern = Pattern.compile("[lightheavynoneLHN]{4,5}");//pattern for searching baggage type
+        Matcher matcher = pattern.matcher(s);
+        matcher.find();
+
+        if (isDepSection){
+            result.getDepBaggage().setCheckedBaggage(BaggageCheckedOptions.valueOf(matcher.group(0).toUpperCase()));
+        } else {
+            result.getRetBaggage().setCheckedBaggage(BaggageCheckedOptions.valueOf(matcher.group(0).toUpperCase()));
+        }
+    }
+
 
 }

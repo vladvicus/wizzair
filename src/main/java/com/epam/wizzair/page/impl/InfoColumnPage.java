@@ -77,9 +77,6 @@ public class InfoColumnPage {
         return returnTicketMonth.getText();
     }
     //------------end of Flight section
-    /*By titleLoc = By.xpath("/div[@class=\"booking-flow__itinerary__step__title\"]");
-    By contentLoc = By.xpath("/div[contains(@class, 'booking-flow__itinerary__step__content')]");*/
-
 
     //passengers section
     @FindBy(xpath = "//div[contains(@class,'step--passengers')]")
@@ -88,50 +85,37 @@ public class InfoColumnPage {
     @FindBy(xpath = "//div[contains(@class,'passenger-names__content')]")
     private WebElement[] allPassengers;
 
-//    @FindBy(xpath = "//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li")
     By passengerName = By.xpath("//div[@class=\"booking-flow__itinerary__passenger-names__content\"]");
     public String getPassengerFullName(){
         return DriverSingleton.getDriver().findElement(passengerName).getText();
     }
 
-    public String[][] getDepPassengerRawData(){
+    public String[] getDepPassengerRawData(){
         List<WebElement> depPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li"));
         if (depPassengerRawData == null){
             //todo throw exception
         }
-        String[][] result = new String[2][depPassengerRawData.size()];
-
+        String[] result = new String[depPassengerRawData.size()];
         for (int i = 0; i < depPassengerRawData.size(); i++) {
-            result[0][i] = depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText();
-            result[1][i] = depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
+            result[i] = depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
+                    depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
         }
 
         return result;
     }
 
-    public String[][] getRetPassengerRawData(){
+    public String[] getRetPassengerRawData(){
         List<WebElement> retPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul/li"));
         if (retPassengerRawData == null){
             //todo throw exception
         }
-        String[][] result = new String[2][retPassengerRawData.size()];
-
+        String[] result = new String[retPassengerRawData.size()];
         for (int i = 0; i < retPassengerRawData.size(); i++) {
-            result[0][i] = retPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText();
-            result[1][i] = retPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
+            result[i] = retPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
+            retPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
         }
-
         return result;
-    }
-
-//    public String getcabinBaggage(){
-//
-//    }
-//
-//    public String getCheckedBaggage(){
-//
-//    }
-
+    }// data from booking info column
 
     //services section
     @FindBy(xpath = "//div[contains(@class,'step--services')]")
@@ -148,19 +132,6 @@ public class InfoColumnPage {
 
     @FindBy(xpath = "//div[contains(@class,'total')]/span")
     private WebElement totalPrice;
-
-
-
-   /* public PassengerData getPassengerData(){
-        WebElement content;
-        List<WebElement> data = new ArrayList<>();
-        content = passengersSection.findElement(contentLoc);
-        data = content.findElements(By.xpath("/div[1]/div[2]/ul/li"));
-
-        data = content.findElements(By.xpath("/div[1]/div[3]/ul/li"));
-/*//*[@id="booking-flow"]/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul
-        return new PassengerData();
-    }*/
 
     public List<String> getPassengersNames(){
         List<String> passengerNames = new ArrayList<>();
