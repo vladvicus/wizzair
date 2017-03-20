@@ -33,9 +33,6 @@ public class TestData {
                 System.out.println("Error reading from property file");// todo logging
             }
         }
-
-
-
     }
 
 

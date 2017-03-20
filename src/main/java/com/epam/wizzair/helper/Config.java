@@ -18,7 +18,6 @@ public class Config {
         }
     }
 
-
     public static String url() {
         return config.getProperty("url");
     }

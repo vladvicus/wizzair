@@ -55,7 +55,6 @@ public class Passenger extends AbstractPage implements IPassenger {
             case HEAVY:
                 depContainer.findElement(baggageHeavyRB).click();
         }
-
         return this;
     }
 
