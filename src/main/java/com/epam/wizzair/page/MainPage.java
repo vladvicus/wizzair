@@ -2,6 +2,7 @@ package com.epam.wizzair.page;
 
 import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.page.impl.SearchResult;
 import com.epam.wizzair.page.util.PassengerSetting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -65,7 +66,7 @@ public class MainPage extends AbstractPage{
     public MainPage(){
     }
 
-    @Override
+
     public void openPage(){
         DriverSingleton.openNewWindowJS();
         getDriver().navigate().to(Config.url());
@@ -73,12 +74,10 @@ public class MainPage extends AbstractPage{
     }
 
     public void destroy() {
-//        DriverSingleton.quit();
         DriverSingleton.closeWindow();
     }
 
     public MainPage fillOrigin(String origin){
-
         inputOriginName.click();
         inputOriginName.clear();
         inputOriginName.sendKeys(origin);
@@ -88,7 +87,6 @@ public class MainPage extends AbstractPage{
     }
 
     public MainPage fillDestination(String destination){
-
         wait.until(ExpectedConditions.elementToBeClickable(inputDestinationName));
         inputDestinationName.click();
         inputDestinationName.clear();
@@ -112,36 +110,11 @@ public class MainPage extends AbstractPage{
         return this;
     }
 
-//    public MainPage addAdult() {
-//        passengerField.click();
-//        addAdult.click();
-//        return this;
-//    }
-//
-//    public MainPage addChild() {
-//        passengerField.click();
-//        addChild.click();
-//        return this;
-//    }
-//
-//    public MainPage addInfant() {
-//        passengerField.click();
-//        addInfant.click();
-//        return this;
-//    }
-
-
     public MainPage setPassenger(PassengerSetting passengerSetting, int numberOfPassengers) {
-
-
-
-
         int i = 0;
         do
         {
-
             switch (passengerSetting) {
-
                 case ADULT:
                     numberOfPassengers=numberOfPassengers-1;
                     passengerField.click();
@@ -157,14 +130,11 @@ public class MainPage extends AbstractPage{
                     break;
                 case NO:
                     break;
-
             }
             i++;
         }
         while (i<=numberOfPassengers-1);
-
         return this;
-
     }
 
     public SearchResult search() {
@@ -173,7 +143,6 @@ public class MainPage extends AbstractPage{
     }
 
     public LoginPage signIn(){
-
         loginButton.click();
         return new LoginPage();
     }

@@ -18,48 +18,34 @@ public class TestData {
         InputStream is = Config.class.getResourceAsStream("/testDataWithoutInfant.properties");
         try{
             bean.load(is);
-
         } catch (Exception e){
             System.out.println("Error reading from property file");// todo logging
-
         }
     } // default init block
 
 
     public static void setPropertyFile(String fileName) {
-
         InputStream is = Config.class.getResourceAsStream("/" + fileName + ".properties");
-
         {
-
             try{
                 bean.load(is);
-
             } catch (Exception e){
                 System.out.println("Error reading from property file");// todo logging
-
             }
         }
-
-
-
     }
 
 
     public static Login getLogin() {
-
         Login login = new Login();
         login.setLogin(bean.getProperty("login"));
         login.setPassword(bean.getProperty("password"));
-
         return login;
-
     }
 
 
 
     public static FlightData getFlightData() {
-
         FlightData flightData = new FlightData();
         flightData.setOrigin(bean.getProperty("origin"));
         flightData.setDestination(bean.getProperty("destination"));
@@ -68,24 +54,18 @@ public class TestData {
         flightData.setPassenger(PassengerSetting.valueOf(bean.getProperty("passenger")));
         flightData.setNumberOfPassengers(Integer.parseInt(bean.getProperty("numberOfPassengers")));
         return flightData;
-
     }
 
     public static CreditCardData getCreditCardData() {
         CreditCardData creditCardData = new CreditCardData();
-
         creditCardData.setCardNumber(bean.getProperty("cardNumber"));
         creditCardData.setCardHolder(bean.getProperty("cardHolder"));
         creditCardData.setSecCode(Integer.parseInt(bean.getProperty("secCode")));
-
         return creditCardData;
-
     }
 
     public static BillingDetailsPersonal getBillingDetailsPersonal() {
-
         BillingDetailsPersonal billingDetailsPersonal = new BillingDetailsPersonal();
-
         billingDetailsPersonal.setFirstName(bean.getProperty("firstName"));
         billingDetailsPersonal.setSecondName(bean.getProperty("secondName"));
         billingDetailsPersonal.setEmail(bean.getProperty("email"));
@@ -95,27 +75,20 @@ public class TestData {
         billingDetailsPersonal.setPostIndex(bean.getProperty("postIndex"));
         billingDetailsPersonal.setCountryIndex(bean.getProperty("countryIndex"));
         billingDetailsPersonal.setCountry(bean.getProperty("country"));
-
         return billingDetailsPersonal;
-
-
     }
 
 
     public static Baggage getBaggage() {
-
         Baggage baggage = new Baggage();
-
         baggage.setCabinBaggage(BaggageCabinOptions.valueOf(bean.getProperty("cabinBaggage")));
         baggage.setCheckedBaggage(BaggageCheckedOptions.valueOf(bean.getProperty("checkedBaggage")));
         baggage.setSportEquipment(Boolean.parseBoolean(bean.getProperty("isSportEquipment")));
-
         return baggage;
 
     }
 
     public static PassengerData getPassengerData() {
-
         PassengerData passengerData = new PassengerData();
         passengerData.setName(bean.getProperty("name"));
         passengerData.setSurName(bean.getProperty("surname"));
@@ -123,7 +96,6 @@ public class TestData {
         passengerData.setRetBaggage(getBaggage());
         passengerData.setDepCheckinMethod(CheckInMethod.valueOf(bean.getProperty("retCheckinMethod")));
         passengerData.setRetCheckinMethod(CheckInMethod.valueOf(bean.getProperty("depCheckinMethod")));
-
         return passengerData;
 
 

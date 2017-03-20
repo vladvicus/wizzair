@@ -26,15 +26,6 @@ public class Passenger extends AbstractPage {
     @FindBy(id = "passengers-continue-btn")
     WebElement nextPage;
 
-
-
-//    @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]/div[2]/div[1]/div/div/div[1]")
-//    WebElement depBaggageCheckInContainer;
-
-
-
-
-
     //--------------------sport equipment buttons
     By SportEquipment = By.xpath("//div[3]/div[1]/div[1]/div/div/div[2]/label");
 
@@ -48,11 +39,6 @@ public class Passenger extends AbstractPage {
     By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]/following-sibling::label");
     By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]/following-sibling::label");
 
-
-
-
-
-
     public Passenger() {
 
     }
@@ -64,13 +50,10 @@ public class Passenger extends AbstractPage {
                 break;
             case LIGHT:
                 depContainer.findElement(baggageLightRB).click();
-
                 break;
             case HEAVY:
                 depContainer.findElement(baggageHeavyRB).click();
-
         }
-
         return this;
     }
 
@@ -87,7 +70,6 @@ public class Passenger extends AbstractPage {
                 break;
             case HEAVY:
                 retContainer.findElement(baggageHeavyRB).click();
-
         }
         return this;
     }
@@ -99,7 +81,6 @@ public class Passenger extends AbstractPage {
 
 
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
-
         switch (depOption){
             case SMALL:
                 depContainer.findElement(baggageSmallRB).click();
@@ -108,7 +89,6 @@ public class Passenger extends AbstractPage {
                 depContainer.findElement(baggageLargeRB).click();
                 break;
         }
-
         return this;
     }
 
@@ -121,10 +101,8 @@ public class Passenger extends AbstractPage {
                 break;
             case LARGE:
                 retContainer.findElement(baggageLargeRB).click();
-
                 break;
         }
-
         return this;
     }
 
@@ -138,7 +116,6 @@ public class Passenger extends AbstractPage {
     By labelEn = By.xpath("//label[1]/span[@class=\"button button--medium button--filled\"]");
     By labelDis = By.xpath("//label[1]/class=\"button button--medium button--outlined button--breakable\"");
     //-----------------------------------
-
 
     public boolean isDepSportEquipmentEn() {
         sportEquipmentDepBtn = depContainer.findElement(sportEquipmentBtn);
@@ -174,9 +151,6 @@ public class Passenger extends AbstractPage {
         return this;
     }
 
-
-
-
     By online = By.xpath("//p[@class=\"option\" and text()=\"Online\"]");
     By airport = By.xpath("//p[@class=\"option\" and text()=\"Airport\"]");
     public Passenger setCheckInMethod(CheckInMethod depMethod, CheckInMethod retMethod) {
@@ -189,12 +163,10 @@ public class Passenger extends AbstractPage {
                 retContainer.findElement(airport).click();
                 break;
         }
-
         return this;
     }
 
     public Passenger setCheckInMethod(CheckInMethod depMethod) {
-
         switch (depMethod){
             case ONLINE:
                 depContainer.findElement(online).click();
@@ -203,7 +175,6 @@ public class Passenger extends AbstractPage {
                 depContainer.findElement(airport).click();
                 break;
         }
-
         return this;
     }
 
@@ -219,11 +190,6 @@ public class Passenger extends AbstractPage {
 
 
     public void confirm() throws ElementNotActiveException{
-
     }
 
-    @Override
-    public void openPage(){
-
-    }
 }

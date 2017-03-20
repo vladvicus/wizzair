@@ -3,27 +3,20 @@ package com.epam.wizzair.helper;
 import java.io.InputStream;
 import java.util.Properties;
 
-/**
- * Created by Aliaksandr_Krutsko on 3/6/2017.
- */
+
 public class Config {
 
 
     private static Properties config = new Properties();
 
     private static InputStream is = Config.class.getResourceAsStream("/config.properties");
-
     static {
-
         try{
             config.load(is);
-
         } catch (Exception e){
             System.out.println("Error reading from property file");
-
         }
     }
-
 
     public static String url() {
         return config.getProperty("url");
@@ -31,9 +24,7 @@ public class Config {
 
     public static String browser() {
         return config.getProperty("browser");
-
     }
-
 
     public static String geckodriver() {return config.getProperty("geckodriver");}
 
@@ -45,7 +36,6 @@ public class Config {
 
     public static int timeout(){
         int result = 15;
-
         try {
             result = Integer.parseInt(config.getProperty("timeOut"));
         } catch (NumberFormatException e) {

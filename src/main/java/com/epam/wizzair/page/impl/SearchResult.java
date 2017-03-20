@@ -63,7 +63,6 @@ public class SearchResult extends AbstractPage {
         selectableReturnFlights.get(0).click();
     }
 
-
     public String getTotalPrice() {
         return totalPrice.getText();
     }

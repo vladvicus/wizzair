@@ -9,8 +9,6 @@ public abstract class AbstractPage {
 
     protected WebDriver driver;
 
-    public abstract void openPage();
-
     public AbstractPage() {
         PageFactory.initElements(getDriver(), this);
     }
