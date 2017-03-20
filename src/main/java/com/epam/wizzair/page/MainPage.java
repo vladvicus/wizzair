@@ -62,17 +62,12 @@ public class MainPage extends AbstractPage{
             "/div[5]/button[@class=\"stepper__button stepper__button--add\"]") //TODO: refactor locators
     private WebElement addInfant;
 
-    public MainPage(){
-    }
-
-
     public void openPage(){
         DriverSingleton.openNewWindowJS();
         getDriver().navigate().to(Config.url());
-
     }
 
-    public void destroy() {
+    public void closeWindow() {
         DriverSingleton.closeWindow();
     }
 

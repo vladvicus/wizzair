@@ -1,18 +1,9 @@
 package com.epam.wizzair.page;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-
 public class LoginPage extends AbstractPage {
-
-    private final Logger logger = LogManager.getRootLogger();
-
-    @FindBy(xpath = "//ul[@class='navigation__container']/li[3]")
-    private WebElement signInButton;
 
     @FindBy(xpath = "//form[@name='login-form']//input[@type='email']")
     private WebElement emailField;
@@ -23,19 +14,10 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//form[@name='login-form']//button[@type='submit']")
     private WebElement submitSingInButton;
 
-    public LoginPage(){
-
-    }
-
     public void login(String email, String password){
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
         submitSingInButton.click();
-        logger.info("Login performed");
-    }
-
-    public void openSignInForm(){
-        signInButton.click();
     }
 
 }

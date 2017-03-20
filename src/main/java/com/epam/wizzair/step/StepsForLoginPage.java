@@ -1,22 +1,13 @@
 package com.epam.wizzair.step;
 
-
-import com.epam.wizzair.bean.Login;
+import com.epam.wizzair.bean.LoginData;
 import com.epam.wizzair.page.LoginPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class StepsForLoginPage {
 
-    private final Logger logger = LogManager.getRootLogger();
-
-    public StepsForMainPage loginWizzAir(Login login)
-    {
+    public StepsForMainPage loginWizzAir(LoginData loginData) {
         LoginPage loginPage = new LoginPage();
-//        loginPage.openPage();
-//        loginPage.openSignInForm();
-        loginPage.login(login.getLogin(), login.getPassword());
+        loginPage.login(loginData.getLogin(), loginData.getPassword());
         return new StepsForMainPage();
     }
-
 }

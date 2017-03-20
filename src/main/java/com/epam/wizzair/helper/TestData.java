@@ -21,7 +21,7 @@ public class TestData {
         } catch (Exception e){
             System.out.println("Error reading from property file");// todo logging
         }
-    } // default init block
+    } // default openPage block
 
 
     public static void setPropertyFile(String fileName) {
@@ -36,11 +36,11 @@ public class TestData {
     }
 
 
-    public static Login getLogin() {
-        Login login = new Login();
-        login.setLogin(bean.getProperty("login"));
-        login.setPassword(bean.getProperty("password"));
-        return login;
+    public static LoginData getLogin() {
+        LoginData loginData = new LoginData();
+        loginData.setLogin(bean.getProperty("login"));
+        loginData.setPassword(bean.getProperty("password"));
+        return loginData;
     }
 
 

@@ -2,50 +2,42 @@ package com.epam.wizzair.step;
 
 import com.epam.wizzair.page.SearchResult;
 
-/**
- * Created by Dzmitry_Sankouski on 13-Mar-17.
- */
 public class StepsForSearchResult {
 
-    SearchResult result = new SearchResult();
+    private SearchResult searchResult = new SearchResult();
+    private static int priceMinusCurrencySign = 2;
 
+    /* This methods will be used soon :)
     public StepsForSearchResult pickExactDepFlight(){
-        result.chooseFirstFlight();
-
+        searchResult.chooseFirstFlight();
         return this;
     }
 
     public StepsForSearchResult pickExactRetFlight(){
-        result.chooseSecondFlight();
-
+        searchResult.chooseSecondFlight();
         return this;
-    }
+    }*/
 
     public StepsForSearchResult pickExactFlights(){
-        result.chooseFirstFlight();
-        result.chooseSecondFlight();
+        searchResult.chooseFirstFlight();
+        searchResult.chooseSecondFlight();
         return this;
     }
 
     public PassengerSteps submit(){
-        result.continueToNextPage();
+        searchResult.continueToNextPage();
         return new PassengerSteps();
     }
 
-    //---------control methods
     public String getTwoFlightPrices() {
-
-        String firstFlightPrice = result.chooseFirstFlight().substring(2);
-        String secondFlightPrice = result.chooseSecondFlight().substring(2);
-
+        String firstFlightPrice = searchResult.chooseFirstFlight().substring(priceMinusCurrencySign);
+        String secondFlightPrice = searchResult.chooseSecondFlight().substring(priceMinusCurrencySign);
         double sum = Double.parseDouble(firstFlightPrice) + Double.parseDouble(secondFlightPrice);
-        return (sum + "").substring(0,6);
+        return (sum + "");
     }
 
     public String getFlightSumFromLeftWindow() {
-
-        String s = result.getTotalPrice().substring(2);
-        return s;
+        return searchResult.getTotalPrice().substring(priceMinusCurrencySign);
     }
 }
 

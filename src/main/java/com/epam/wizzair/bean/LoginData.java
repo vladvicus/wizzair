@@ -3,11 +3,10 @@ package com.epam.wizzair.bean;
 /**
  * Created by Aliaksandr_Krutsko on 3/14/2017.
  */
-public class Login {
+public class LoginData {
 
-    String login;
-    String password;
-
+    private String login;
+    private String password;
 
     public String getLogin() {return login;}
 
@@ -17,11 +16,4 @@ public class Login {
 
     public void setPassword(String password) {this.password=password;}
 
-    @Override
-    public String toString() {
-        return "Login{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }
