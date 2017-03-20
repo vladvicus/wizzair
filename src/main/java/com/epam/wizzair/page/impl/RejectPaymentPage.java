@@ -16,19 +16,11 @@ public class RejectPaymentPage extends AbstractPage {
 
 
     public String getRejectMessage() {
-
         wait.until(ExpectedConditions.elementToBeClickable(rejectMessage));
         return rejectMessage.getText();
-
-
     }
 
     public RejectPaymentPage() {
-       // PageFactory.initElements(getDriver(), this);
     }
 
-    @Override
-    public void openPage() {
-
-    }
 }

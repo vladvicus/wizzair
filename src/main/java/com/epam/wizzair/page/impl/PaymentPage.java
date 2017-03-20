@@ -12,13 +12,7 @@ public class PaymentPage extends AbstractPage {
     private String pathIndex = "//option[contains(@value, '";
     private String pathCountry = "') and text() = '";
 
-
     public PaymentPage() {
-
-    }
-
-    @Override
-    public void openPage() {
 
     }
 
@@ -28,7 +22,6 @@ public class PaymentPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"name gutter-bottom\"]/input[@placeholder=\"Last name\"]")
     private WebElement billingLastName;
 
-    //@FindBy (xpath = "//div[@class=\"input input--with-icon\"]/input[@placeholder=\"E-mail\"]")
     @FindBy(xpath = "//div[@class=\"booking-flow__payment__section__content\"]//*[@placeholder=\"E-mail\" and @type=\"email\"]")
     private WebElement billingEmail;
 
@@ -65,14 +58,10 @@ public class PaymentPage extends AbstractPage {
     @FindBy (id = "payment-continue-btn")
     private WebElement confirmPaymentButton;
 
-
-
     public PaymentPage setFirstName(String firstName) {
-
         billingFirstName.click();
         billingFirstName.sendKeys(firstName);
         return this;
-
     }
 
     public PaymentPage setLastName(String lastName) {
@@ -94,87 +83,57 @@ public class PaymentPage extends AbstractPage {
     }
 
     public PaymentPage setCity(String city) {
-
         billingCity.click();
         billingCity.sendKeys(city);
         return this;
-
     }
 
     public PaymentPage setPhone(String phone) {
-
         billingPhone.click();
         billingPhone.sendKeys(phone);
         return this;
     }
 
     public PaymentPage setPostcode(String postcode) {
-
         billingPostcode.click();
         billingPostcode.sendKeys(postcode);
         return this;
-
     }
 
-
-
     public PaymentPage setCardNumber(String number) {
-
         cardNumber.click();
         cardNumber.sendKeys(number);
         return this;
-
-
     }
 
     public PaymentPage setCardName(String name) {
-
         cardName.click();
         cardName.sendKeys(name);
         return this;
-
     }
 
     public PaymentPage setCardCvv(String cvv) {
-
         cardCvv.click();
         cardCvv.sendKeys(cvv);
         return this;
-
     }
 
     public PaymentPage acceptPolicy() {
-
         conditionsCheckbox.click();
         return this;
-
-    }
-
-
-
-    public PaymentPage chooseCurrency() {
-
-        currency.click();
-        return this;
-
     }
 
     public PaymentPage chooseCountryFromMenu(String index, String country) {
-
         menuCountry.click();
         WebElement chooseCountry = getDriver().findElement(By.xpath(pathIndex + index + pathCountry + country + "']"));
         chooseCountry.click();
         menuCountry.click();
-
-
         return this;
     }
 
     public PaymentPage confirmPayment() {
-
         confirmPaymentButton.click();
         return this;
-
     }
 
 

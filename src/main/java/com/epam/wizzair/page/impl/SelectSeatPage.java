@@ -1,19 +1,16 @@
 package com.epam.wizzair.page.impl;
 
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.wizzair.page.impl.AbstractPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
-
 
 import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 
@@ -23,12 +20,9 @@ public class SelectSeatPage extends AbstractPage {
 
     }
 
-  
     private final Logger logger = LogManager.getRootLogger();
     private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
 
-
-    //можно //a[text()='Continue']
     @FindBy(xpath = "//form[@name='seat-selection']//a[text()='Continue']")
     private WebElement continueButton;
 
@@ -62,7 +56,6 @@ public class SelectSeatPage extends AbstractPage {
     }
 
 
-
     public SelectSeatPage continueReturn() {
 
         wait.until(ExpectedConditions.elementToBeClickable(seatReturnContinue));
@@ -70,14 +63,6 @@ public class SelectSeatPage extends AbstractPage {
         seatReturnContinue.click();
         return this;
     }
-  
-    //может убрать этот метод из AbstractPage???
-    @Override
-    public void openPage() {
-
-
-    }
-
 
     public void selectRandomAvailableSeat(){
         WebElement seat = getRandomAvailableSeat();
@@ -109,7 +94,6 @@ public class SelectSeatPage extends AbstractPage {
         Random rnd = new Random();
         return rnd.nextInt(numberOfSeats) + 1;
     }
-
 
     //номер случайного выбранного места
     private String getSeatNumber(WebElement seat){

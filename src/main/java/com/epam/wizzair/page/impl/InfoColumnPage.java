@@ -1,6 +1,5 @@
 package com.epam.wizzair.page.impl;
 
-import com.epam.wizzair.bean.PassengerData;
 import com.epam.wizzair.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -17,7 +16,6 @@ public class InfoColumnPage {
     private static InfoColumnPage instance = new InfoColumnPage();
 
     private InfoColumnPage() {
-
     }
 
     public static InfoColumnPage getInstance() {
@@ -26,7 +24,6 @@ public class InfoColumnPage {
 
     @FindBy(xpath = "//*[@id=\"booking-flow\"]/aside/div[2]")
     private WebElement infoContainer;
-
 
     //flight section
     @FindBy(xpath = "//div[contains(@class, 'step--flights')]")
@@ -100,7 +97,6 @@ public class InfoColumnPage {
             result[i] = depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
                     depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
         }
-
         return result;
     }
 
@@ -124,7 +120,6 @@ public class InfoColumnPage {
     //payment section
     @FindBy(xpath = "//div[contains(@class,'step--payment')]")
     private WebElement paymentSection;
-
 
     //total section
     @FindBy(xpath = "//div[contains(@class,'total')]")
