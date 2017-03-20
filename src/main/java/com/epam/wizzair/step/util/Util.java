@@ -1,9 +1,9 @@
 package com.epam.wizzair.step.util;
 
 import com.epam.wizzair.bean.PassengerData;
-import com.epam.wizzair.page.util.BaggageCabinOptions;
-import com.epam.wizzair.page.util.BaggageCheckedOptions;
-import com.epam.wizzair.page.util.CheckInMethod;
+import com.epam.wizzair.bean.enumeration.BaggageCabinOptions;
+import com.epam.wizzair.bean.enumeration.BaggageCheckedOptions;
+import com.epam.wizzair.bean.enumeration.CheckInMethod;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

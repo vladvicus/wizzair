@@ -2,7 +2,7 @@ package com.epam.wizzair.page;
 
 import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.Config;
-import com.epam.wizzair.page.util.PassengerSetting;
+import com.epam.wizzair.bean.enumeration.PassengerSetting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

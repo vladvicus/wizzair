@@ -1,15 +1,15 @@
 package com.epam.wizzair.bean;
 
-import com.epam.wizzair.page.util.BaggageCabinOptions;
-import com.epam.wizzair.page.util.BaggageCheckedOptions;
+import com.epam.wizzair.bean.enumeration.BaggageCabinOptions;
+import com.epam.wizzair.bean.enumeration.BaggageCheckedOptions;
 
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
  */
 public class Baggage {
-    BaggageCabinOptions cabinBaggage;
-    BaggageCheckedOptions checkedBaggage;
-    boolean isSportEquipment;
+    private BaggageCabinOptions cabinBaggage;
+    private BaggageCheckedOptions checkedBaggage;
+    private boolean isSportEquipment;
 
     public Baggage(){
 
@@ -39,20 +39,14 @@ public class Baggage {
         isSportEquipment = sportEquipment;
     }
 
-    //todo equals&hashcode&toString
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Baggage baggage = (Baggage) o;
-
         if (isSportEquipment != baggage.isSportEquipment) return false;
         if (cabinBaggage != baggage.cabinBaggage) return false;
         return checkedBaggage == baggage.checkedBaggage;
-
     }
 
     @Override

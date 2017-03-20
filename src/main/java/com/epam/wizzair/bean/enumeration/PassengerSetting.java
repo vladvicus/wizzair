@@ -1,15 +1,9 @@
-package com.epam.wizzair.page.util;
+package com.epam.wizzair.bean.enumeration;
 
 
 public enum PassengerSetting {
-
     ADULT,
     CHILD,
     INFANT,
     NO
-
-
-
-
-
 }

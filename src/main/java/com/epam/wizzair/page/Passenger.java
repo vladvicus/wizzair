@@ -1,9 +1,8 @@
 package com.epam.wizzair.page;
 
-import com.epam.wizzair.page.exception.ElementNotActiveException;
-import com.epam.wizzair.page.util.BaggageCabinOptions;
-import com.epam.wizzair.page.util.BaggageCheckedOptions;
-import com.epam.wizzair.page.util.CheckInMethod;
+import com.epam.wizzair.bean.enumeration.BaggageCabinOptions;
+import com.epam.wizzair.bean.enumeration.BaggageCheckedOptions;
+import com.epam.wizzair.bean.enumeration.CheckInMethod;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -189,7 +188,7 @@ public class Passenger extends AbstractPage {
     public void submit() {nextPage.click();}
 
 
-    public void confirm() throws ElementNotActiveException{
+    public void confirm(){
     }
 
 }

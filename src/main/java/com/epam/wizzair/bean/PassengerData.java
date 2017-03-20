@@ -1,18 +1,18 @@
 package com.epam.wizzair.bean;
 
-import com.epam.wizzair.page.util.CheckInMethod;
+import com.epam.wizzair.bean.enumeration.CheckInMethod;
 
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
  */
 public class PassengerData {
-    String name;
-    String surName;
-    boolean isMaleGender;
-    CheckInMethod depCheckinMethod;
-    CheckInMethod retCheckinMethod;
-    Baggage depBaggage;
-    Baggage retBaggage;
+    private String name;
+    private String surName;
+    private boolean isMaleGender;
+    private CheckInMethod depCheckinMethod;
+    private CheckInMethod retCheckinMethod;
+    private Baggage depBaggage;
+    private Baggage retBaggage;
 
     public PassengerData(){
 
@@ -73,11 +73,6 @@ public class PassengerData {
     public void setRetBaggage(Baggage retBaggage) {
         this.retBaggage = retBaggage;
     }
-
-
-
-    //todo equals&hashcode&toString
-
 
     @Override
     public boolean equals(Object o) {

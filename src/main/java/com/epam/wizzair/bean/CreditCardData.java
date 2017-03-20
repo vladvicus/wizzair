@@ -8,11 +8,11 @@ import java.util.Date;
  */
 public class CreditCardData {
 
-    String cardNumber;
-    String cardHolder;
-    int secCode;
-    Date expireDate;
-    Currency currency;
+    private String cardNumber;
+    private String cardHolder;
+    private int secCode;
+    private Date expireDate;
+    private Currency currency;
 
     public CreditCardData() {
 
@@ -67,5 +67,29 @@ public class CreditCardData {
                 ", expireDate=" + expireDate +
                 ", currency=" + currency +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CreditCardData that = (CreditCardData) o;
+
+        if (secCode != that.secCode) return false;
+        if (cardNumber != null ? !cardNumber.equals(that.cardNumber) : that.cardNumber != null) return false;
+        if (cardHolder != null ? !cardHolder.equals(that.cardHolder) : that.cardHolder != null) return false;
+        if (expireDate != null ? !expireDate.equals(that.expireDate) : that.expireDate != null) return false;
+        return currency != null ? currency.equals(that.currency) : that.currency == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cardNumber != null ? cardNumber.hashCode() : 0;
+        result = 31 * result + (cardHolder != null ? cardHolder.hashCode() : 0);
+        result = 31 * result + secCode;
+        result = 31 * result + (expireDate != null ? expireDate.hashCode() : 0);
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        return result;
     }
 }
