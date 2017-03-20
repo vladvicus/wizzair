@@ -1,6 +1,5 @@
 package com.epam.wizzair.page;
 
-import com.epam.wizzair.page.impl.SearchResult;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;

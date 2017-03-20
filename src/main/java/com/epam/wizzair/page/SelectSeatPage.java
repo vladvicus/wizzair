@@ -1,5 +1,4 @@
-package com.epam.wizzair.page.impl;
-
+package com.epam.wizzair.page;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
