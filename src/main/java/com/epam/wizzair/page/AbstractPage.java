@@ -9,7 +9,7 @@ public abstract class AbstractPage {
 
     protected WebDriver driver;
 
-    public AbstractPage() {
+    protected AbstractPage() {
         PageFactory.initElements(getDriver(), this);
     }
 
