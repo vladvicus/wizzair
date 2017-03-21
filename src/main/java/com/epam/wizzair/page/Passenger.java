@@ -14,10 +14,10 @@ public class Passenger extends AbstractPage {
 
     //locators
     @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]")
-    private WebElement depContainer;
+    private WebElement departureContainer;
 
     @FindBy(xpath = "//*[@id=\"passenger-baggages-return-0\"]")
-    private WebElement retContainer;
+    private WebElement returnContainer;
 
     @FindBy(xpath = "//*[@id=\"booking-flow-step-passengers\"]/div[1]/form")
     private WebElement passengerForm;
@@ -25,11 +25,11 @@ public class Passenger extends AbstractPage {
     @FindBy(id = "passengers-continue-btn")
     private WebElement nextPage;
 
+    //---------------------seat selection buttons
+    private By selectSeatButton = By.xpath(".//button[text()='Select seat']");
+
     //--------------------sport equipment buttons
     private By SportEquipment = By.xpath("//div[3]/div[1]/div[1]/div/div/div[2]/label");
-
-    //---------------------seat selection button
-    private By seatSelection = By.xpath("//div[3]/div[2]/div/div/div/div/div/button");
 
     //-----------------------checkin baggage radio buttons
 
@@ -45,13 +45,13 @@ public class Passenger extends AbstractPage {
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
         switch (depOption){
             case NONE:
-                depContainer.findElement(baggageNoneRB).click();
+                departureContainer.findElement(baggageNoneRB).click();
                 break;
             case LIGHT:
-                depContainer.findElement(baggageLightRB).click();
+                departureContainer.findElement(baggageLightRB).click();
                 break;
             case HEAVY:
-                depContainer.findElement(baggageHeavyRB).click();
+                departureContainer.findElement(baggageHeavyRB).click();
         }
         return this;
     }
@@ -61,14 +61,14 @@ public class Passenger extends AbstractPage {
 
         switch (depOption){
             case NONE:
-                retContainer.findElement(baggageNoneRB).click();
+                returnContainer.findElement(baggageNoneRB).click();
                 break;
             case LIGHT:
-                retContainer.findElement(baggageLightRB).click();
+                returnContainer.findElement(baggageLightRB).click();
 
                 break;
             case HEAVY:
-                retContainer.findElement(baggageHeavyRB).click();
+                returnContainer.findElement(baggageHeavyRB).click();
         }
         return this;
     }
@@ -82,10 +82,10 @@ public class Passenger extends AbstractPage {
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
         switch (depOption){
             case SMALL:
-                depContainer.findElement(baggageSmallRB).click();
+                departureContainer.findElement(baggageSmallRB).click();
                 break;
             case LARGE:
-                depContainer.findElement(baggageLargeRB).click();
+                departureContainer.findElement(baggageLargeRB).click();
                 break;
         }
         return this;
@@ -96,10 +96,10 @@ public class Passenger extends AbstractPage {
 
         switch (depOption){
             case SMALL:
-                retContainer.findElement(baggageSmallRB).click();
+                returnContainer.findElement(baggageSmallRB).click();
                 break;
             case LARGE:
-                retContainer.findElement(baggageLargeRB).click();
+                returnContainer.findElement(baggageLargeRB).click();
                 break;
         }
         return this;
@@ -117,14 +117,14 @@ public class Passenger extends AbstractPage {
     //-----------------------------------
 
     public boolean isDepSportEquipmentEn() {
-        sportEquipmentDepBtn = depContainer.findElement(sportEquipmentBtn);
+        sportEquipmentDepBtn = departureContainer.findElement(sportEquipmentBtn);
         boolean result;
         result = sportEquipmentDepBtn.findElement(labelEn).getAttribute("style").isEmpty();
         return result;
     }
 
     public boolean isRetSportEquipmentEn() {
-        sportEquipmentRetBtn = retContainer.findElement(sportEquipmentBtn);
+        sportEquipmentRetBtn = returnContainer.findElement(sportEquipmentBtn);
         boolean result;
         result = sportEquipmentRetBtn.findElement(labelEn).getAttribute("style").isEmpty();
         return result;
@@ -156,10 +156,10 @@ public class Passenger extends AbstractPage {
 
         switch (retMethod){
             case ONLINE:
-                retContainer.findElement(online).click();
+                returnContainer.findElement(online).click();
                 break;
             case AIRPORT:
-                retContainer.findElement(airport).click();
+                returnContainer.findElement(airport).click();
                 break;
         }
         return this;
@@ -168,21 +168,21 @@ public class Passenger extends AbstractPage {
     public Passenger setCheckInMethod(CheckInMethod depMethod) {
         switch (depMethod){
             case ONLINE:
-                depContainer.findElement(online).click();
+                departureContainer.findElement(online).click();
                 break;
             case AIRPORT:
-                depContainer.findElement(airport).click();
+                departureContainer.findElement(airport).click();
                 break;
         }
         return this;
     }
 
-    public void gotoDepSeatSelection() {
-        depContainer.findElement(seatSelection).click();
+    public void gotoDepartureSeatSelection() {
+        departureContainer.findElement(selectSeatButton).click();
     }
 
-    public void gotoRetSeatSelection() {
-        retContainer.findElement(seatSelection).click();
+    public void gotoReturnSeatSelection() {
+        returnContainer.findElement(selectSeatButton).click();
     }
 
     public void submit() {nextPage.click();}

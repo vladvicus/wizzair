@@ -33,12 +33,12 @@ public class PassengerSteps {
     }
 
     public StepsForSelectSeatPage gotoDepSeatSelection() {
-        passenger.gotoDepSeatSelection();
+        passenger.gotoDepartureSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
     public StepsForSelectSeatPage gotoRetSeatSelection() {
-        passenger.gotoRetSeatSelection();
+        passenger.gotoReturnSeatSelection();
         return new StepsForSelectSeatPage();
     }
 
