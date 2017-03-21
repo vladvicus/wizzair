@@ -8,6 +8,8 @@ import com.epam.wizzair.page.TimetablePage;
  */
 public class TimeTableSteps {
 
+    private TimetablePage timetablePage = new TimetablePage();
+
     private String firstFlightPrice;
     private String summaryPrice;
 
@@ -15,7 +17,6 @@ public class TimeTableSteps {
     private String summaryPriceInSearch;
 
     public TimeTableSteps findFlight(String origin, String destination) {
-        TimetablePage timetablePage = new TimetablePage();
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
         timetablePage.search();
@@ -31,6 +32,10 @@ public class TimeTableSteps {
         firstFlightPriceInSearch = searchResult.chooseFirstFlight();
         summaryPriceInSearch = searchResult.getTotalPrice();
         return this;
+    }
+
+    public String getTextFromAddressField() {
+        return timetablePage.getTextFromAddressField();
     }
 
     public String getFirstFlightPrice() {

@@ -2,10 +2,7 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
-import com.epam.wizzair.step.StepsForMainPage;
-import com.epam.wizzair.step.StepsForSearchResult;
-import com.epam.wizzair.step.StepsForSelectSeatPage;
-import com.epam.wizzair.step.TimeTableSteps;
+import com.epam.wizzair.step.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -46,6 +43,17 @@ public class TestSuite {
                 .findFlight(flightData)
                 .pickExactFlights();
         assertEquals(flight.getTwoFlightPrices(), flight.getFlightSumFromLeftWindow());
+    }
+
+    @Test(description = "id=3")
+    public void checkAirportsFromMapPage() {
+        StepsForMapPage stepsForMapPage = mainSteps.openPage().closePopUps().openMap();
+        stepsForMapPage.chooseRoute();
+        String[] origin = stepsForMapPage.getOrigin().split(" ");
+        String[] destination = stepsForMapPage.getDestination().split(" ");
+        String route = stepsForMapPage.searchFromMap().getTextFromAddressField();
+        Assert.assertTrue(route.contains(origin[0]));
+        Assert.assertTrue(route.contains(destination[0]));
     }
 
     @Test(description = "id=4")
