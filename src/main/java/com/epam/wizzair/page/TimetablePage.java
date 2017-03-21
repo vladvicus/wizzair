@@ -1,6 +1,6 @@
 package com.epam.wizzair.page;
 
-import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -55,7 +55,7 @@ public class TimetablePage extends AbstractPage {
     }
 
     public void openPage() {
-        getDriver().navigate().to(Config.urlTimetable());
+        getDriver().navigate().to(DriverConfig.urlTimetable());
     }
 
     public TimetablePage fillOrigin(String origin){
