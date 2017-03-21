@@ -46,11 +46,8 @@ public class SelectSeatPage extends AbstractPage {
         return this;
     }
 
-
     public SelectSeatPage continueReturn() {
-
         wait.until(ExpectedConditions.elementToBeClickable(seatReturnContinue));
-
         seatReturnContinue.click();
         return this;
     }

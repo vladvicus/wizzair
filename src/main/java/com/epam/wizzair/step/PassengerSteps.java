@@ -53,11 +53,10 @@ public class PassengerSteps {
 
     }
 
-    /**
-     * The goal of this method is to read raw flight data from web page and restore assosiated bean,
-     * which was used to fill Passengers page, so it is possible to
-     * compare actual and expected data
-     */
+//     The goal of this method is to read raw flight data from web page and restore assosiated bean,
+//     which was used to fill Passengers page, so it is possible to
+//     compare actual and expected data
+
     public PassengerData getInfoColumnData() {
         PassengerData result = new PassengerData();
         result.setDepBaggage(new Baggage());

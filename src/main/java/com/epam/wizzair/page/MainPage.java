@@ -15,8 +15,6 @@ public class MainPage extends AbstractPage{
 
     private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
 
-    private final String BASE_URL = "https://wizzair.com/en-gb/main-page#/";
-
     private final String PATH_DATE = "//div[@class='calendar']//td[@data-day='";
     private final String PATH_CITY = "//strong[text()='";
 
@@ -64,7 +62,7 @@ public class MainPage extends AbstractPage{
 
     public void openPage(){
         DriverSingleton.openNewWindowJS();
-        getDriver().navigate().to(Config.url());
+        getDriver().navigate().to(Config.urlMain());
     }
 
     public void closeWindow() {

@@ -1,6 +1,5 @@
 package com.epam.wizzair.step;
 
-import com.epam.wizzair.page.MainPage;
 import com.epam.wizzair.page.SearchResult;
 import com.epam.wizzair.page.TimetablePage;
 
@@ -42,20 +41,20 @@ public class TimeTableSteps {
         return firstFlightPriceInSearch;
     }
 
-    /* This methods will be used soon :)
-    public String getSummaryPriceInSearch() {
-        return summaryPriceInSearch;
-    }
-
-    public String getSummaryPrice() {
-        return summaryPrice;
-    }
-
-    public String getSecondFlightPrice() {
-        return secondFlightPrice;
-    }
-
-    public String getSecondFlightPriceInSearch() {
-        return secondFlightPriceInSearch;
-    }*/
+//    This methods will be used soon :)
+//    public String getSummaryPriceInSearch() {
+//        return summaryPriceInSearch;
+//    }
+//
+//    public String getSummaryPrice() {
+//        return summaryPrice;
+//    }
+//
+//    public String getSecondFlightPrice() {
+//        return secondFlightPrice;
+//    }
+//
+//    public String getSecondFlightPriceInSearch() {
+//        return secondFlightPriceInSearch;
+//    }
 }
