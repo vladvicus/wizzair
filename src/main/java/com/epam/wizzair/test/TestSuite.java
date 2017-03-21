@@ -86,10 +86,11 @@ public class TestSuite {
 //        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
     }
 
-    @Test(enabled = false, description = "id=6")
+    @Test(enabled = true, description = "id=6")
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
+        mainSteps.openPage().closePopUps().signIn().loginWizzAir(TestData.getLogin());
         StepsForSelectSeatPage departureSeat = mainSteps.openPage()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
@@ -98,6 +99,8 @@ public class TestSuite {
                 .gotoDepSeatSelection();
 
         departureSeat
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
                 .selectSeatWizzAir()
                 .submit()
                 .submitServices()

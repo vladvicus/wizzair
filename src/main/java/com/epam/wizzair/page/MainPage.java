@@ -1,7 +1,7 @@
 package com.epam.wizzair.page;
 
 import com.epam.wizzair.driver.DriverSingleton;
-import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.helper.DriverConfig;
 import com.epam.wizzair.bean.enumeration.PassengerSetting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -62,7 +62,7 @@ public class MainPage extends AbstractPage{
 
     public void openPage(){
         DriverSingleton.openNewWindowJS();
-        getDriver().navigate().to(Config.urlMain());
+        getDriver().navigate().to(DriverConfig.urlMain());
     }
 
     public void closeWindow() {

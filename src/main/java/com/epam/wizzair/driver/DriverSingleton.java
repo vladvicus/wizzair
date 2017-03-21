@@ -1,5 +1,5 @@
 package com.epam.wizzair.driver;
-import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -16,7 +16,7 @@ public class DriverSingleton {
 
     private static JavascriptExecutor js;
 
-    private static String driverType = Config.browser();
+    private static String driverType = DriverConfig.browser();
 
     private static WebDriver driver = null;
 
@@ -37,12 +37,12 @@ public class DriverSingleton {
             switch (driverType.toUpperCase()) {
                 case "FIREFOX":
                     ProfilesIni profile = new ProfilesIni();
-                    FirefoxProfile myprofile = profile.getProfile(Config.profile());
-                    System.setProperty("webdriver.gecko.driver", Config.geckodriver());
+                    FirefoxProfile myprofile = profile.getProfile(DriverConfig.profile());
+                    System.setProperty("webdriver.gecko.driver", DriverConfig.geckodriver());
                     driver = new FirefoxDriver(myprofile);
                     break;
                 case "CHROME":
-                    System.setProperty("webdriver.chrome.driver", Config.chromedriver());
+                    System.setProperty("webdriver.chrome.driver", DriverConfig.chromedriver());
                     driver = new ChromeDriver();
                     break;
 
@@ -60,9 +60,9 @@ public class DriverSingleton {
 
             driver.manage().window().maximize();
 //            windowStack.push(driver.getWindowHandle());
-            driver.manage().timeouts().implicitlyWait(Config.timeout(), TimeUnit.SECONDS);
-            driver.manage().timeouts().pageLoadTimeout(Config.timeout(), TimeUnit.SECONDS);
-            driver.manage().timeouts().setScriptTimeout(Config.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(DriverConfig.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().pageLoadTimeout(DriverConfig.timeout(), TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(DriverConfig.timeout(), TimeUnit.SECONDS);
         }
         return driver;
     }
@@ -116,6 +116,9 @@ public class DriverSingleton {
         driver.switchTo().window(windowStack.peek());
     }
 
+    public static void excuteScript(String script){
+        js.executeScript(script);
+    }
 
     public static void open(String url){
         getDriver().get(url);
