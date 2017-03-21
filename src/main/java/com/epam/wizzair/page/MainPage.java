@@ -42,6 +42,9 @@ public class MainPage extends AbstractPage{
     @FindBy(linkText = "Timetable")
     private WebElement timetableButton;
 
+    @FindBy(linkText = "Map")
+    private WebElement mapButton;
+
     @FindBy(css = "[class=\"cookie-policy__button\"")
     private WebElement stickyBar;
 
@@ -139,13 +142,21 @@ public class MainPage extends AbstractPage{
         return new LoginPage();
     }
 
-    public void servicesClick() {
+    public MainPage servicesClick() {
         servicesButton.click();
+        return this;
     }
 
-    public void timetableClick() {
+    public TimetablePage timetableClick() {
         wait.until(ExpectedConditions.elementToBeClickable(timetableButton));
         timetableButton.click();
+        return new TimetablePage();
+    }
+
+    public MapPage mapClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(mapButton));
+        mapButton.click();
+        return new MapPage();
     }
 
     public MainPage stickyBarClose() {
