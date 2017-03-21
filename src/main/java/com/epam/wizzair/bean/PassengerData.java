@@ -15,7 +15,6 @@ public class PassengerData {
     private Baggage retBaggage;
 
     public PassengerData(){
-
     }
 
     public String getName() {
@@ -78,9 +77,7 @@ public class PassengerData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         PassengerData that = (PassengerData) o;
-
         if (isMaleGender != that.isMaleGender) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surName != null ? !surName.equals(that.surName) : that.surName != null) return false;

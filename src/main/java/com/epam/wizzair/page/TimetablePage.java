@@ -1,5 +1,6 @@
 package com.epam.wizzair.page;
 
+import com.epam.wizzair.helper.Config;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -17,7 +18,7 @@ import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 public class TimetablePage extends AbstractPage {
 
     private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
-    private final String URL = "https://wizzair.com/en-gb/information-and-services/destinations/timetable#/";
+
     private final String CITY = "//strong[text()='";
     private final String FLIGHT_PATH = "//li[@class='fare-finder__calendar__days__day']";
 
@@ -49,15 +50,12 @@ public class TimetablePage extends AbstractPage {
     @FindBy (css = "[class=\"sticky-newsletter-bar__close\"")
     private WebElement newsletterBar;
 
-
-
-
     public TimetablePage(){
 
     }
 
     public void openPage() {
-        getDriver().navigate().to(URL);
+        getDriver().navigate().to(Config.urlTimetable());
     }
 
     public TimetablePage fillOrigin(String origin){
@@ -70,7 +68,6 @@ public class TimetablePage extends AbstractPage {
     }
 
     public TimetablePage fillDestination(String destination){
-
         wait.until(ExpectedConditions.elementToBeClickable(inputDestinationName));
         inputDestinationName.click();
         inputDestinationName.sendKeys(destination);
@@ -107,7 +104,6 @@ public class TimetablePage extends AbstractPage {
         return this;
     }
 
-
     public TimetablePage chooseSecondFlight1() {
         ((JavascriptExecutor)getDriver()).executeScript("window.scrollBy(0,7000);");
         try {
@@ -123,7 +119,6 @@ public class TimetablePage extends AbstractPage {
     }
 
     public TimetablePage getRidOfNewsletterBar() {
-
         newsletterBar.click();
         return this;
     }

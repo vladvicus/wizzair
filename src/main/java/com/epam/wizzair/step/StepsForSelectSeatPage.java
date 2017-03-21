@@ -7,13 +7,13 @@ public class StepsForSelectSeatPage {
     private SelectSeatPage selectSeatPage = new SelectSeatPage();
     private String selectedSeatNumber;
 
-    public StepsForSelectSeatPage selectSeatWizzAir()
+    public PassengerSteps selectSeatWizzAir()
     {
         selectSeatPage.selectRandomAvailableSeat();
         selectedSeatNumber = selectSeatPage.getSelectedSeatNumber();
         selectSeatPage.clickClosePageButton();
         selectSeatPage.clickSaveResultButton();
-        return this;
+        return new PassengerSteps();
     }
 
     public String getSelectedSeatNumber(){

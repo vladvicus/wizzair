@@ -18,9 +18,11 @@ public class Config {
         }
     }
 
-    public static String url() {
-        return config.getProperty("url");
+    public static String urlMain() {
+        return config.getProperty("urlMain");
     }
+
+    public static String urlTimetable() {return config.getProperty("urlTimetable");}
 
     public static String browser() {
         return config.getProperty("browser");

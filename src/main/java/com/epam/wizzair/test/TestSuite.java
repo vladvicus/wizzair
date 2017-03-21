@@ -4,7 +4,9 @@ import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
 import com.epam.wizzair.step.StepsForMainPage;
 import com.epam.wizzair.step.StepsForSearchResult;
+import com.epam.wizzair.step.StepsForSelectSeatPage;
 import com.epam.wizzair.step.TimeTableSteps;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -73,9 +75,9 @@ public class TestSuite {
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection()
-                .selectSeatWizzAir().continueFromSeats()
+                .selectSeatWizzAir()
                 .gotoRetSeatSelection()
-                .selectSeatWizzAir().continueFromSeats()
+                .selectSeatWizzAir()
                 .submit()
                 .submitServices()
                 .continueToNextPage()
@@ -88,19 +90,28 @@ public class TestSuite {
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
-        mainSteps.openPage()
+        StepsForSelectSeatPage departureSeat = mainSteps.openPage()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
+
+        departureSeat
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData());
         StepsForMainPage mainPageSteps = new StepsForMainPage();
-        mainPageSteps.openPage().closePopUps()
+        boolean isSeatEnable = mainPageSteps.openPage().closePopUps()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
-                .gotoDepSeatSelection();
+                .gotoDepSeatSelection().isSelectedSeatEnable(departureSeat.getSelectedSeatNumber());
+        Assert.assertFalse(isSeatEnable);
         mainPageSteps.closeWindow();
     }
 
