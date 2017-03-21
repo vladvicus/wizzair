@@ -47,12 +47,11 @@ public class TimetablePage extends AbstractPage {
     @FindBy(xpath = "//div[@class='sidebar fare-finder__sidebar']/button")
     private WebElement bookingButton;
 
-    @FindBy (css = "[class=\"sticky-newsletter-bar__close\"")
+    @FindBy (css = "[class='sticky-newsletter-bar__close'")
     private WebElement newsletterBar;
 
-    public TimetablePage(){
-
-    }
+    @FindBy (xpath = "//header[@class='fare-finder__calendar__header']/address")
+    private WebElement addressField;
 
     public void openPage() {
         getDriver().navigate().to(DriverConfig.urlTimetable());
@@ -139,5 +138,9 @@ public class TimetablePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(bookingButton));
         bookingButton.click();
         return new SearchResult();
+    }
+
+    public String getTextFromAddressField() {
+        return addressField.getText();
     }
 }
