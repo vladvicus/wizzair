@@ -35,15 +35,12 @@ public class TestData {
         }
     }
 
-
     public static LoginData getLogin() {
         LoginData loginData = new LoginData();
         loginData.setLogin(bean.getProperty("login"));
         loginData.setPassword(bean.getProperty("password"));
         return loginData;
     }
-
-
 
     public static FlightData getFlightData() {
         FlightData flightData = new FlightData();
@@ -78,14 +75,12 @@ public class TestData {
         return billingDetailsPersonal;
     }
 
-
     public static Baggage getBaggage() {
         Baggage baggage = new Baggage();
         baggage.setCabinBaggage(BaggageCabinOptions.valueOf(bean.getProperty("cabinBaggage")));
         baggage.setCheckedBaggage(BaggageCheckedOptions.valueOf(bean.getProperty("checkedBaggage")));
         baggage.setSportEquipment(Boolean.parseBoolean(bean.getProperty("isSportEquipment")));
         return baggage;
-
     }
 
     public static PassengerData getPassengerData() {
@@ -97,8 +92,6 @@ public class TestData {
         passengerData.setDepCheckinMethod(CheckInMethod.valueOf(bean.getProperty("retCheckinMethod")));
         passengerData.setRetCheckinMethod(CheckInMethod.valueOf(bean.getProperty("depCheckinMethod")));
         return passengerData;
-
-
     }
 
 

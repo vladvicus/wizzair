@@ -30,17 +30,11 @@ public class SelectSeatPage extends AbstractPage {
     @FindBy(xpath = "//div[@id='booking-flow-step-seat-selection']//input[not(@disabled)]")
     private List<WebElement> availableSeatsForSearch;
 
-    @FindBy(className = "booking-flow__seat-selection-flight__passenger__seat-designator")
-    private WebElement selectedSeatNumber;
+    public SelectSeatPage continueReturn() {
+        wait.until(ExpectedConditions.elementToBeClickable(seatReturnContinue));
+        seatReturnContinue.click();
+        return this;
 
-    @FindBy(xpath ="//a[@data-test='seat-selection-abort-x']")
-    private WebElement closePageButton;
-
-    @FindBy(xpath ="//a[text()='Save']")
-    private WebElement saveResultButton;
-
-    public String getSelectedSeatNumber() {
-        return selectedSeatNumber.getText();
     }
 
     public boolean isSeatEnable(String seatNumber){
