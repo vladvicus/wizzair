@@ -104,7 +104,6 @@ public class TimetablePage extends AbstractPage {
         return this;
     }
 
-
     public TimetablePage chooseSecondFlight1() {
         ((JavascriptExecutor)getDriver()).executeScript("window.scrollBy(0,7000);");
         try {
