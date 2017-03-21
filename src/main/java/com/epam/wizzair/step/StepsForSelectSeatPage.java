@@ -1,37 +1,35 @@
 package com.epam.wizzair.step;
 
 import com.epam.wizzair.page.SelectSeatPage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class StepsForSelectSeatPage {
 
-    SelectSeatPage selectSeatPage = new SelectSeatPage();
-    private final Logger logger = LogManager.getRootLogger();
+    private SelectSeatPage selectSeatPage = new SelectSeatPage();
+    private String selectedSeatNumber;
 
     public StepsForSelectSeatPage selectSeatWizzAir()
     {
         selectSeatPage.selectRandomAvailableSeat();
-//        return selectSeatPage.getSelectedSeatName();
+        selectedSeatNumber = selectSeatPage.getSelectedSeatNumber();
+        selectSeatPage.clickClosePageButton();
+        selectSeatPage.clickSaveResultButton();
         return this;
     }
 
-    public void selectSeatWizzAir(String seat){
-//        selectSeatPage.
+    public String getSelectedSeatNumber(){
+        return selectedSeatNumber;
     }
 
-    /*public boolean isSelectedSeatEnable()
+    public boolean isSelectedSeatEnable(String seatNumber)
     {
-        SelectSeatPage selectSeatPage = new SelectSeatPage(driver);
-        return selectSeatPage.isSeatEnable()
-    }*/
+        return selectSeatPage.isSeatEnable(seatNumber);
+    }
 
-    public PassengerSteps continueFromSeats() {
+   /* public PassengerSteps continueFromSeats() {
         SelectSeatPage seatPage = new SelectSeatPage();
         seatPage.continueOrigin();
         seatPage.continueReturn();
         return new PassengerSteps();
-
-    }
+    }*/
 
 }
