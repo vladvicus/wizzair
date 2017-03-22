@@ -62,6 +62,7 @@ public class TimetablePage extends AbstractPage {
         inputOriginName.click();
         inputOriginName.sendKeys(origin);
         WebElement originCity = getDriver().findElement(By.xpath(CITY + origin + "']"));
+        wait.until(ExpectedConditions.visibilityOf(originCity));
         originCity.click();
         return this;
     }
@@ -71,6 +72,7 @@ public class TimetablePage extends AbstractPage {
         inputDestinationName.click();
         inputDestinationName.sendKeys(destination);
         WebElement destinationCity = getDriver().findElement(By.xpath(CITY + destination + "']"));
+        wait.until(ExpectedConditions.visibilityOf(destinationCity));
         destinationCity.click();
         return this;
     }
