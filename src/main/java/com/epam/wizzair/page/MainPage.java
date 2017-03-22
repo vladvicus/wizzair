@@ -39,25 +39,26 @@ public class MainPage extends AbstractPage{
     @FindBy(xpath = "//ul[@class='navigation__container']/li[1]")
     private WebElement servicesButton;
 
-    @FindBy(linkText = "Timetable")
+    //@FindBy(linkText = "Timetable")
+    @FindBy (xpath = "//div[@id='footer_TAC12ECC3001_Col02']//a[@class='sitemap__link' and text()='Timetable']")
     private WebElement timetableButton;
 
-    @FindBy(css = "[class=\"cookie-policy__button\"")
+    @FindBy(css = "[class='cookie-policy__button'")
     private WebElement stickyBar;
 
     @FindBy(id = "search-passenger")
     private WebElement passengerField;
 
-    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
-            "/div[3]/button[@class=\"stepper__button stepper__button--add\"]")
+    @FindBy(xpath = "//div[@class='flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition']" +
+            "/div[3]/button[@class='stepper__button stepper__button--add']")
     private WebElement addAdult;
 
-    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
-            "/div[4]/button[@class=\"stepper__button stepper__button--add\"]")
+    @FindBy(xpath = "//div[@class='flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition']" +
+            "/div[4]/button[@class='stepper__button stepper__button--add']")
     private WebElement addChild;
 
-    @FindBy(xpath = "//div[@class=\"flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition\"]" +
-            "/div[5]/button[@class=\"stepper__button stepper__button--add\"]") //TODO: refactor locators
+    @FindBy(xpath = "//div[@class='flight-search__panel flight-search__panel--sub flight-search__panel--sub--people flight-search__panel--sub-transition']" +
+            "/div[5]/button[@class='stepper__button stepper__button--add']") //TODO: refactor locators
     private WebElement addInfant;
 
     public void openPage(){

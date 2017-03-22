@@ -1,5 +1,6 @@
 package com.epam.wizzair.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -13,6 +14,8 @@ import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 public class SearchResult extends AbstractPage {
 
     private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 5000);
+
+    private final String RETURN_DATE = "//div[@id=\"fare-selector-return\"]//time[@class=\"booking-flow__flight-select__chart__day__number title title--2\" and text()[contains(.,'";
 
     @FindBy(xpath = "//*[@id='fare-selector-outbound']//div[@class = 'fare__price']")
     private WebElement firstFlight;
@@ -55,12 +58,13 @@ public class SearchResult extends AbstractPage {
         return secondFlightPrice;
     }
 
-    public void chooseWrongFlight() {
+    public void chooseWrongFlight(int date) {
         wait.until(ExpectedConditions.visibilityOf(returnToPreviousFlight));
         returnToPreviousFlight.click();
         wait.until(ExpectedConditions.visibilityOf(returnToPreviousFlight));
         returnToPreviousFlight.click();
-        selectableReturnFlights.get(0).click();
+        WebElement book_date = getDriver().findElement(By.xpath(RETURN_DATE + date + "')]]"));
+        book_date.click();
     }
 
 
