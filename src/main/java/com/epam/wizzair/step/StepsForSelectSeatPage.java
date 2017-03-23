@@ -24,6 +24,15 @@ public class StepsForSelectSeatPage {
     {
         return selectSeatPage.isSeatEnable(seatNumber);
     }
+//
+//    public PassengerSteps continueFromSeats() {
+//
+//        selectSeatPage.continueOrigin();
+//        selectSeatPage.continueReturn();
+//        return new PassengerSteps();
+//
+//
+//    }
 
    /* public PassengerSteps continueFromSeats() {
         SelectSeatPage seatPage = new SelectSeatPage();

@@ -22,7 +22,7 @@ public class StepsForMainPage {
     }
 
     public TimeTableSteps openTimeTable(){
-        mainPage.servicesClick();
+//        mainPage.servicesClick();
         mainPage.timetableClick();
         return new TimeTableSteps();
     }

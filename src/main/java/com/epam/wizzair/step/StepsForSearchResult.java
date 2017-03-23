@@ -8,10 +8,10 @@ public class StepsForSearchResult {
     private static int priceMinusCurrencySign = 2;
 
 //    /This methods will be used soon :)
-//    public StepsForSearchResult pickExactDepFlight(){
-//        searchResult.chooseFirstFlight();
-//        return this;
-//    }
+    public StepsForSearchResult pickExactDepFlight(){
+        searchResult.chooseFirstFlight();
+        return this;
+    }
 
     public StepsForSearchResult pickExactRetFlight(){
         searchResult.chooseSecondFlight();
@@ -21,6 +21,11 @@ public class StepsForSearchResult {
     public StepsForSearchResult pickExactFlights(){
         searchResult.chooseFirstFlight();
         searchResult.chooseSecondFlight();
+        return this;
+    }
+
+    public StepsForSearchResult pickWrongFlight(int date) {
+        searchResult.chooseWrongFlight(date);
         return this;
     }
 

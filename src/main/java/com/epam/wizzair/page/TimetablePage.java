@@ -21,6 +21,8 @@ public class TimetablePage extends AbstractPage {
 
     private final String CITY = "//strong[text()='";
     private final String FLIGHT_PATH = "//li[@class='fare-finder__calendar__days__day']";
+    private final String MENU = "[class=\"dropdown__select\"";
+    private final String MONTH_MARCH = "[value=\"2017-03\"";
 
 
     @FindBy(id= "search-departure-station")
@@ -50,8 +52,9 @@ public class TimetablePage extends AbstractPage {
     @FindBy (css = "[class='sticky-newsletter-bar__close'")
     private WebElement newsletterBar;
 
-    @FindBy (xpath = "//header[@class='fare-finder__calendar__header']/address")
-    private WebElement addressField;
+    public TimetablePage(){
+
+    }
 
     public void openPage() {
         getDriver().navigate().to(DriverConfig.urlTimetable());
@@ -62,6 +65,7 @@ public class TimetablePage extends AbstractPage {
         inputOriginName.click();
         inputOriginName.sendKeys(origin);
         WebElement originCity = getDriver().findElement(By.xpath(CITY + origin + "']"));
+        wait.until(ExpectedConditions.visibilityOf(originCity));
         originCity.click();
         return this;
     }
@@ -71,6 +75,7 @@ public class TimetablePage extends AbstractPage {
         inputDestinationName.click();
         inputDestinationName.sendKeys(destination);
         WebElement destinationCity = getDriver().findElement(By.xpath(CITY + destination + "']"));
+        wait.until(ExpectedConditions.visibilityOf(destinationCity));
         destinationCity.click();
         return this;
     }
@@ -103,23 +108,20 @@ public class TimetablePage extends AbstractPage {
         return this;
     }
 
-    public TimetablePage chooseSecondFlight1() {
-        ((JavascriptExecutor)getDriver()).executeScript("window.scrollBy(0,7000);");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        WebElement flights = divFlights.get(1);
-        List<WebElement> secondFlight = flights.findElements(By.xpath(FLIGHT_PATH));
-        WebElement el = secondFlight.get(1);
-        el.click();
-        return this;
-    }
 
     public TimetablePage getRidOfNewsletterBar() {
         newsletterBar.click();
         return this;
+    }
+
+    public TimetablePage chooseRetMonthMarch() {
+        WebElement flights = divFlights.get(1);
+        WebElement element = flights.findElement(By.cssSelector(MENU));
+        element.click();
+        WebElement element1 = flights.findElement(By.cssSelector(MONTH_MARCH));
+        element1.click();
+        return this;
+
     }
 
     public String getSummaryPrice() {
