@@ -128,6 +128,47 @@ public class TestSuite {
         mainPageSteps.closeWindow();
     }
 
+    @Test(description = "id=7")
+    public void twoTicketsOnOnePerson(){
+        mainSteps.openPage()
+                .closePopUps()
+                .signIn()
+                .loginWizzAir(TestData.getLogin())
+                .findFlight(TestData.getFlightData())
+                .pickExactFlights()
+                .submit()
+                .fillBaggage(TestData.getPassengerData().getDepBaggage())
+                .fillPassenger(TestData.getPassengerData())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData());
+
+        StepsForMainPage newBooking = new StepsForMainPage();
+        newBooking.openPage()
+                .closePopUps()
+                .findFlight(TestData.getFlightData())
+                .pickExactFlights()
+                .submit()
+                .fillPassenger(TestData.getPassengerData())
+                .fillBaggage(TestData.getPassengerData().getDepBaggage())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData());
+        newBooking.closeWindow(); //todo assertions
+    }
+
     @Test(description = "id=8")
     public void flightPriceWithInfantEqualsPriceWithoutInfant() {
         FlightData flightDataWithoutInfant = TestData.getFlightData();
@@ -149,10 +190,10 @@ public class TestSuite {
     public void bookWrongFlight() {
         TestData.setPropertyFile(wrongReturnData);
         FlightData flightData = TestData.getFlightData();
-        mainSteps.openPage().openTimeTable()
-                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
-                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
-        //TODO: write assert
+//        mainSteps.openPage().openTimeTable()
+//                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
+//                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
+        //TODO: write assert & findBothFlights method
 
     }
 

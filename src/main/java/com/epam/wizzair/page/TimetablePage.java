@@ -52,6 +52,9 @@ public class TimetablePage extends AbstractPage {
     @FindBy (css = "[class='sticky-newsletter-bar__close'")
     private WebElement newsletterBar;
 
+    @FindBy (xpath = "//header[@class='fare-finder__calendar__header']/address")
+    private WebElement addressField;
+
     public TimetablePage(){
 
     }

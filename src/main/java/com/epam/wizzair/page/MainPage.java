@@ -44,11 +44,11 @@ public class MainPage extends AbstractPage{
     private WebElement timetableButton;
 
     @FindBy(css = "[class='cookie-policy__button'")
+    private WebElement stickyBar;
 
     @FindBy(linkText = "Map")
     private WebElement mapButton;
-  
-    private WebElement stickyBar;
+
 
     @FindBy(id = "search-passenger")
     private WebElement passengerField;
