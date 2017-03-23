@@ -2,9 +2,8 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
-import com.epam.wizzair.step.StepsForMainPage;
-import com.epam.wizzair.step.StepsForSearchResult;
-import com.epam.wizzair.step.TimeTableSteps;
+import com.epam.wizzair.step.*;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -47,6 +46,17 @@ public class TestSuite {
         assertEquals(flight.getTwoFlightPrices(), flight.getFlightSumFromLeftWindow());
     }
 
+    @Test(description = "id=3")
+    public void checkAirportsFromMapPage() {
+        StepsForMapPage stepsForMapPage = mainSteps.openPage().closePopUps().openMap();
+        stepsForMapPage.chooseRoute();
+        String[] origin = stepsForMapPage.getOrigin().split(" ");
+        String[] destination = stepsForMapPage.getDestination().split(" ");
+        String route = stepsForMapPage.searchFromMap().getTextFromAddressField();
+        Assert.assertTrue(route.contains(origin[0]));
+        Assert.assertTrue(route.contains(destination[0]));
+    }
+
     @Test(description = "id=4")
     public void selectedBaggageEqualsExpectedBaggage() {
         FlightData flightData = TestData.getFlightData();
@@ -85,23 +95,36 @@ public class TestSuite {
 //        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
     }
 
-    @Test(enabled = false, description = "id=6")
+    @Test(description = "id=6")
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
-        mainSteps.openPage()
+        mainSteps.openPage().closePopUps().signIn().loginWizzAir(TestData.getLogin());
+        StepsForSelectSeatPage departureSeat = mainSteps
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
+
+        departureSeat
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData());
         StepsForMainPage mainPageSteps = new StepsForMainPage();
-        mainPageSteps.openPage().closePopUps()
+
+        boolean isSeatEnable = mainPageSteps.openPage().closePopUps()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
-                .gotoDepSeatSelection();
+                .gotoDepSeatSelection().isSelectedSeatEnable(departureSeat.getSelectedSeatNumber());
+        Assert.assertFalse(isSeatEnable);
         mainPageSteps.closeWindow();
     }
 

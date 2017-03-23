@@ -15,7 +15,7 @@ public class TestData {
 
     private static Properties bean = new Properties();
     static {
-        InputStream is = Config.class.getResourceAsStream("/testDataWithoutInfant.properties");
+        InputStream is = DriverConfig.class.getResourceAsStream("/testDataWithoutInfant.properties");
         try{
             bean.load(is);
         } catch (Exception e){
@@ -25,7 +25,7 @@ public class TestData {
 
 
     public static void setPropertyFile(String fileName) {
-        InputStream is = Config.class.getResourceAsStream("/" + fileName + ".properties");
+        InputStream is = DriverConfig.class.getResourceAsStream("/" + fileName + ".properties");
         {
             try{
                 bean.load(is);

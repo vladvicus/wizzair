@@ -1,7 +1,7 @@
 package com.epam.wizzair.page;
 
 import com.epam.wizzair.driver.DriverSingleton;
-import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.helper.DriverConfig;
 import com.epam.wizzair.bean.enumeration.PassengerSetting;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -44,6 +44,10 @@ public class MainPage extends AbstractPage{
     private WebElement timetableButton;
 
     @FindBy(css = "[class='cookie-policy__button'")
+
+    @FindBy(linkText = "Map")
+    private WebElement mapButton;
+  
     private WebElement stickyBar;
 
     @FindBy(id = "search-passenger")
@@ -63,7 +67,7 @@ public class MainPage extends AbstractPage{
 
     public void openPage(){
         DriverSingleton.openNewWindowJS();
-        getDriver().navigate().to(Config.urlMain());
+        getDriver().navigate().to(DriverConfig.urlMain());
     }
 
     public void closeWindow() {
@@ -140,13 +144,21 @@ public class MainPage extends AbstractPage{
         return new LoginPage();
     }
 
-    public void servicesClick() {
+    public MainPage servicesClick() {
         servicesButton.click();
+        return this;
     }
 
-    public void timetableClick() {
+    public TimetablePage timetableClick() {
         wait.until(ExpectedConditions.elementToBeClickable(timetableButton));
         timetableButton.click();
+        return new TimetablePage();
+    }
+
+    public MapPage mapClick() {
+        wait.until(ExpectedConditions.elementToBeClickable(mapButton));
+        mapButton.click();
+        return new MapPage();
     }
 
     public MainPage stickyBarClose() {

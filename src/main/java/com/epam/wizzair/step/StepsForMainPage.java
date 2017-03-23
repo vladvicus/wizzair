@@ -42,4 +42,9 @@ public class StepsForMainPage {
         return new StepsForLoginPage();
     }
 
+    public StepsForMapPage openMap() {
+        mainPage.servicesClick().mapClick();
+        return new StepsForMapPage();
+    }
+
 }
