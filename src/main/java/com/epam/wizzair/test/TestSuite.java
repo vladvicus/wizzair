@@ -13,6 +13,7 @@ public class TestSuite {
     private StepsForMainPage mainSteps;
     private static String testDataWithInfant = "testDataWithInfant";
     private static String timetable = "testDataForTimetable";
+    private static String wrongReturnData = "testDataWithWrongReturnData";
 
     @BeforeMethod
     public void createSteps() {
@@ -141,6 +142,18 @@ public class TestSuite {
                 .pickExactFlights().getFlightSumFromLeftWindow();
         newMainSteps.closeWindow();
         assertEquals(flightWithoutInfant, flightWithInfant);
+    }
+
+
+    @Test(description = "id=9")
+    public void bookWrongFlight() {
+        TestData.setPropertyFile(wrongReturnData);
+        FlightData flightData = TestData.getFlightData();
+        mainSteps.openPage().openTimeTable()
+                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
+                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
+        //TODO: write assert
+
     }
 
     @Test(description = "id=10")
