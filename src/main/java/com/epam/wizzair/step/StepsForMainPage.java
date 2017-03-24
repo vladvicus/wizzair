@@ -2,6 +2,7 @@ package com.epam.wizzair.step;
 
 import com.epam.wizzair.bean.FlightData;
 import com.epam.wizzair.page.MainPage;
+import com.epam.wizzair.page.exception.NotSignedException;
 
 public class StepsForMainPage {
 
@@ -45,6 +46,11 @@ public class StepsForMainPage {
     public StepsForMapPage openMap() {
         mainPage.servicesClick().mapClick();
         return new StepsForMapPage();
+    }
+
+    public ProfileSteps gotoProfile() throws NotSignedException {
+        mainPage.gotoProfile();
+        return new ProfileSteps();
     }
 
 }

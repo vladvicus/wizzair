@@ -31,7 +31,7 @@ public class FlightInfoPage {
     By departurePassengerData = By.xpath(".//div[@class='block__content block__content--no-border-bottom ie-flex__itinerary-content-box']");
     By returnPassengerData = By.xpath(".//div[@class='block__content block__content--no-border-bottom ie-flex__itinerary-content-box']");
     //    ----------relative to *Data paths
-    By bags = By.xpath(".//ul[@class='bags']");
+    By bags = By.xpath(".//ul[@class='bags']/li");
     ///////////
 
     public FlightInfoPage(){
@@ -51,8 +51,12 @@ public class FlightInfoPage {
         return flights.get(0).findElement(dayOfWeek).getText();
     }
 
-    public String getPassengerName(){
+    public String getPassengerFullName(){
         return passengers.get(0).findElement(passengerName).getText();
+    }
+
+    public int getFlightsCount(){
+        return flights.size();
     }
 
     public Set<String> getDepartureBaggageRawData(){
