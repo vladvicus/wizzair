@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Dzmitry_Sankouski on 14-Mar-17.
@@ -87,28 +89,28 @@ public class InfoColumnPage {
         return DriverSingleton.getDriver().findElement(passengerName).getText();
     }
 
-    public String[] getDepPassengerRawData(){
+    public Set<String> getDepPassengerRawData(){
         List<WebElement> depPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li"));
         if (depPassengerRawData == null){
             //todo throw exception
         }
-        String[] result = new String[depPassengerRawData.size()];
+        Set<String> result = new HashSet<>();
         for (int i = 0; i < depPassengerRawData.size(); i++) {
-            result[i] = depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
-                    depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
+            result.add(depPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
+                    depPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText());
         }
         return result;
     }
 
-    public String[] getRetPassengerRawData(){
+    public Set<String> getRetPassengerRawData(){
         List<WebElement> retPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul/li"));
         if (retPassengerRawData == null){
             //todo throw exception
         }
-        String[] result = new String[retPassengerRawData.size()];
+        Set<String> result = new HashSet<>();
         for (int i = 0; i < retPassengerRawData.size(); i++) {
-            result[i] = retPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
-            retPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText();
+            result.add(retPassengerRawData.get(i).findElement(By.xpath("./span[1]")).getText() +
+            retPassengerRawData.get(i).findElement(By.xpath("./span[2]")).getText());
         }
         return result;
     }// data from booking info column

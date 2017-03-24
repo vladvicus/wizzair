@@ -25,7 +25,7 @@ public class Util {
 
     }
 
-    public static void parseAndFill(String s, PassengerData result, boolean isDepSection){
+    public static void parseAndFillPassenger(String s, PassengerData result, boolean isDepSection){
         if(s.contains("checked-in bag")){
             fillCheckedBaggage(s, result, isDepSection);
             return;
