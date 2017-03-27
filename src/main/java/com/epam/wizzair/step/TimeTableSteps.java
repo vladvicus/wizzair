@@ -49,7 +49,6 @@ public class TimeTableSteps {
 
 
     public StepsForSearchResult findBothFlights(String origin, String destination) {
-
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
         timetablePage.search();

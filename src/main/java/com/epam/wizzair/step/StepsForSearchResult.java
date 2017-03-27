@@ -29,6 +29,11 @@ public class StepsForSearchResult {
         return this;
     }
 
+    public boolean isButtonEnabled() {
+        return searchResult.isButtonEnabled();
+
+    }
+
     public PassengerSteps submit(){
         searchResult.continueToNextPage();
         return new PassengerSteps();
