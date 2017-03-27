@@ -8,15 +8,15 @@ import com.epam.wizzair.page.TimetablePage;
  */
 public class TimeTableSteps {
 
-    private TimetablePage timetablePage = new TimetablePage();
-
     private String firstFlightPrice;
     private String summaryPrice;
 
     private String firstFlightPriceInSearch;
     private String summaryPriceInSearch;
+    TimetablePage timetablePage = new TimetablePage();
 
     public TimeTableSteps findFlight(String origin, String destination) {
+
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
         timetablePage.search();
@@ -34,10 +34,6 @@ public class TimeTableSteps {
         return this;
     }
 
-    public String getTextFromAddressField() {
-        return timetablePage.getTextFromAddressField();
-    }
-
     public String getFirstFlightPrice() {
         return firstFlightPrice;
     }
@@ -45,6 +41,37 @@ public class TimeTableSteps {
     public String getFirstFlightPriceInSearch() {
         return firstFlightPriceInSearch;
     }
+
+    public TimeTableSteps closePopUp() {
+        timetablePage.getRidOfNewsletterBar();
+        return this;
+    }
+
+
+    public StepsForSearchResult findBothFlights(String origin, String destination) {
+
+        timetablePage.fillOrigin(origin);
+        timetablePage.fillDestination(destination);
+        timetablePage.search();
+        timetablePage.chooseFirstFlight();
+        timetablePage.chooseRetMonthMarch();
+        timetablePage.chooseSecondFlight();
+        timetablePage.getRidOfNewsletterBar();
+        firstFlightPrice = timetablePage.getFirstFlightPrice();
+        summaryPrice = timetablePage.getSummaryPrice();
+        timetablePage.startBooking();
+        return new StepsForSearchResult();
+    }
+
+    public TimeTableSteps chooseMonthFromMenu() {
+        timetablePage.chooseRetMonthMarch();
+        return this;
+    }
+
+    public String getTextFromAddressField() {
+        return timetablePage.getTextFromAddressField();
+    }
+
 
 //    This methods will be used soon :)
 //    public String getSummaryPriceInSearch() {
