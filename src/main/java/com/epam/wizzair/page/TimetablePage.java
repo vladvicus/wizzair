@@ -22,7 +22,7 @@ public class TimetablePage extends AbstractPage {
     private final String CITY = "//strong[text()='";
     private final String FLIGHT_PATH = "//li[@class='fare-finder__calendar__days__day']";
     private final String MENU = "[class=\"dropdown__select\"";
-    private final String MONTH_MARCH = "[value=\"2017-03\"";
+    private final String MONTH = "[value='2017-";
 
 
     @FindBy(id= "search-departure-station")
@@ -117,14 +117,13 @@ public class TimetablePage extends AbstractPage {
         return this;
     }
 
-    public TimetablePage chooseRetMonthMarch() {
+    public TimetablePage chooseRetMonthMarch(String month) {
         WebElement flights = divFlights.get(1);
         WebElement element = flights.findElement(By.cssSelector(MENU));
         element.click();
-        WebElement element1 = flights.findElement(By.cssSelector(MONTH_MARCH));
+        WebElement element1 = flights.findElement(By.cssSelector(MONTH + month + "'"));
         element1.click();
         return this;
-
     }
 
     public String getSummaryPrice() {

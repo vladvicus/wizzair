@@ -215,9 +215,8 @@ public class TestSuite {
         TestData.setPropertyFile(wrongReturnData);
         FlightData flightData = TestData.getFlightData();
         boolean isButtonEnabled = mainSteps.openPage().openTimeTable()
-                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
+                .findBothFlights(flightData.getOrigin(), flightData.getDestination(), flightData.getMonth())
                 .pickExactDepFlight().pickWrongFlight(flightData.getRetDate()).isButtonEnabled();
-
         assertFalse(isButtonEnabled);
     }
 

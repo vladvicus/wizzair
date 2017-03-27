@@ -50,6 +50,7 @@ public class TestData {
         flightData.setRetDate(Integer.parseInt(bean.getProperty("retDate")));
         flightData.setPassenger(PassengerSetting.valueOf(bean.getProperty("passenger")));
         flightData.setNumberOfPassengers(Integer.parseInt(bean.getProperty("numberOfPassengers")));
+        flightData.setMonth(bean.getProperty("month"));
         return flightData;
     }
 
