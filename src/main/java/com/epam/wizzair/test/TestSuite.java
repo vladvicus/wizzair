@@ -99,19 +99,12 @@ public class TestSuite {
                 .confirmPayment();
 
         StepsForMainPage controlSession = new StepsForMainPage();
-//        controlSession
-//                .openPage()
-//                .signIn()
-//                .loginWizzAir(TestData.getLogin());
-//
-//        Thread.sleep(5000);
-
 
         PassengerData actualPassengerData = controlSession
                 .openPage()
                 .gotoProfile()
                 .getPassengerData();
-
+        controlSession.closeWindow();
         Assert.assertEquals(expectedPassengerData, actualPassengerData);
     }
 
