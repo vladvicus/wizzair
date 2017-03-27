@@ -68,6 +68,11 @@ public class TimeTableSteps {
         return this;
     }
 
+    public String getTextFromAddressField() {
+        return timetablePage.getTextFromAddressField();
+    }
+
+
 //    This methods will be used soon :)
 //    public String getSummaryPriceInSearch() {
 //        return summaryPriceInSearch;
