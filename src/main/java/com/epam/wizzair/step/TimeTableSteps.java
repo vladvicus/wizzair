@@ -48,12 +48,13 @@ public class TimeTableSteps {
     }
 
 
-    public StepsForSearchResult findBothFlights(String origin, String destination) {
+    public StepsForSearchResult findBothFlights(String origin, String destination, String month) {
+
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
         timetablePage.search();
         timetablePage.chooseFirstFlight();
-        timetablePage.chooseRetMonthMarch();
+        timetablePage.chooseRetMonthMarch(month);
         timetablePage.chooseSecondFlight();
         timetablePage.getRidOfNewsletterBar();
         firstFlightPrice = timetablePage.getFirstFlightPrice();
@@ -62,10 +63,6 @@ public class TimeTableSteps {
         return new StepsForSearchResult();
     }
 
-    public TimeTableSteps chooseMonthFromMenu() {
-        timetablePage.chooseRetMonthMarch();
-        return this;
-    }
 
     public String getTextFromAddressField() {
         return timetablePage.getTextFromAddressField();
