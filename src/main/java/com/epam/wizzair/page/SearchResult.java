@@ -1,6 +1,7 @@
 package com.epam.wizzair.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,13 +36,16 @@ public class SearchResult extends AbstractPage {
     @FindBy (css = "[class=\"booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable\"")
     private List<WebElement> selectableFlights;
 
-    @FindBy(xpath = "//div[@id=\"fare-selector-return\"]//i[@class=\"icon icon__arrow--toleft--pink\"]")
+    @FindBy(xpath = "//div[@id='fare-selector-return']//i[@class='icon icon__arrow--toleft--pink']")
     private WebElement returnToPreviousFlight;
 
-    @FindBy(xpath = "//div[@id=\"fare-selector-return\"]" +
+    @FindBy(xpath = "//div[@id='fare-selector-return']" +
             "//*[@class=\"booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable\"]")
     private List<WebElement> selectableReturnFlights;
 
+    @FindBy(css = "[class=\"booking-flow__prices-table__content__column booking-flow__" +
+            "prices-table__content__column--price booking-flow__prices-table__content__column--basic booking-flow__prices-table__content__column--disabled\"")
+    private WebElement disabledSecondFlight;
     public SearchResult(){
 
     }
@@ -63,8 +67,15 @@ public class SearchResult extends AbstractPage {
         returnToPreviousFlight.click();
         wait.until(ExpectedConditions.visibilityOf(returnToPreviousFlight));
         returnToPreviousFlight.click();
-        WebElement book_date = getDriver().findElement(By.xpath(RETURN_DATE + date + "')]]"));
-        book_date.click();
+        WebElement bookDate = getDriver().findElement(By.xpath(RETURN_DATE + date + "')]]"));
+        firstFlight.click();
+        bookDate.click();
+        try {
+            disabledSecondFlight.isDisplayed();
+        }
+        catch (NoSuchElementException e) {
+            System.out.println("Element which covers secondFlight element cannot be located");
+        }
     }
 
 
@@ -74,6 +85,14 @@ public class SearchResult extends AbstractPage {
 
     public void continueToNextPage() {
         nextPage.click();
+    }
+
+    public boolean isButtonEnabled() {
+        if (nextPage.isEnabled()) {
+            return true;
+        }
+        else {return false;}
+
     }
 
 }
