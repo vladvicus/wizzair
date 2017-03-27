@@ -4,12 +4,12 @@ import java.io.InputStream;
 import java.util.Properties;
 
 
-public class Config {
+public class DriverConfig {
 
 
     private static Properties config = new Properties();
 
-    private static InputStream is = Config.class.getResourceAsStream("/config.properties");
+    private static InputStream is = DriverConfig.class.getResourceAsStream("/DriverConfig.properties");
     static {
         try{
             config.load(is);

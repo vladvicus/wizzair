@@ -1,6 +1,6 @@
 package com.epam.wizzair.page;
 
-import com.epam.wizzair.helper.Config;
+import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -49,16 +49,15 @@ public class TimetablePage extends AbstractPage {
     @FindBy(xpath = "//div[@class='sidebar fare-finder__sidebar']/button")
     private WebElement bookingButton;
 
-    @FindBy (css = "[class=\"sticky-newsletter-bar__close\"")
+    @FindBy (css = "[class='sticky-newsletter-bar__close'")
     private WebElement newsletterBar;
-
 
     public TimetablePage(){
 
     }
 
     public void openPage() {
-        getDriver().navigate().to(Config.urlTimetable());
+        getDriver().navigate().to(DriverConfig.urlTimetable());
     }
 
     public TimetablePage fillOrigin(String origin){
@@ -141,5 +140,9 @@ public class TimetablePage extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(bookingButton));
         bookingButton.click();
         return new SearchResult();
+    }
+
+    public String getTextFromAddressField() {
+        return addressField.getText();
     }
 }

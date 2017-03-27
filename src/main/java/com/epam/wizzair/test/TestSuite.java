@@ -2,15 +2,11 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
-import com.epam.wizzair.step.StepsForMainPage;
-import com.epam.wizzair.step.StepsForSearchResult;
-import com.epam.wizzair.step.StepsForSelectSeatPage;
-import com.epam.wizzair.step.TimeTableSteps;
+import com.epam.wizzair.step.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.assertEquals;
 
 public class TestSuite {
@@ -48,6 +44,17 @@ public class TestSuite {
                 .findFlight(flightData)
                 .pickExactFlights();
         assertEquals(flight.getTwoFlightPrices(), flight.getFlightSumFromLeftWindow());
+    }
+
+    @Test(description = "id=3")
+    public void checkAirportsFromMapPage() {
+        StepsForMapPage stepsForMapPage = mainSteps.openPage().closePopUps().openMap();
+        stepsForMapPage.chooseRoute();
+        String[] origin = stepsForMapPage.getOrigin().split(" ");
+        String[] destination = stepsForMapPage.getDestination().split(" ");
+        String route = stepsForMapPage.searchFromMap().getTextFromAddressField();
+        Assert.assertTrue(route.contains(origin[0]));
+        Assert.assertTrue(route.contains(destination[0]));
     }
 
     @Test(description = "id=4")
@@ -88,7 +95,7 @@ public class TestSuite {
 //        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
     }
 
-    @Test(enabled = false, description = "id=6")
+    @Test(description = "id=6")
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
@@ -146,6 +153,7 @@ public class TestSuite {
                 .findBothFlights(flightData.getOrigin(), flightData.getDestination())
                 .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
         //TODO: write assert
+
     }
 
     @Test(description = "id=10")
