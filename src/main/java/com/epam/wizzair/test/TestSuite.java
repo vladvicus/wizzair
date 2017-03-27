@@ -4,10 +4,13 @@ import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
 import com.epam.wizzair.step.StepsForMainPage;
 import com.epam.wizzair.step.StepsForSearchResult;
+import com.epam.wizzair.step.StepsForSelectSeatPage;
 import com.epam.wizzair.step.TimeTableSteps;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.assertEquals;
 
 public class TestSuite {
@@ -89,19 +92,32 @@ public class TestSuite {
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
-        mainSteps.openPage()
+        mainSteps.openPage().closePopUps().signIn().loginWizzAir(TestData.getLogin());
+        StepsForSelectSeatPage departureSeat = mainSteps
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection();
+
+        departureSeat
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData());
         StepsForMainPage mainPageSteps = new StepsForMainPage();
-        mainPageSteps.openPage().closePopUps()
+
+        boolean isSeatEnable = mainPageSteps.openPage().closePopUps()
                 .findFlight(flightData)
                 .pickExactFlights().submit()
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
-                .gotoDepSeatSelection();
+                .gotoDepSeatSelection().isSelectedSeatEnable(departureSeat.getSelectedSeatNumber());
+        Assert.assertFalse(isSeatEnable);
         mainPageSteps.closeWindow();
     }
 
@@ -130,7 +146,6 @@ public class TestSuite {
                 .findBothFlights(flightData.getOrigin(), flightData.getDestination())
                 .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
         //TODO: write assert
-
     }
 
     @Test(description = "id=10")

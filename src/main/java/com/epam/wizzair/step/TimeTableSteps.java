@@ -13,9 +13,10 @@ public class TimeTableSteps {
 
     private String firstFlightPriceInSearch;
     private String summaryPriceInSearch;
+    TimetablePage timetablePage = new TimetablePage();
 
     public TimeTableSteps findFlight(String origin, String destination) {
-        TimetablePage timetablePage = new TimetablePage();
+
         timetablePage.fillOrigin(origin);
         timetablePage.fillDestination(destination);
         timetablePage.search();
@@ -39,6 +40,32 @@ public class TimeTableSteps {
 
     public String getFirstFlightPriceInSearch() {
         return firstFlightPriceInSearch;
+    }
+
+    public TimeTableSteps closePopUp() {
+        timetablePage.getRidOfNewsletterBar();
+        return this;
+    }
+
+
+    public StepsForSearchResult findBothFlights(String origin, String destination) {
+
+        timetablePage.fillOrigin(origin);
+        timetablePage.fillDestination(destination);
+        timetablePage.search();
+        timetablePage.chooseFirstFlight();
+        timetablePage.chooseRetMonthMarch();
+        timetablePage.chooseSecondFlight();
+        timetablePage.getRidOfNewsletterBar();
+        firstFlightPrice = timetablePage.getFirstFlightPrice();
+        summaryPrice = timetablePage.getSummaryPrice();
+        timetablePage.startBooking();
+        return new StepsForSearchResult();
+    }
+
+    public TimeTableSteps chooseMonthFromMenu() {
+        timetablePage.chooseRetMonthMarch();
+        return this;
     }
 
 //    This methods will be used soon :)
