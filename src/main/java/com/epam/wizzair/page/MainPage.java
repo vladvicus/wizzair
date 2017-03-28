@@ -3,6 +3,7 @@ package com.epam.wizzair.page;
 import com.epam.wizzair.driver.DriverSingleton;
 import com.epam.wizzair.helper.DriverConfig;
 import com.epam.wizzair.bean.enumeration.PassengerSetting;
+import com.epam.wizzair.page.exception.NotSignedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,11 +45,11 @@ public class MainPage extends AbstractPage{
     private WebElement timetableButton;
 
     @FindBy(css = "[class='cookie-policy__button'")
+    private WebElement stickyBar;
 
     @FindBy(linkText = "Map")
     private WebElement mapButton;
-  
-    private WebElement stickyBar;
+
 
     @FindBy(id = "search-passenger")
     private WebElement passengerField;
@@ -142,6 +143,16 @@ public class MainPage extends AbstractPage{
     public LoginPage signIn(){
         loginButton.click();
         return new LoginPage();
+    }
+
+    public ProfilePage gotoProfile() throws NotSignedException {
+        //note that variable loginButton is just 3rd in the container
+        if(loginButton.getText().equalsIgnoreCase("sign in")){
+            throw new NotSignedException();
+        } else {
+            DriverSingleton.getDriver().get("https://wizzair.com/en-gb/profile");
+        }
+        return new ProfilePage();
     }
 
     public MainPage servicesClick() {

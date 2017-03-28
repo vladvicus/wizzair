@@ -2,12 +2,14 @@ package com.epam.wizzair.test;
 
 import com.epam.wizzair.bean.*;
 import com.epam.wizzair.helper.TestData;
+import com.epam.wizzair.page.exception.NotSignedException;
 import com.epam.wizzair.step.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 public class TestSuite {
     private StepsForMainPage mainSteps;
@@ -71,18 +73,21 @@ public class TestSuite {
         assertEquals(actualPassengerData, expectedPassengerData);
     }
 
-    @Test(enabled = false, description = "id=5")
-    public void bookingWithWrongCard() {
+    @Test(enabled = true, description = "id=5")
+    public void bookingWithWrongCard() throws Exception {
         FlightData flightData = TestData.getFlightData();
-        PassengerData passengerData = TestData.getPassengerData();
+        PassengerData expectedPassengerData = TestData.getPassengerData();
         BillingDetailsPersonal billingDetails = TestData.getBillingDetailsPersonal();
         CreditCardData creditCard = TestData.getCreditCardData();
         StepsForSearchResult result;
+
         mainSteps.openPage().closePopUps()
+                .signIn()
+                .loginWizzAir(TestData.getLogin())
                 .findFlight(flightData)
                 .pickExactFlights().submit()
-                .fillPassenger(passengerData)
-                .fillBaggage(passengerData.getDepBaggage())
+                .fillPassenger(expectedPassengerData)
+                .fillBaggage(expectedPassengerData.getDepBaggage())
                 .gotoDepSeatSelection()
                 .selectSeatWizzAir()
                 .gotoRetSeatSelection()
@@ -91,8 +96,17 @@ public class TestSuite {
                 .submitServices()
                 .continueToNextPage()
                 .fillBillingDetails(billingDetails)
-                .fillCreditCard(creditCard);
-//        Assert.assertEquals(result.getTwoFlightPrices(), result.getFlightSumFromLeftWindow());
+                .fillCreditCard(creditCard)
+                .confirmPayment();
+
+        StepsForMainPage controlSession = new StepsForMainPage();
+
+        PassengerData actualPassengerData = controlSession
+                .openPage()
+                .gotoProfile()
+                .getPassengerData();
+        controlSession.closeWindow();
+        Assert.assertEquals(expectedPassengerData, actualPassengerData);
     }
 
     @Test(description = "id=6")
@@ -124,8 +138,59 @@ public class TestSuite {
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection().isSelectedSeatEnable(departureSeat.getSelectedSeatNumber());
-        Assert.assertFalse(isSeatEnable);
+        assertFalse(isSeatEnable);
         mainPageSteps.closeWindow();
+    }
+
+    @Test(description = "id=7")
+    public void twoTicketsOnOnePerson() throws NotSignedException {
+        mainSteps.openPage()
+                .closePopUps()
+                .signIn()
+                .loginWizzAir(TestData.getLogin())
+                .findFlight(TestData.getFlightData())
+                .pickExactFlights()
+                .submit()
+                .fillBaggage(TestData.getPassengerData().getDepBaggage())
+                .fillPassenger(TestData.getPassengerData())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData())
+                .confirmPayment();
+
+        StepsForMainPage newBooking = new StepsForMainPage();
+        newBooking.openPage()
+                .closePopUps()
+                .findFlight(TestData.getFlightData())
+                .pickExactFlights()
+                .submit()
+                .fillPassenger(TestData.getPassengerData())
+                .fillBaggage(TestData.getPassengerData().getDepBaggage())
+                .gotoDepSeatSelection()
+                .selectSeatWizzAir()
+                .gotoRetSeatSelection()
+                .selectSeatWizzAir()
+                .submit()
+                .submitServices()
+                .continueToNextPage()
+                .fillBillingDetails(TestData.getBillingDetailsPersonal())
+                .fillCreditCard(TestData.getCreditCardData())
+                .confirmPayment();
+
+        StepsForMainPage controlSession= new StepsForMainPage();
+        ProfileSteps profileSteps = controlSession.openPage()
+                .gotoProfile();
+
+        Assert.assertEquals(profileSteps.getFligthsCount(), 1, ">1 tickets were booked one one person at the same time");
+
+        newBooking.closeWindow(); //todo assertions
+        controlSession.closeWindow();
     }
 
     @Test(description = "id=8")
@@ -149,11 +214,10 @@ public class TestSuite {
     public void bookWrongFlight() {
         TestData.setPropertyFile(wrongReturnData);
         FlightData flightData = TestData.getFlightData();
-        mainSteps.openPage().openTimeTable()
-                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
-                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
-        //TODO: write assert
-
+        boolean isButtonEnabled = mainSteps.openPage().openTimeTable()
+                .findBothFlights(flightData.getOrigin(), flightData.getDestination(), flightData.getMonth())
+                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate()).isButtonEnabled();
+        assertFalse(isButtonEnabled);
     }
 
     @Test(description = "id=10")

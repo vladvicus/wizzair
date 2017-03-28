@@ -1,5 +1,6 @@
 package com.epam.wizzair.page;
 
+import com.epam.wizzair.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +18,9 @@ public class SelectSeatPage extends AbstractPage {
     /*@FindBy(xpath = "//form[@name='seat-selection']//a[text()='Continue']")
     private WebElement continueButton;*/
 
-    /*@FindBy(xpath = "//form[@name ='seat-selection']//button[@class = 'button button--medium button--filled' and text()='Continue' and @type = 'button']")
-    private WebElement seatOriginContinue;
-
+    @FindBy(xpath = "//a[@class = 'button button--medium button--filled' and text()='Confirm']")
+    private WebElement seatOriginConfirm;
+/*
     @FindBy(xpath = "//form[@name ='seat-selection']//button[@class = 'button button--medium button--filled' and text()='Continue' and @type = 'submit']")
     private WebElement seatReturnContinue;*/
     //all available seats in the plane
@@ -63,7 +64,7 @@ public class SelectSeatPage extends AbstractPage {
     }
 
     public Passenger clickSaveResultButton(){
-        saveResultButton.click();
+        seatOriginConfirm.click();
         return new Passenger();
     }
 
@@ -75,7 +76,7 @@ public class SelectSeatPage extends AbstractPage {
     //random number in the available range
     private int getRandomNumber(int numberOfSeats) {
         Random rnd = new Random();
-        return rnd.nextInt(numberOfSeats) + 1;
+        return rnd.nextInt(numberOfSeats);
     }
 
     //number of available seats in the plane

@@ -25,7 +25,16 @@ public class Util {
 
     }
 
-    public static void parseAndFill(String s, PassengerData result, boolean isDepSection){
+    public static void parseAndFillPassengerName(PassengerData passenger, String fullName) {
+        Pattern pattern = Pattern.compile("(\\S+)\\s+(\\S+)"); //name validity pattern
+        Matcher matcher = pattern.matcher(fullName);
+        if (matcher.matches()) {
+            passenger.setName(matcher.group(2));
+            passenger.setSurName(matcher.group(1));
+        }
+    }
+
+    public static void parseAndFillPassenger(String s, PassengerData result, boolean isDepSection){
         if(s.contains("checked-in bag")){
             fillCheckedBaggage(s, result, isDepSection);
             return;

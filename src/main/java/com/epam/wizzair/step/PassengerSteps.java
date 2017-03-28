@@ -5,11 +5,13 @@ import com.epam.wizzair.bean.PassengerData;
 import com.epam.wizzair.page.InfoColumnPage;
 import com.epam.wizzair.page.Passenger;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.epam.wizzair.step.util.Util.fillNonMentionedWithDefaults;
-import static com.epam.wizzair.step.util.Util.parseAndFill;
+import static com.epam.wizzair.step.util.Util.parseAndFillPassenger;
+import static com.epam.wizzair.step.util.Util.parseAndFillPassengerName;
 
 /**
  * Created by Dzmitry_Sankouski on 10-Mar-17.
@@ -58,28 +60,27 @@ public class PassengerSteps {
 //     compare actual and expected data
 
     public PassengerData getInfoColumnData() {
-        PassengerData result = new PassengerData();
-        result.setDepBaggage(new Baggage());
-        result.setRetBaggage(new Baggage());//creating bean for filling data in
+        PassengerData passenger = new PassengerData();
+        passenger.setDepBaggage(new Baggage());
+        passenger.setRetBaggage(new Baggage());//creating bean for filling data in
         String fullName = InfoColumnPage.getInstance().getPassengerFullName();
-        Pattern pattern = Pattern.compile("(\\S+)\\s+(\\S+)"); //name validity pattern
-        Matcher matcher = pattern.matcher(fullName);
-        if (matcher.matches()) {
-            result.setName(matcher.group(2));
-            result.setSurName(matcher.group(1));
-        }
-        String[] rawBookingData = InfoColumnPage.getInstance().getDepPassengerRawData();//getting raw data from page
-        for (int i = 0; i < rawBookingData.length; i++) {
-            parseAndFill(rawBookingData[i], result, true); //true stands for departure
+        parseAndFillPassengerName(passenger, fullName);
+        Set<String> rawBookingData = InfoColumnPage.getInstance().getDepPassengerRawData();//getting raw data from page
+        for (String s :
+                rawBookingData) {
+            parseAndFillPassenger(s, passenger, true); //true stands for departure
         }//parsing raw data and filling bean for departure
-        rawBookingData = InfoColumnPage.getInstance().getDepPassengerRawData();
-        for (int i = 0; i < rawBookingData.length; i++) {
-            parseAndFill(rawBookingData[i], result, false); //false stands for return
-        }
-        fillNonMentionedWithDefaults(result);//filling non mentioned values in page with its default values
+        rawBookingData = InfoColumnPage.getInstance().getRetPassengerRawData();
+        for (String s :
+                rawBookingData) {
+            parseAndFillPassenger(s, passenger, false); //true stands for departure
+        }//parsing raw data and filling bean for return
+        fillNonMentionedWithDefaults(passenger);//filling non mentioned values in page with its default values
 
-        return result;
+        return passenger;
     }
+
+
 
 
 }
