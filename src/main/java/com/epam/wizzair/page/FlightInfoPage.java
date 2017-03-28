@@ -13,6 +13,7 @@ import java.util.Set;
  * Created by Dzmitry_Sankouski on 23-Mar-17.
  */
 public class FlightInfoPage {
+
     @FindBy(xpath = "//[@data-test='itinerary-content']")
     WebElement data;
 

@@ -5,7 +5,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
@@ -14,9 +13,7 @@ import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 
 public class SearchResult extends AbstractPage {
 
-    private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 5000);
-
-    private final String RETURN_DATE = "//div[@id=\"fare-selector-return\"]//time[@class=\"booking-flow__flight-select__chart__day__number title title--2\" and text()[contains(.,'";
+    private final static String RETURN_DATE = "//div[@id='fare-selector-return']//time[@class='booking-flow__flight-select__chart__day__number title title--2' and text()[contains(.,'";
 
     @FindBy(xpath = "//*[@id='fare-selector-outbound']//div[@class = 'fare__price']")
     private WebElement firstFlight;
@@ -30,36 +27,31 @@ public class SearchResult extends AbstractPage {
     @FindBy(id = "flight-select-continue-btn")
     private WebElement nextPage;
 
-    @FindBy(css = "[class=\"booking-flow__flight-select__chart\"")
+    @FindBy(css = "[class='booking-flow__flight-select__chart'")
     private List<WebElement> bookingChart;
 
-    @FindBy (css = "[class=\"booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable\"")
+    @FindBy (css = "[class='booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable'")
     private List<WebElement> selectableFlights;
 
     @FindBy(xpath = "//div[@id='fare-selector-return']//i[@class='icon icon__arrow--toleft--pink']")
     private WebElement returnToPreviousFlight;
 
     @FindBy(xpath = "//div[@id='fare-selector-return']" +
-            "//*[@class=\"booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable\"]")
+            "//*[@class='booking-flow__flight-select__chart__day__label booking-flow__flight-select__chart__day__label--selectable']")
     private List<WebElement> selectableReturnFlights;
 
-    @FindBy(css = "[class=\"booking-flow__prices-table__content__column booking-flow__" +
-            "prices-table__content__column--price booking-flow__prices-table__content__column--basic booking-flow__prices-table__content__column--disabled\"")
+    @FindBy(css = "[class='booking-flow__prices-table__content__column booking-flow__" +
+            "prices-table__content__column--price booking-flow__prices-table__content__column--basic booking-flow__prices-table__content__column--disabled'")
     private WebElement disabledSecondFlight;
-    public SearchResult(){
-
-    }
 
     public String chooseFirstFlight() {
-
-        String firstFlightPrice = firstFlight.getText();
         firstFlight.click();
-        return firstFlightPrice;
+        return firstFlight.getText();
     }
+
     public String chooseSecondFlight() {
-        String secondFlightPrice = secondFlight.getText();
         secondFlight.click();
-        return secondFlightPrice;
+        return secondFlight.getText();
     }
 
     public void chooseWrongFlight(int date) {
@@ -74,7 +66,7 @@ public class SearchResult extends AbstractPage {
             disabledSecondFlight.isDisplayed();
         }
         catch (NoSuchElementException e) {
-            System.out.println("Element which covers secondFlight element cannot be located");
+           // System.out.println("Element which covers secondFlight element cannot be located");
         }
     }
 
@@ -88,11 +80,7 @@ public class SearchResult extends AbstractPage {
     }
 
     public boolean isButtonEnabled() {
-        if (nextPage.isEnabled()) {
-            return true;
-        }
-        else {return false;}
-
+        return nextPage.isEnabled();
     }
 
 }

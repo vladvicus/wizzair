@@ -13,17 +13,9 @@ import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 
 public class SelectSeatPage extends AbstractPage {
 
-    private WebDriverWait wait = new WebDriverWait(getDriver(), 5, 1000);
-
-    /*@FindBy(xpath = "//form[@name='seat-selection']//a[text()='Continue']")
-    private WebElement continueButton;*/
 
     @FindBy(xpath = "//a[@class = 'button button--medium button--filled' and text()='Confirm']")
     private WebElement seatOriginConfirm;
-/*
-    @FindBy(xpath = "//form[@name ='seat-selection']//button[@class = 'button button--medium button--filled' and text()='Continue' and @type = 'submit']")
-    private WebElement seatReturnContinue;*/
-    //all available seats in the plane
 
     @FindBy(xpath = "//div[@id='booking-flow-step-seat-selection']//input[not(@disabled)]/..")
     private List<WebElement> availableSeatsForclick;
@@ -83,17 +75,5 @@ public class SelectSeatPage extends AbstractPage {
     private int getNumberOfAvailableSeats(){
         return availableSeatsForclick.size();
     }
-
-    /*public SelectSeatPage continueOrigin() {
-        seatOriginContinue.click();
-        return this;
-    }
-
-
-    public SelectSeatPage continueReturn() {
-        wait.until(ExpectedConditions.elementToBeClickable(seatReturnContinue));
-        seatReturnContinue.click();
-        return this;
-    }*/
 
 }
