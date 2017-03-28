@@ -4,7 +4,6 @@ import com.epam.wizzair.driver.DriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,16 +14,14 @@ import java.util.Set;
  */
 
 public class InfoColumnPage {
-    private static InfoColumnPage instance = new InfoColumnPage();
 
-    private InfoColumnPage() {
-    }
+    private static InfoColumnPage instance = new InfoColumnPage();
 
     public static InfoColumnPage getInstance() {
         return instance;
     }
 
-    @FindBy(xpath = "//*[@id=\"booking-flow\"]/aside/div[2]")
+    @FindBy(xpath = "//*[@id='booking-flow']/aside/div[2]")
     private WebElement infoContainer;
 
     //flight section
@@ -84,13 +81,13 @@ public class InfoColumnPage {
     @FindBy(xpath = "//div[contains(@class,'passenger-names__content')]")
     private WebElement[] allPassengers;
 
-    By passengerName = By.xpath("//div[@class=\"booking-flow__itinerary__passenger-names__content\"]");
+    By passengerName = By.xpath("//div[@class='booking-flow__itinerary__passenger-names__content']");
     public String getPassengerFullName(){
         return DriverSingleton.getDriver().findElement(passengerName).getText();
     }
 
     public Set<String> getDepPassengerRawData(){
-        List<WebElement> depPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li"));
+        List<WebElement> depPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id='booking-flow']/aside/div[2]/div[2]/div[2]/div[1]/div[2]/ul/li"));
         if (depPassengerRawData == null){
             //todo throw exception
         }
@@ -103,7 +100,7 @@ public class InfoColumnPage {
     }
 
     public Set<String> getRetPassengerRawData(){
-        List<WebElement> retPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id=\"booking-flow\"]/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul/li"));
+        List<WebElement> retPassengerRawData = DriverSingleton.getDriver().findElements(By.xpath("//*[@id='booking-flow']/aside/div[2]/div[2]/div[2]/div[1]/div[3]/ul/li"));
         if (retPassengerRawData == null){
             //todo throw exception
         }
