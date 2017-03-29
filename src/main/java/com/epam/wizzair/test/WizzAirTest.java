@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
-public class TestSuite {
+public class WizzAirTest {
     private StepsForMainPage mainSteps;
     private static String testDataWithInfant = "testDataWithInfant";
     private static String timetable = "testDataForTimetable";
