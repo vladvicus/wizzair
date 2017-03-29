@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
-public class Test {
+public class WizzAirTest {
     private StepsForMainPage mainSteps;
     private static String testDataWithInfant = "testDataWithInfant";
     private static String timetable = "testDataForTimetable";
@@ -27,7 +27,7 @@ public class Test {
         mainSteps.closeWindow();
     }
 
-    @org.testng.annotations.Test(description = "id=1")
+    @Test(description = "id=1")
     public void timetableFlightPriceEqualsFlightPriceInSearch() {
         TestData.setPropertyFile(timetable);
         FlightData flightData = TestData.getFlightData();
@@ -38,7 +38,7 @@ public class Test {
         assertEquals(flight.getFirstFlightPrice(), flight.getFirstFlightPriceInSearch());
     }
 
-    @org.testng.annotations.Test(description = "id=2")
+    @Test(description = "id=2")
     public void checkSumDirectAndReturnFlightPrices() {
         FlightData flightData = TestData.getFlightData();
         mainSteps.openPage().signIn().loginWizzAir(TestData.getLogin());
@@ -48,7 +48,7 @@ public class Test {
         assertEquals(flight.getTwoFlightPrices(), flight.getFlightSumFromLeftWindow());
     }
 
-    @org.testng.annotations.Test(description = "id=3")
+    @Test(description = "id=3")
     public void checkAirportsFromMapPage() {
         StepsForMapPage stepsForMapPage = mainSteps.openPage().closePopUps().openMap();
         stepsForMapPage.chooseRoute();
@@ -59,7 +59,7 @@ public class Test {
         Assert.assertTrue(route.contains(destination[0]));
     }
 
-    @org.testng.annotations.Test(description = "id=4")
+    @Test(description = "id=4")
     public void selectedBaggageEqualsExpectedBaggage() {
         FlightData flightData = TestData.getFlightData();
         PassengerData expectedPassengerData;
@@ -73,7 +73,7 @@ public class Test {
         assertEquals(actualPassengerData, expectedPassengerData);
     }
 
-    @org.testng.annotations.Test(enabled = true, description = "id=5")
+    @Test(enabled = true, description = "id=5")
     public void bookingWithWrongCard() throws Exception {
         FlightData flightData = TestData.getFlightData();
         PassengerData expectedPassengerData = TestData.getPassengerData();
@@ -109,7 +109,7 @@ public class Test {
         Assert.assertEquals(expectedPassengerData, actualPassengerData);
     }
 
-    @org.testng.annotations.Test(description = "id=6")
+    @Test(description = "id=6")
     public void selectedSeatIsNotMoreAvailable() {
         FlightData flightData = TestData.getFlightData();
         PassengerData passengerData = TestData.getPassengerData();
@@ -142,7 +142,7 @@ public class Test {
         mainPageSteps.closeWindow();
     }
 
-    @org.testng.annotations.Test(description = "id=7")
+    @Test(description = "id=7")
     public void twoTicketsOnOnePerson() throws NotSignedException {
         mainSteps.openPage()
                 .closePopUps()
@@ -193,7 +193,7 @@ public class Test {
         controlSession.closeWindow();
     }
 
-    @org.testng.annotations.Test(description = "id=8")
+    @Test(description = "id=8")
     public void flightPriceWithInfantEqualsPriceWithoutInfant() {
         FlightData flightDataWithoutInfant = TestData.getFlightData();
         String flightWithoutInfant = mainSteps.openPage().closePopUps()
@@ -210,7 +210,7 @@ public class Test {
     }
 
 
-    @org.testng.annotations.Test(description = "id=9")
+    @Test(description = "id=9")
     public void bookWrongFlight() {
         TestData.setPropertyFile(wrongReturnData);
         FlightData flightData = TestData.getFlightData();
@@ -220,7 +220,7 @@ public class Test {
         assertFalse(isButtonEnabled);
     }
 
-    @org.testng.annotations.Test(description = "id=10")
+    @Test(description = "id=10")
     public void checkFlightSumWithAndWithoutLogin() {
         FlightData flightData = TestData.getFlightData();
         LoginData loginData = TestData.getLogin();
