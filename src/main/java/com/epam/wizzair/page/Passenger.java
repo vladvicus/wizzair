@@ -12,14 +12,13 @@ import org.openqa.selenium.support.FindBy;
  */
 public class Passenger extends AbstractPage {
 
-    //locators
-    @FindBy(xpath = "//*[@id=\"passenger-baggages-outbound-0\"]")
+    @FindBy(xpath = "//*[@id='passenger-baggages-outbound-0']")
     private WebElement departureContainer;
 
-    @FindBy(xpath = "//*[@id=\"passenger-baggages-return-0\"]")
+    @FindBy(xpath = "//*[@id='passenger-baggages-return-0']")
     private WebElement returnContainer;
 
-    @FindBy(xpath = "//*[@id=\"booking-flow-step-passengers\"]/div[1]/form")
+    @FindBy(xpath = "//form[@name='passengers-form']")
     private WebElement passengerForm;
 
     @FindBy(id = "passengers-continue-btn")
@@ -28,20 +27,12 @@ public class Passenger extends AbstractPage {
     //---------------------seat selection buttons
     private By selectSeatButton = By.xpath(".//button[text()='Select seat']");
 
-    //--------------------sport equipment buttons
-    private By SportEquipment = By.xpath("//div[3]/div[1]/div[1]/div/div/div[2]/label");
-
     //-----------------------checkin baggage radio buttons
+    private By baggageNoneRB = By.xpath("//*[@id='passenger-0-outbound-checked-in-baggage-switch-option0']/following-sibling::label");
+    private By baggageLightRB = By.xpath("//*[@id='passenger-0-outbound-checked-in-baggage-switch-option1']/following-sibling::label");
+    private By baggageHeavyRB = By.xpath("//*[@id='passenger-0-outbound-checked-in-baggage-switch-option2']/following-sibling::label");
 
-    private By baggageNoneRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option0\"]/following-sibling::label");
 
-    private By baggageLightRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option1\"]/following-sibling::label");
-    private By baggageHeavyRB = By.xpath("//*[@id=\"passenger-0-outbound-checked-in-baggage-switch-option2\"]/following-sibling::label");
-
-    public Passenger() {
-
-    }
-    
     public Passenger setCheckedInBaggage(BaggageCheckedOptions depOption) {
         switch (depOption){
             case NONE:
@@ -75,8 +66,8 @@ public class Passenger extends AbstractPage {
 
     //-----------------------cabin baggage radio buttons
 
-    private By baggageSmallRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option0\"]/following-sibling::label");
-    private By baggageLargeRB = By.xpath("//*[@id=\"passenger-0-outbound-cabin-baggage-switch-option1\"]/following-sibling::label");
+    private By baggageSmallRB = By.xpath("//*[@id='passenger-0-outbound-cabin-baggage-switch-option0']/following-sibling::label");
+    private By baggageLargeRB = By.xpath("//*[@id='passenger-0-outbound-cabin-baggage-switch-option1']/following-sibling::label");
 
 
     public Passenger setCabinBaggage(BaggageCabinOptions depOption) {
@@ -106,14 +97,14 @@ public class Passenger extends AbstractPage {
     }
 
     //Sport Equipment locators
-    private By sportEquipmentBtn = By.cssSelector("[class=\"nowrap\"");
+    private By sportEquipmentBtn = By.cssSelector("[class='nowrap'");
     private WebElement sportEquipmentDepBtn;
     private WebElement sportEquipmentRetBtn;
 
     //this locators home is sportEquipmentBtn
     private By input = By.xpath("//input[1]");
-    private By labelEn = By.xpath("//label[1]/span[@class=\"button button--medium button--filled\"]");
-    private By labelDis = By.xpath("//label[1]/class=\"button button--medium button--outlined button--breakable\"");
+    private By labelEn = By.xpath("//label[1]/span[@class='button button--medium button--filled']");
+    private By labelDis = By.xpath("//label[1]/class='button button--medium button--outlined button--breakable'");
     //-----------------------------------
 
     public boolean isDepSportEquipmentEn() {
@@ -150,8 +141,8 @@ public class Passenger extends AbstractPage {
         return this;
     }
 
-    private By online = By.xpath("//p[@class=\"option\" and text()=\"Online\"]");
-    private By airport = By.xpath("//p[@class=\"option\" and text()=\"Airport\"]");
+    private By online = By.xpath("//p[@class='option' and text()='Online']");
+    private By airport = By.xpath("//p[@class='option' and text()='Airport']");
     public Passenger setCheckInMethod(CheckInMethod depMethod, CheckInMethod retMethod) {
 
         switch (retMethod){

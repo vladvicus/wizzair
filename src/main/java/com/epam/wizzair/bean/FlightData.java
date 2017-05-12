@@ -12,6 +12,7 @@ public class FlightData {
     private int retDate;
     private PassengerSetting passenger;
     private int numberOfPassengers;
+    private String month;
 
     public String getOrigin() {
         return origin;
@@ -53,6 +54,10 @@ public class FlightData {
 
     public void setNumberOfPassengers(int numberOfPassengers) {this.numberOfPassengers=numberOfPassengers;}
 
+    public String getMonth() {return month;}
+
+    public void setMonth(String month) {this.month = month;}
+
     @Override
     public String toString() {
         return "FlightData{" +
@@ -62,6 +67,7 @@ public class FlightData {
                 ", retDate=" + retDate +
                 ", passenger=" + passenger +
                 ", numberOfPassengers=" + numberOfPassengers +
+                ", month=" + month +
                 '}';
     }
 
@@ -77,6 +83,7 @@ public class FlightData {
         if (numberOfPassengers != that.numberOfPassengers) return false;
         if (origin != null ? !origin.equals(that.origin) : that.origin != null) return false;
         if (destination != null ? !destination.equals(that.destination) : that.destination != null) return false;
+        if (month != null ? !month.equals(that.month) : that.month != null) return false;
         return passenger == that.passenger;
     }
 
@@ -88,6 +95,7 @@ public class FlightData {
         result = 31 * result + retDate;
         result = 31 * result + (passenger != null ? passenger.hashCode() : 0);
         result = 31 * result + numberOfPassengers;
+        result = 31 * result + (month!= null ? month.hashCode() : 0);
         return result;
     }
 }

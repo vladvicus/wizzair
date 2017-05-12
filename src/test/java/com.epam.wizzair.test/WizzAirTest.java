@@ -9,8 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
-public class TestSuite {
+public class WizzAirTest {
     private StepsForMainPage mainSteps;
     private static String testDataWithInfant = "testDataWithInfant";
     private static String timetable = "testDataForTimetable";
@@ -99,19 +100,12 @@ public class TestSuite {
                 .confirmPayment();
 
         StepsForMainPage controlSession = new StepsForMainPage();
-//        controlSession
-//                .openPage()
-//                .signIn()
-//                .loginWizzAir(TestData.getLogin());
-//
-//        Thread.sleep(5000);
-
 
         PassengerData actualPassengerData = controlSession
                 .openPage()
                 .gotoProfile()
                 .getPassengerData();
-
+        controlSession.closeWindow();
         Assert.assertEquals(expectedPassengerData, actualPassengerData);
     }
 
@@ -144,7 +138,7 @@ public class TestSuite {
                 .fillPassenger(passengerData)
                 .fillBaggage(passengerData.getDepBaggage())
                 .gotoDepSeatSelection().isSelectedSeatEnable(departureSeat.getSelectedSeatNumber());
-        Assert.assertFalse(isSeatEnable);
+        assertFalse(isSeatEnable);
         mainPageSteps.closeWindow();
     }
 
@@ -220,11 +214,10 @@ public class TestSuite {
     public void bookWrongFlight() {
         TestData.setPropertyFile(wrongReturnData);
         FlightData flightData = TestData.getFlightData();
-//        mainSteps.openPage().openTimeTable()
-//                .findBothFlights(flightData.getOrigin(), flightData.getDestination())
-//                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate());
-        //TODO: write assert & findBothFlights method
-
+        boolean isButtonEnabled = mainSteps.openPage().openTimeTable()
+                .findBothFlights(flightData.getOrigin(), flightData.getDestination(), flightData.getMonth())
+                .pickExactDepFlight().pickWrongFlight(flightData.getRetDate()).isButtonEnabled();
+        assertFalse(isButtonEnabled);
     }
 
     @Test(description = "id=10")

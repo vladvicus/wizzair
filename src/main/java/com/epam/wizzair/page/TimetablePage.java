@@ -1,28 +1,22 @@
 package com.epam.wizzair.page;
 
-import com.epam.wizzair.helper.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 import static com.epam.wizzair.driver.DriverSingleton.getDriver;
 
-/**
- * Created by Nadzeya_Parkhimovich on 13-Mar-17.
- */
+
 public class TimetablePage extends AbstractPage {
 
-    private WebDriverWait wait = new WebDriverWait(getDriver(), 10, 1000);
-
-    private final String CITY = "//strong[text()='";
-    private final String FLIGHT_PATH = "//li[@class='fare-finder__calendar__days__day']";
-    private final String MENU = "[class=\"dropdown__select\"";
-    private final String MONTH_MARCH = "[value=\"2017-03\"";
+    private final static String CITY = "//strong[text()='";
+    private final static String FLIGHT_PATH = "//li[@class='fare-finder__calendar__days__day']";
+    private final static String MENU = "[class=\"dropdown__select\"";
+    private final static String MONTH = "[value='2017-";
 
 
     @FindBy(id= "search-departure-station")
@@ -54,14 +48,6 @@ public class TimetablePage extends AbstractPage {
 
     @FindBy (xpath = "//header[@class='fare-finder__calendar__header']/address")
     private WebElement addressField;
-
-    public TimetablePage(){
-
-    }
-
-    public void openPage() {
-        getDriver().navigate().to(DriverConfig.urlTimetable());
-    }
 
     public TimetablePage fillOrigin(String origin){
         wait.until(ExpectedConditions.elementToBeClickable(inputOriginName));
@@ -102,7 +88,7 @@ public class TimetablePage extends AbstractPage {
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
         WebElement flights = divFlights.get(1);
         List<WebElement> secondFlight = flights.findElements(By.xpath(FLIGHT_PATH));
@@ -117,14 +103,13 @@ public class TimetablePage extends AbstractPage {
         return this;
     }
 
-    public TimetablePage chooseRetMonthMarch() {
+    public TimetablePage chooseRetMonthMarch(String month) {
         WebElement flights = divFlights.get(1);
         WebElement element = flights.findElement(By.cssSelector(MENU));
         element.click();
-        WebElement element1 = flights.findElement(By.cssSelector(MONTH_MARCH));
+        WebElement element1 = flights.findElement(By.cssSelector(MONTH + month + "'"));
         element1.click();
         return this;
-
     }
 
     public String getSummaryPrice() {
